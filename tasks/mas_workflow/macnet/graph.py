@@ -24,7 +24,25 @@ class GraphMaskInfo:
                 raise ValueError(f"{name} must contain only 0 and 1")
             
 def gen_graph_mask_info(mode: Literal['DirectAnswer', 'FullConnected', 'Random', 'Chain', 'Debate', 'Layered', 'Star'], N: int) -> GraphMaskInfo:
-    
+    """
+    Generate predefined spatial and temporal mask configurations for a graph based on the specified mode.
+
+    Args:
+        mode (Literal): Specifies the type of graph structure to generate. Supported values include:
+            - 'DirectAnswer': No real connections; used for single-answer configurations.
+            - 'FullConnected': Fully connected graph except for self-connections.
+            - 'Random': Random connections between nodes.
+            - 'Chain': Sequential chain-like structure.
+            - 'Debate': No spatial connections; all nodes receive full temporal info.
+            - 'Layered': Nodes organized into hierarchical layers.
+            - 'Star': A central node connected to all others.
+        N (int): Number of nodes in the graph.
+
+    Returns:
+        GraphMaskInfo: An object containing two attributes:
+            - fixed_spatial_masks: A 2D tuple representing spatial dependencies between nodes.
+            - fixed_temporal_masks: A 2D tuple representing temporal dependencies between nodes.
+    """
     def generate_layered_graph(N: int, layer_num: int = 2) -> tuple[tuple[int]]:
 
         adj_matrix = [[0] * N for _ in range(N)]

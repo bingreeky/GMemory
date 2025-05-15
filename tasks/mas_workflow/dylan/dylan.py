@@ -82,9 +82,9 @@ class DyLAN(MetaMAS):
         self.notify_observers(f"Failed Topk       : {self._failed_topk}")
         self.notify_observers(f"Insights Topk     : {self._insights_topk}")
         self.notify_observers(f"Retrieve Threshold: {self._threshold}")
-        self.notify_observers(f"Use role projector: {self._use_projector}")
-
-
+        self.notify_observers(f"Use Role Projector: {self._use_projector}")
+        
+        # Initialize the NeuronGrid
         self._neurons = DyLAN.NeuronGrid(self._width, self._height)
         
         for w in range(self._width):
@@ -132,8 +132,20 @@ class DyLAN(MetaMAS):
         
         self.set_env(env)
         self.meta_memory = mas_memory
-    def schedule(self, task_config: dict):
 
+    def schedule(self, task_config: dict):
+        """
+        Schedules and executes a task based on the given task configuration.
+
+        Args:
+            task_config (dict): A dictionary containing the task configuration, including the main task and description.
+
+        Raises:
+            ValueError: If `task_main` or `task_description` is missing in the task_config.
+
+        Returns:
+            tuple: The final reward and completion status of the task.
+        """
         def get_state_graph_upstream_neuron_ids(neuron: LLMNeuron, upstream_neuron_ids: dict[str, str]) -> list[str]:
             upstream_ids: list[str] = []
             for edge in neuron.in_edges:
@@ -146,6 +158,7 @@ class DyLAN(MetaMAS):
             
             return upstream_ids
         
+        # parse args
         if task_config.get('task_main') is None:
             raise ValueError("Missing required keys `task_main` in task_config")
         if task_config.get('task_description') is None:
@@ -181,10 +194,11 @@ class DyLAN(MetaMAS):
             few_shots=few_shots, 
             memory_few_shots=successful_shots,
             insights=raw_rules,
-            task_description=self.meta_memory.summarize(upstream_agent_ids=None)
+            task_description=self.meta_memory.summarize()
         )
         self.notify_observers(user_prompt)
-
+        
+        # Main loop for task execution
         for i in range(env.max_trials):
 
             self._reset_state()
@@ -198,7 +212,7 @@ class DyLAN(MetaMAS):
                         few_shots=few_shots, 
                         memory_few_shots=successful_shots,
                         insights=roles_rules.get(curr_neuron._agent.profile, raw_rules),
-                        task_description=self.meta_memory.summarize(upstream_agent_ids=None)
+                        task_description=self.meta_memory.summarize()
                     )
                     while tries < max_trials:
                         try: 
@@ -231,6 +245,7 @@ class DyLAN(MetaMAS):
                 if self._height > 2 and w == (self._width - 1) // 2:
                     self._rank_neurons(w)
             
+            # Finish one step
             raw_final_action: str = self._summary_response(w)
             final_action = env.process_action(raw_final_action)
             observation, reward, done = env.step(final_action)
@@ -240,14 +255,12 @@ class DyLAN(MetaMAS):
 
             if done:
                 break
+
+        # Final feedback and memory update
         final_reward, final_done, final_feedback = self.env.feedback()
         self.notify_observers(final_feedback)
         self.meta_memory.save_task_context(label=final_done, feedback=final_feedback)  
         
-        if final_done: 
-            self._backward(answer=raw_final_action)   
-            pass
-
         return final_reward, final_done    
 
     def add_observer(self, observer):
@@ -258,6 +271,15 @@ class DyLAN(MetaMAS):
             observer.log(message)
 
     def _reach_consensus(self, col: int) -> bool:
+        """
+        Determine whether a consensus has been reached among the active neurons in a specific column.
+
+        Args:
+            col (int): The index of the column in the NeuronGrid to evaluate.
+
+        Returns:
+            bool: True if consensus is reached, otherwise False.
+        """
         neuron_layer: list[LLMNeuron] = self._neurons[col]
         
         answers = [
@@ -266,8 +288,10 @@ class DyLAN(MetaMAS):
             if neuron.is_active() and neuron.cached_answer is not None
         ]
 
-        if not answers or len(answers) == 1:  
+        if not answers or len(answers) < 2:  
             return False 
+        elif len(answers) == 2:
+            return answers[0] == answers[1]
 
         counter = Counter(answers)
         max_count = max(counter.values())
@@ -275,7 +299,17 @@ class DyLAN(MetaMAS):
         return max_count >= math.floor(2/3 * len(neuron_layer))
     
     def _summary_response(self, col: int) -> str:
+        """
+        Summarizes the responses of active neurons in the specified column of the NeuronGrid.
 
+        Args:
+            col (int): Index of the column in the NeuronGrid to summarize.
+
+        Returns:
+            str: A single summarized response. If a majority of active neurons agree,
+                the common response is returned directly. Otherwise, a final decision is
+                generated by aggregating and analyzing all active responses.
+        """
         neuron_layer: list[LLMNeuron] = self._neurons[col]
     
         answers = [
@@ -286,12 +320,13 @@ class DyLAN(MetaMAS):
 
         if not answers:
             return "No active response."
-
-        counter = Counter(answers)
-        most_common_answer, count = counter.most_common(1)[0]
-
-        if count >= math.floor(2/3 * len(answers)):
+        
+        # 如果达成一致, 则使用多数的答案
+        if self._reach_consensus(col=col):
+            counter = Counter(answers)
+            most_common_answer, count = counter.most_common(1)[0]   
             return most_common_answer
+        # 否则, 使用 summary agent 进行总结
         else:
             upstream_responses: str = ''
             for i, answer in enumerate(answers):
@@ -301,7 +336,13 @@ class DyLAN(MetaMAS):
             return final_response
 
     def _rank_neurons(self, col: int) -> None:
+        """
+        Ranks the active neurons in the specified column based on their responses,
+        and deactivates the lowest-ranked neuron.
 
+        Args:
+            col (int): Index of the column in the NeuronGrid whose neurons will be ranked.
+        """
         def parse_ranks(ranks: str) -> list[int]:
             import re
             matches = re.findall(r'Agent\s*(\d+)', ranks) 
@@ -337,6 +378,14 @@ class DyLAN(MetaMAS):
         loser_neuron.deactivate()  
 
     def _reset_state(self) -> None:
+        """
+        Resets the internal state of all neurons in the NeuronGrid.
+
+        For each column in the grid:
+            - Recalculates and normalizes the importance of each neuron in the column.
+            - Reactivates each neuron and clears its cached answer.
+            - Resets the weights of all incoming and outgoing edges of each neuron to 0.
+        """
 
         for col in range(self._width):
             sum_importance: float = sum([n.importance for n in self._neurons[col]])
@@ -350,45 +399,18 @@ class DyLAN(MetaMAS):
                     in_edge.set_weight(0)
                 for out_edge in neuron.out_edges:
                     out_edge.set_weight(0)
-
-    def _backward(self, answer: str) -> None:
-
-        flag_last = False
-
-        for w in range(self._width - 1, -1, -1):
-            if not flag_last:
-                neuron_layer: list[LLMNeuron] = self._neurons[w]
-                if len([neuron for neuron in neuron_layer if neuron.is_active()]) > 0:
-                    flag_last = True
-                else:
-                    continue
-                
-                candidates = [neuron for neuron in neuron_layer if neuron.cached_answer == answer]
-                if len(candidates) == 0: 
-                    return
-                ave_w: float = 1 / len(candidates)
-                for neuron in neuron_layer:
-                    if neuron in candidates:
-                        neuron.importance = ave_w
-                    else:
-                        neuron.importance = 0
-            else:
-                for neuron in neuron_layer:
-                    if not neuron.is_active():
-                        continue
-                    total_importance = 0.0
-                    for out_edge in neuron.out_edges:
-                        next_neuron = out_edge.to_neuron
-                        total_importance += next_neuron.importance * out_edge.weight
-                    neuron.importance += self._learning_rate * total_importance  
-                    
-                total = sum(n.importance for n in neuron_layer)
-                if total > 0:
-                    for neuron in neuron_layer:
-                        neuron.importance /= total
             
 
     def _project_insights(self, insights: list[str]) -> dict[str, list[str]]:
+        """
+        Process insights to generate a dictionary matching roles to insights, based on whether a projector is used.
+
+        Args:
+            insights (list[str]): A list of insight strings.
+
+        Returns:
+            dict[str, list[str]]: A dictionary with roles as keys and lists of insights as values.
+        """
         roles_rules: dict[str, list[str]] = {}
         roles = set([agent.profile for agent in self.agents_team.values()])
 

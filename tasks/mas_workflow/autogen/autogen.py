@@ -33,7 +33,7 @@ class AutoGen(MetaMAS):
         self.notify_observers(f"Failed Topk       : {self._failed_topk}")
         self.notify_observers(f"Insights Topk     : {self._insights_topk}")
         self.notify_observers(f"Retrieve Threshold: {self._threshold}")
-        self.notify_observers(f"Use role projector: {self._use_projector}")
+        self.notify_observers(f"Use Role Projector: {self._use_projector}")
 
         if not isinstance(reasoning, ReasoningBase):
             raise TypeError("reasoning module must be an instance of ReasoningBase")
@@ -73,8 +73,17 @@ class AutoGen(MetaMAS):
             observer.log(message)
     
     def schedule(self, task_config: dict) -> tuple[float, bool]:
+        """
+        Schedules and executes a task according to the given task configuration.
+        This function initializes the task context based on the configuration, retrieves relevant memories and insights,
+        and then executes the task by interacting with the environment and agents. It also handles memory updates and feedback.
         
-        # setups
+        Parameters:
+        - task_config (dict): A dictionary containing the task configuration, including the main task and description.
+        
+        Returns:
+        - tuple[float, bool]: Returns the final reward and whether the task was successfully completed.
+        """
         if task_config.get('task_main') is None:
             raise ValueError("Missing required keys `task_main` in task_config")
         if task_config.get('task_description') is None:
@@ -83,14 +92,16 @@ class AutoGen(MetaMAS):
         task_main: str = task_config.get('task_main')
         task_description: str = task_config.get('task_description')
         few_shots: list[str] =  task_config.get("few_shots", [])
-
+        
+        # Initialize environment and agents
         env: Env = self.env
         solver: Agent = self.get_agent(self.solver_name)
         ground_truth: Agent = self.get_agent(self.ground_truth_name)
         env.reset()
-
+        
         self.meta_memory.init_task_context(task_main, task_description) 
-
+        
+        # Retrieve successful trajectories and insights from memory
         successful_trajectories: list[MASMessage]
         insights: list[dict]
         
@@ -107,6 +118,7 @@ class AutoGen(MetaMAS):
         raw_rules: list[str] = [insight for insight in insights]
         roles_rules: dict[str, list[str]] = self._project_insights(raw_rules)
         
+        # Generate initial user prompt with insights
         user_prompt: str = format_task_prompt_with_insights(
             few_shots=few_shots, 
             memory_few_shots=successful_shots,
@@ -115,7 +127,7 @@ class AutoGen(MetaMAS):
         )
         self.notify_observers(user_prompt)
 
-
+        # Main loop for task execution
         action_history: list = [] 
         
         for i in range(env.max_trials):    
@@ -181,7 +193,8 @@ class AutoGen(MetaMAS):
 
             if done:  
                 break
-        
+
+        # Final feedback and memory update
         final_reward, final_done, final_feedback = self.env.feedback()
         self.notify_observers(final_feedback)
         self.meta_memory.save_task_context(label=final_done, feedback=final_feedback)  
@@ -206,6 +219,15 @@ class AutoGen(MetaMAS):
         return len(action_history) >= 2 and current_action == action_history[-1] and current_action == action_history[-2]
 
     def _project_insights(self, insights: list[str]) -> dict[str, list[str]]:
+        """
+        Process insights to generate a dictionary matching roles to insights, based on whether a projector is used.
+
+        Args:
+            insights (list[str]): A list of insight strings.
+
+        Returns:
+            dict[str, list[str]]: A dictionary with roles as keys and lists of insights as values.
+        """
 
         roles_rules: dict[str, list[str]] = {}
         roles = set([agent.profile for agent in self.agents_team.values()])

@@ -118,6 +118,23 @@ class Node:
         self._input = []
 
     def get_spatial_upstream_info(self) -> Dict[str, Dict[str, str]]:
+        """
+        Retrieve the outputs and roles of spatially connected upstream nodes.
+
+        Raises:
+            RuntimeError: If the upstream node's output is not a list.
+            RuntimeError: If the upstream node has no output to retrieve.
+
+        Returns:
+            Dict[str, Dict[str, str]]: A dictionary mapping each upstream node's ID 
+            to its role and first output, in the form:
+                {
+                    node_id: {
+                        "role": str,
+                        "output": str
+                    }
+                }
+        """
         predecessors: Tuple[Node] = self.spatial_predecessors
 
         upstream_info = {}
@@ -137,6 +154,23 @@ class Node:
         return upstream_info
 
     def get_temporal_upstream_info(self) -> Dict[str, Dict[str, str]]:
+        """
+        Retrieve the outputs and roles of temporally connected upstream nodes.
+
+        Raises:
+            RuntimeError: If the upstream node's output is not a list.
+            RuntimeError: If the upstream node has no output to retrieve.
+
+        Returns:
+            Dict[str, Dict[str, str]]: A dictionary mapping each upstream node's ID 
+            to its role and first output, in the form:
+                {
+                    node_id: {
+                        "role": str,
+                        "output": str
+                    }
+                }
+        """
         predecessors: Tuple[Node] = self.temporal_predecessors
 
         upstream_info = {}
@@ -156,6 +190,16 @@ class Node:
         return upstream_info
     
     def execute(self, user_message: Message, use_critic: bool) -> str:
+        """
+        Generate the node's response by integrating answers from its upstream nodes.
+
+        Args:
+            user_message (Message): The user's input message to the current node.
+            use_critic (bool): Whether to apply a critic mechanism during reasoning.
+
+        Returns:
+            str: The generated response from the node.
+        """
         self._output, self._input = [], [] 
 
         spatial_info: Dict[str, Dict] = self.get_spatial_upstream_info()
@@ -171,7 +215,17 @@ class Node:
         return answer
     
     def _process_inputs(self, user_message: Message, spatial_info: dict, temporal_info: dict, use_critic: bool) -> str:
+        """Get input prompts for the agent
 
+        Args:
+            user_message (Message): The message object containing the user's question or input
+            spatial_info (dict): Information about other agents' outputs in the current round, keyed by their UUIDs
+            temporal_info (dict): Information about other agents' outputs in the previous round, keyed by their UUIDs
+            use_critic (bool): Flag to determine whether to use critic's feedback on other agents' outputs
+
+        Returns:
+            str: The final prompt string compiled from the user's message and other agents' outputs
+        """
         user_prompt = user_message.content
 
         spatial_upstream_message: str = ""
@@ -203,6 +257,15 @@ class Node:
         return final_prompt + user_prompt 
     
     def _critic_upstream_agent(self, task: str, agent_response: str) -> str:
+        """get critic agent's response to the agent's response
+
+        Args:
+            task (str): current task
+            agent_response (str): agent's response
+
+        Returns:
+            str: critic agent's response to the agent's response
+        """
         from .graph_prompt import critic_system_prompt, critic_user_prompt
 
         user_prompt: str = critic_user_prompt.format(task=task, agent_answer=agent_response)

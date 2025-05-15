@@ -28,6 +28,7 @@ class MacNet(MetaMAS):
 
     def build_system(self, reasoning: ReasoningBase, mas_memory: MASMemoryBase, env: Env, config: dict):
         
+        # parse configs
         graph_type: str = config.get('graph_type', 'Random')
         node_num: int = config.get('node_num', 3)
         self._use_critic: bool = config.get('use_critic', True)
@@ -45,8 +46,9 @@ class MacNet(MetaMAS):
         self.notify_observers(f"Failed Topk       : {self._failed_topk}")
         self.notify_observers(f"Insights Topk     : {self._insights_topk}")
         self.notify_observers(f"Retrieve Threshold: {self._threshold}")
-        self.notify_observers(f"Use role projector: {self._use_projector}")
+        self.notify_observers(f"Use Role Projector: {self._use_projector}")
 
+        # build macnet mas
         self.compute_graph: GraphMaskInfo = gen_graph_mask_info(mode=graph_type, N=node_num)
         self._size: int = len(self.compute_graph.fixed_spatial_masks)
 
@@ -60,7 +62,17 @@ class MacNet(MetaMAS):
         self.set_env(env)
         self.meta_memory = mas_memory
     
-    def schedule(self, task_config: dict):
+    def schedule(self, task_config: dict) -> tuple[float, bool]:
+        """
+        Schedules and executes a task based on the given task configuration.
+
+        Args:
+            task_config (dict): A dictionary containing the task configuration, including the main task, task description, and optional few-shot examples.
+
+        Returns:
+            final_reward: The final reward obtained upon task completion.
+            final_done: A boolean indicating whether the task is completed.
+        """
         def get_state_graph_upstream_node_ids(node: Node, upstream_node_ids: dict[str, str]) -> list[str]:
             upstream_ids: list[str] = []
             for node in node.spatial_predecessors:
@@ -70,6 +82,7 @@ class MacNet(MetaMAS):
             
             return upstream_ids
         
+        # parse args
         if task_config.get('task_main') is None:
             raise ValueError("Missing required keys `task_main` in task_config")
         if task_config.get('task_description') is None:
@@ -109,13 +122,15 @@ class MacNet(MetaMAS):
         )
         self.notify_observers(user_prompt)
         
+        # Main loop for task execution
         for i in range(env.max_trials):
 
             upstream_node_ids: dict[str, str] = {}   
 
             in_degree = {node.id: len(node.spatial_predecessors) for node in self._agent_nodes.values()}
             zero_in_degree_queue = [node_id for node_id, deg in in_degree.items() if deg == 0] 
-
+            
+            # topo sorting
             while zero_in_degree_queue:  
                 current_node_id = zero_in_degree_queue.pop(0) 
                 curr_node: Node = self._find_agent_node_by_uuid(current_node_id)
@@ -159,6 +174,7 @@ class MacNet(MetaMAS):
                     if in_degree[successor.id] == 0:
                         zero_in_degree_queue.append(successor.id)
             
+            # Finish one step
             self._update_memory()
             self._connect_decision_node()
             action = self._decision_node.execute(user_message, use_critic=False)   
@@ -173,7 +189,8 @@ class MacNet(MetaMAS):
 
             if done:
                 break
-        
+
+        # Final feedback and memory update
         final_reward, final_done, final_feedback = self.env.feedback()
         self.notify_observers(final_feedback)
         self.meta_memory.save_task_context(label=final_done, feedback=final_feedback) 
@@ -186,7 +203,6 @@ class MacNet(MetaMAS):
     def notify_observers(self, message: str):
         for observer in self.observers:
             observer.log(message)
-
     
     def _update_memory(self) -> None:
         for node in self._agent_nodes.values():
@@ -248,7 +264,14 @@ class MacNet(MetaMAS):
             Node.remove_spatial_edge(node, self._decision_node)
 
 
-    def _construct_spatial_connection(self, temperature: float = 1.0, threshold: float = None) -> np.ndarray[bool]: 
+    def _construct_spatial_connection(self) -> np.ndarray[bool]: 
+        """
+        Construct a spatial connection matrix based on fixed spatial masks, ensuring no cycles are introduced.
+
+        Returns:
+            np.ndarray[bool]: A 2D boolean matrix where matrix[i][j] is True if node j is spatially connected to node i.
+        """
+
         self._clear_spatial_connection() 
         spatial_matrix = np.zeros((self._size, self._size), dtype=bool)
         
@@ -270,10 +293,14 @@ class MacNet(MetaMAS):
         
         return spatial_matrix
 
-    def _construct_temporal_connection(self, round:int = 0, temperature: float = 1.0, threshold: float = None) -> np.ndarray[bool]:  
+    def _construct_temporal_connection(self) -> np.ndarray[bool]:  
+        """
+        Construct a temporal connection matrix based on fixed spatial masks, ensuring no cycles are introduced.
 
+        Returns:
+            np.ndarray[bool]: A 2D boolean matrix where matrix[i][j] is True if node j is spatially connected to node i.
+        """
         self._clear_temporal_connection() 
-
         temporal_matrix = np.zeros((self._size, self._size), dtype=bool)
         
         for out_node_index, in_nodes in enumerate(self.compute_graph.fixed_temporal_masks):
@@ -293,6 +320,12 @@ class MacNet(MetaMAS):
         
     
     def _check_system_cycle(self) -> bool:
+        """
+        Check whether there is a cycle in the multi-agent system connections.
+
+        Returns:
+            bool: True if a cycle is detected, otherwise False.
+        """
         frontier = deque() 
         visited = set() 
         in_degrees = {} 
@@ -319,6 +352,15 @@ class MacNet(MetaMAS):
         return len(visited) != self._size
 
     def _project_insights(self, insights: list[str]) -> dict[str, list[str]]:
+        """
+        Process insights to generate a dictionary matching roles to insights, based on whether a projector is used.
+
+        Args:
+            insights (list[str]): A list of insight strings.
+
+        Returns:
+            dict[str, list[str]]: A dictionary with roles as keys and lists of insights as values.
+        """
         roles_rules: dict[str, list[str]] = {}
         roles = set([agent.profile for agent in self.agents_team.values()])
 
