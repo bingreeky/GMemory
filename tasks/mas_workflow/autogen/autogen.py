@@ -2,9 +2,9 @@ from dataclasses import dataclass
 
 from mas.agents import Agent
 from mas.memory.common import MASMessage, AgentMessage
-from mas.meta_mas import MetaMAS
+from mas.mas import MetaMAS
 from mas.reasoning import ReasoningBase, ReasoningConfig
-from mas.memory import MASMemoryBase
+from mas.memory import MASMemoryBase, GMemory
 from mas.agents import Env
 
 from .autogen_prompt import AUTOGEN_PROMPT 
@@ -28,11 +28,12 @@ class AutoGen(MetaMAS):
         self._failed_topk: int = config.get('failed_topk', 1)
         self._insights_topk: int = config.get('insights_topk', 3)
         self._threshold: float = config.get('threshold', 0)
+        self._use_projector: bool = config.get('use_projector', False)
         self.notify_observers(f"Successful Topk   : {self._successful_topk}")
         self.notify_observers(f"Failed Topk       : {self._failed_topk}")
         self.notify_observers(f"Insights Topk     : {self._insights_topk}")
         self.notify_observers(f"Retrieve Threshold: {self._threshold}")
-
+        self.notify_observers(f"Use role projector: {self._use_projector}")
 
         if not isinstance(reasoning, ReasoningBase):
             raise TypeError("reasoning module must be an instance of ReasoningBase")
@@ -72,7 +73,8 @@ class AutoGen(MetaMAS):
             observer.log(message)
     
     def schedule(self, task_config: dict) -> tuple[float, bool]:
-
+        
+        # setups
         if task_config.get('task_main') is None:
             raise ValueError("Missing required keys `task_main` in task_config")
         if task_config.get('task_description') is None:
@@ -81,7 +83,6 @@ class AutoGen(MetaMAS):
         task_main: str = task_config.get('task_main')
         task_description: str = task_config.get('task_description')
         few_shots: list[str] =  task_config.get("few_shots", [])
-
 
         env: Env = self.env
         solver: Agent = self.get_agent(self.solver_name)
@@ -93,7 +94,6 @@ class AutoGen(MetaMAS):
         successful_trajectories: list[MASMessage]
         insights: list[dict]
         
-
         successful_trajectories, _, insights = self.meta_memory.retrieve_memory(
             query_task=task_main,
             successful_topk=self._successful_topk,
@@ -104,12 +104,13 @@ class AutoGen(MetaMAS):
         successful_shots: list[str] = [format_task_context(
             traj.task_description, traj.task_trajectory, traj.get_extra_field('key_steps')
         ) for traj in successful_trajectories]
-        rules: list[str] = [insight for insight in insights]
+        raw_rules: list[str] = [insight for insight in insights]
+        roles_rules: dict[str, list[str]] = self._project_insights(raw_rules)
         
         user_prompt: str = format_task_prompt_with_insights(
             few_shots=few_shots, 
             memory_few_shots=successful_shots,
-            insights=rules,
+            insights=raw_rules,
             task_description=self.meta_memory.summarize()
         )
         self.notify_observers(user_prompt)
@@ -122,7 +123,7 @@ class AutoGen(MetaMAS):
             user_prompt: str = format_task_prompt_with_insights(
                 few_shots=few_shots, 
                 memory_few_shots=successful_shots,
-                insights=rules,
+                insights=roles_rules.get(solver.profile, raw_rules),
                 task_description=self.meta_memory.summarize()
             )
             tries = 0
@@ -142,6 +143,12 @@ class AutoGen(MetaMAS):
             system_instruction = solver.system_instruction
             
             if self._solver_stuck(action, action_history):
+                user_prompt: str = format_task_prompt_with_insights(
+                    few_shots=few_shots, 
+                    memory_few_shots=successful_shots,
+                    insights=roles_rules.get(ground_truth.profile, raw_rules),
+                    task_description=self.meta_memory.summarize()
+                )
                 tries = 0
                 while tries < 3:
                     try: 
@@ -183,7 +190,51 @@ class AutoGen(MetaMAS):
         return final_reward, final_done   
     
     def _solver_stuck(self, current_action: str, action_history: list[str]) -> bool:
+        """
+        Determines whether the agent is stuck by repeating the same action.
+
+        If the current action is identical to the last two actions in the history,
+        the agent is considered to be stuck in a loop.
+
+        Args:
+            current_action (str): The action currently being executed by the agent.
+            action_history (list[str]): A chronological list of previously taken actions.
+
+        Returns:
+            bool: True if the last two actions are the same as the current action; False otherwise.
+        """
         return len(action_history) >= 2 and current_action == action_history[-1] and current_action == action_history[-2]
 
+    def _project_insights(self, insights: list[str]) -> dict[str, list[str]]:
+        """
+        Projects the given insights to different agent roles.
 
+        This method assigns a customized set of insights to each role in the team. If the
+        projection mechanism is disabled or the memory module is not available, all roles 
+        will receive the same raw insights. Otherwise, role-specific projection is performed 
+        using the meta memory module.
+
+        After projection, the number of insights per role is limited to self._insights_topk.
+
+        Args:
+            insights (list[str]): A list of raw insights to be distributed across roles.
+
+        Returns:
+            dict[str, list[str]]: A dictionary mapping each role to its top-k adapted insights.
+        """
+        roles_rules: dict[str, list[str]] = {}
+        roles = set([agent.profile for agent in self.agents_team.values()])
+
+        if not self._use_projector or not isinstance(self.meta_memory, GMemory):
+            for role in roles:
+                roles_rules[role] = insights
+        else:
+            for role in roles:
+                roles_rules[role] = self.meta_memory.project_insights(insights, role)
+        
+        # Limit the number of insights per role to self._insights_topk
+        for role, insights in roles_rules.items():
+            roles_rules[role] = insights[:self._insights_topk]
+        return roles_rules
+        
             

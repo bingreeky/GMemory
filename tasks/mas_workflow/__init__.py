@@ -1,11 +1,11 @@
-from mas.meta_mas import MetaMAS
+from mas.mas import MetaMAS
 from .autogen import AutoGen
-from .graph_mas import GraphMAS
+from .macnet import MacNet
 from .dylan import DyLAN
 
 MAS = {
     'autogen': AutoGen,
-    'graph': GraphMAS,
+    'macnet': MacNet,
     'dylan': DyLAN
 }
 

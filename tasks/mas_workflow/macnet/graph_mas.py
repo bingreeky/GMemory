@@ -4,9 +4,9 @@ from collections import deque
 
 from mas.agents import Agent
 from mas.memory.common import MASMessage, AgentMessage
-from mas.meta_mas import MetaMAS
+from mas.mas import MetaMAS
 from mas.reasoning import ReasoningBase, ReasoningConfig
-from mas.memory import MASMemoryBase
+from mas.memory import MASMemoryBase, GMemory
 from mas.agents import Env
 from mas.llm import Message
 
@@ -16,7 +16,7 @@ from .graph_prompt import *
 from ..format import format_task_context, format_task_prompt_with_insights
 
 @dataclass
-class GraphMAS(MetaMAS):
+class MacNet(MetaMAS):
     
     def __post_init__(self):
 
@@ -35,6 +35,7 @@ class GraphMAS(MetaMAS):
         self._failed_topk: int = config.get('failed_topk', 1)
         self._insights_topk: int = config.get('insights_topk', 3)
         self._threshold: float = config.get('threshold', 0)
+        self._use_projector: bool = config.get('use_projector', False)
 
         self.notify_observers(f"Configuration Loaded:")
         self.notify_observers(f"Node Number       : {node_num}")
@@ -44,6 +45,7 @@ class GraphMAS(MetaMAS):
         self.notify_observers(f"Failed Topk       : {self._failed_topk}")
         self.notify_observers(f"Insights Topk     : {self._insights_topk}")
         self.notify_observers(f"Retrieve Threshold: {self._threshold}")
+        self.notify_observers(f"Use role projector: {self._use_projector}")
 
         self.compute_graph: GraphMaskInfo = gen_graph_mask_info(mode=graph_type, N=node_num)
         self._size: int = len(self.compute_graph.fixed_spatial_masks)
@@ -96,25 +98,18 @@ class GraphMAS(MetaMAS):
         successful_shots: list[str] = [format_task_context(
             traj.task_description, traj.task_trajectory, traj.get_extra_field('key_steps')
         ) for traj in successful_trajectories]
-        rules: list[str] = [insight for insight in insights]
+        raw_rules: list[str] = [insight for insight in insights]
+        roles_rules: dict[str, list[str]] = self._project_insights(raw_rules)
         
         user_prompt: str = format_task_prompt_with_insights(
             few_shots=few_shots, 
             memory_few_shots=successful_shots,
-            insights=rules,
+            insights=raw_rules,
             task_description=self.meta_memory.summarize(upstream_agent_ids=None)
         )
         self.notify_observers(user_prompt)
         
         for i in range(env.max_trials):
-            
-            user_prompt: str = format_task_prompt_with_insights(
-                few_shots=few_shots, 
-                memory_few_shots=successful_shots,
-                insights=rules,
-                task_description=self.meta_memory.summarize(upstream_agent_ids=None)
-            )
-            user_message: Message = Message('user', user_prompt)
 
             upstream_node_ids: dict[str, str] = {}   
 
@@ -124,6 +119,13 @@ class GraphMAS(MetaMAS):
             while zero_in_degree_queue:  
                 current_node_id = zero_in_degree_queue.pop(0) 
                 curr_node: Node = self._find_agent_node_by_uuid(current_node_id)
+                user_prompt: str = format_task_prompt_with_insights(
+                    few_shots=few_shots, 
+                    memory_few_shots=successful_shots,
+                    insights=roles_rules.get(curr_node._agent.profile, raw_rules),
+                    task_description=self.meta_memory.summarize(upstream_agent_ids=None)
+                )
+                user_message: Message = Message('user', user_prompt)
 
                 tries = 0
                 while tries < 3:
@@ -315,3 +317,19 @@ class GraphMAS(MetaMAS):
                     visited.add(succ.id)
 
         return len(visited) != self._size
+
+    def _project_insights(self, insights: list[str]) -> dict[str, list[str]]:
+        roles_rules: dict[str, list[str]] = {}
+        roles = set([agent.profile for agent in self.agents_team.values()])
+
+        if not self._use_projector or not isinstance(self.meta_memory, GMemory):
+            for role in roles:
+                roles_rules[role] = insights
+        else:
+            for role in roles:
+                roles_rules[role] = self.meta_memory.project_insights(insights, role)
+        
+        # ensure every role have maximum insights of self._insights_topk
+        for role, insights in roles_rules.items():
+            roles_rules[role] = insights[:self._insights_topk]
+        return roles_rules

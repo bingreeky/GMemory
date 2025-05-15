@@ -15,7 +15,7 @@ from mas.module_map import module_map
 from mas.reasoning import ReasoningBase
 from mas.memory import MASMemoryBase
 from mas.llm import LLMCallable, GPTChat, get_price
-from mas.meta_mas import MetaMAS
+from mas.mas import MetaMAS
 from mas.utils import EmbeddingFunc
 
 from envs import BaseEnv, BaseRecorder, get_env, get_recorder, get_task
@@ -38,8 +38,8 @@ class TaskManager:
     env: BaseEnv                # interative datatset environment
     recorder: BaseRecorder      # record experiment results
     mas: MetaMAS                # multi-agent system
-    mas_config: dict = field(default_factory=dict)
-    mem_config: dict = field(default_factory=dict)
+    mas_config: dict = field(default_factory=dict)   # mas configs
+    mem_config: dict = field(default_factory=dict)   # memory configs
 
 
 def build_task(task: str, mas_type: str, memory_type: str, max_steps: int) -> TaskManager:
@@ -70,7 +70,7 @@ def build_mas(
     mas_memory: str = None,
     llm_type: str = None,
 ) -> None:
-
+    
     embed_func = EmbeddingFunc(CONFIG.get('embedding_model', "sentence-transformers/all-MiniLM-L6-v2")) 
     reasoning_module_type, mas_memory_module_type = module_map(reasoning, mas_memory)
 
@@ -120,7 +120,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Run tasks with specified modules.')
     parser.add_argument('--task', type=str, choices=['alfworld', 'fever', 'pddl'])
-    parser.add_argument('--mas_type', type=str, choices=['autogen', 'graph', 'dylan'])
+    parser.add_argument('--mas_type', type=str, choices=['autogen', 'macnet', 'dylan'])
     parser.add_argument('--mas_memory', type=str, default='none', help='Specify mas memory module')
     parser.add_argument('--reasoning', type=str, default='io', help='Specify reasoning module')
     parser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125', help='Specify the LLM model type')
@@ -129,6 +129,7 @@ if __name__ == '__main__':
     parser.add_argument('--failed_topk', type=int, default=0, help='Number of failed trajs to be retrieved from memory.')
     parser.add_argument('--insights_topk', type=int, default=3, help='Number of insights to be retrieved from memory.')
     parser.add_argument('--threshold', type=float, default=0.0, help='threshold for traj similarity.')
+    parser.add_argument('--use_projector', action='store_true', help='whether to use role projector.')
     parser.add_argument('--hop', type=int, default=1, help='hop for traj similarity.')
 
     args = parser.parse_args()
@@ -141,9 +142,9 @@ if __name__ == '__main__':
     reasoning_type: str = args.reasoning
     
     # dir
-    WORKING_DIR = os.path.join('./.db', get_model_type(model_type), task, mas_type, f'{mas_memory_type}_hop={args.hop}_succ={args.successful_topk}_ins={args.insights_topk}')
-    if os.path.exists(WORKING_DIR):
-        shutil.rmtree(WORKING_DIR)
+    WORKING_DIR = os.path.join('./.db', get_model_type(model_type), task, mas_type, f'{mas_memory_type}')
+    # if os.path.exists(WORKING_DIR):
+    #     shutil.rmtree(WORKING_DIR)
     os.makedirs(WORKING_DIR, exist_ok=True)
     
     # run tasks
@@ -152,6 +153,7 @@ if __name__ == '__main__':
     task_configs.mas_config['failed_topk'] = args.failed_topk
     task_configs.mas_config['insights_topk'] = args.insights_topk
     task_configs.mas_config['threshold'] = args.threshold
+    task_configs.mas_config['use_projector'] = args.use_projector
     task_configs.mem_config.update(
         working_dir=WORKING_DIR,
         hop=args.hop

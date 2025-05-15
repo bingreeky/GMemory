@@ -19,7 +19,7 @@ import logging
 from .memory_base import MASMemoryBase
 from ..common import MASMessage, StateChain
 from ..utils import cosine_similarity
-from .prompt import MULTIGRAPH
+from .prompt import GMemoryPrompts
 from mas.utils import load_json, write_json, random_divide_list
 from mas.llm import LLMCallable, Message
 
@@ -185,11 +185,11 @@ class GMemory(MASMemoryBase):
         
         importance_score: list[float] = []
         for success_task in successful_task_trajectories:
-            prompt: str = MULTIGRAPH.generative_task_user_prompt.format(
+            prompt: str = GMemoryPrompts.generative_task_user_prompt.format(
                 trajectory=success_task.task_description + '\n' + success_task.task_trajectory,
                 query_scenario=query_task
             )
-            response: str = self.llm_model(messages=[Message('system', MULTIGRAPH.generative_task_system_prompt), 
+            response: str = self.llm_model(messages=[Message('system', GMemoryPrompts.generative_task_system_prompt), 
                                                      Message('user', prompt)])
             score = int(re.search(r'\d+', response).group()) if re.search(r'\d+', response) else 0
             importance_score.append(score)
@@ -245,8 +245,8 @@ class GMemory(MASMemoryBase):
         mas_message_copy.add_extra_field('clean_traj', trajectory)
 
 
-        system_prompt = MULTIGRAPH.extract_true_traj_system_prompt
-        prompt_template = MULTIGRAPH.extract_true_traj_user_prompt
+        system_prompt = GMemoryPrompts.extract_true_traj_system_prompt
+        prompt_template = GMemoryPrompts.extract_true_traj_user_prompt
 
         prompt: str = prompt_template.format(
             task=mas_message_copy.task_description,
@@ -265,8 +265,8 @@ class GMemory(MASMemoryBase):
     
     
     def _detect_mistakes(self, mas_message: MASMessage) -> str:
-        user_prompt: str = MULTIGRAPH.detect_mistakes_user_prompt.format(task=mas_message.task_description, trajectory=mas_message.get_extra_field('clean_traj'))
-        messages: list[Message] = [Message('system', MULTIGRAPH.detect_mistakes_system_prompt), 
+        user_prompt: str = GMemoryPrompts.detect_mistakes_user_prompt.format(task=mas_message.task_description, trajectory=mas_message.get_extra_field('clean_traj'))
+        messages: list[Message] = [Message('system', GMemoryPrompts.detect_mistakes_system_prompt), 
                                    Message('user', user_prompt)]
         response: str = self.llm_model(messages)
 
@@ -289,11 +289,11 @@ class GMemory(MASMemoryBase):
 
         if mode == 'llm':
             agents_init_messages: str = '\n'.join([f'response from agent {i}: {message}' for i, message in enumerate(messages)])
-            user_prompt: str = MULTIGRAPH.analyze_mas_pattern_user_prompt.format(
+            user_prompt: str = GMemoryPrompts.analyze_mas_pattern_user_prompt.format(
                 agents_init_outputs=agents_init_messages,
                 mas_output=final_message
             )
-            messages = [Message('system', MULTIGRAPH.analyze_mas_pattern_system_prompt),
+            messages = [Message('system', GMemoryPrompts.analyze_mas_pattern_system_prompt),
                         Message('user', user_prompt)]
             response = self.llm_model(messages)
             if 'true' in response:
@@ -327,6 +327,32 @@ class GMemory(MASMemoryBase):
     def memory_size(self):
         num_records = self.main_memory.get()["ids"]
         return len(num_records)
+
+    def project_insights(self, raw_insights: list[str], role: str = None) -> list[str]:
+        """根据 agent 的角色将 insights 进行适配，并返回适配后的结果。
+        """
+        def parse_numbered_list(text: str) -> list[str]:
+            pattern = r'\d+\.\s+(.*?)(?=\n\d+\.|\Z)'
+            items = re.findall(pattern, text.strip(), flags=re.DOTALL)
+            return [item.strip() for item in items]
+        
+        if not role:
+            return raw_insights
+        
+        raw_insights_str = '\n'.join(raw_insights)
+        user_prompt: str = GMemoryPrompts.project_insights_user_prompt.format(
+            role=role,
+            insights=raw_insights_str
+        )
+        messages = [Message('system', GMemoryPrompts.project_insights_system_prompt),
+                    Message('user', user_prompt)]
+        role_insights = self.llm_model(messages)
+        try: 
+            role_insights = parse_numbered_list(role_insights)
+            return role_insights
+        except:
+            return raw_insights
+        
 
 @dataclass
 class TaskLayer:
@@ -452,10 +478,6 @@ class TaskLayer:
         self.visualize_graph(save_path=self._graph_pic_save_path, legend_path=self._node_match_save_path)
 
     def __iter__(self) -> Iterable[tuple[str, int]]: 
-        """
-        Returns:
-            Iterable[str, int]: (task_main, label_id)
-        """
         return ((node, self.graph.nodes[node]['cluster_id']) for node in self.graph.nodes)
 
     
@@ -558,11 +580,11 @@ class InsightsManager:
             batch = rules[i:i + batch_size]
             actual_num: int = len(batch) // 3  
 
-            user_prompt = MULTIGRAPH.merge_rules_user_prompt.format(
+            user_prompt = GMemoryPrompts.merge_rules_user_prompt.format(
                 current_rules='\n'.join(batch),
                 limited_number=actual_num//3
             )
-            messages = [Message('system', MULTIGRAPH.merge_rules_system_prompt),
+            messages = [Message('system', GMemoryPrompts.merge_rules_system_prompt),
                         Message('user', user_prompt)]
             raw_merged_rules = self.llm_model(messages)
             merged_rules.extend(parse_numbered_list(raw_merged_rules))
@@ -708,8 +730,8 @@ class InsightsManager:
         successful_task_chunks: list[list[MASMessage]] = random_divide_list(successful_task_trajectories, 5) 
         
         MAX_RULE_THRESHOLD: int = 10
-        suffix: str = MULTIGRAPH.finetune_insights_suffix['full'] if len(self.insights_memory) > MAX_RULE_THRESHOLD \
-                      else MULTIGRAPH.finetune_insights_suffix['not_full']
+        suffix: str = GMemoryPrompts.finetune_insights_suffix['full'] if len(self.insights_memory) > MAX_RULE_THRESHOLD \
+                      else GMemoryPrompts.finetune_insights_suffix['not_full']
 
 
         self.logger.info('--------------- Finetune Insights ---------------')
@@ -756,7 +778,7 @@ class InsightsManager:
             existing_rules.append('')
         rule_text: str = '\n'.join([f'{i}. {r}' for i, r in enumerate(existing_rules, 1)])
 
-        prompt = MULTIGRAPH.critique_compare_rules_user_prompt.format(   
+        prompt = GMemoryPrompts.critique_compare_rules_user_prompt.format(   
             task1=true_traj.task_description,
             task1_trajectory=true_traj.task_trajectory,   
             task2=false_traj.task_description,
@@ -765,7 +787,7 @@ class InsightsManager:
             existing_rules=rule_text
         )
 
-        return [Message(role='system', content= MULTIGRAPH.critique_compare_rules_system_prompt), Message(role='user', content=prompt)] 
+        return [Message(role='system', content= GMemoryPrompts.critique_compare_rules_system_prompt), Message(role='user', content=prompt)] 
     
     def _build_success_prompts(
         self,
@@ -779,12 +801,12 @@ class InsightsManager:
         rule_text: str = '\n'.join([f'{i}. {r}' for i, r in enumerate(existing_rules, 1)])
 
         history: list[str] = [f'task{i}:\n' + task.task_description + task.get_extra_field('key_steps') for i, task in enumerate(success_trajectories)]
-        prompt = MULTIGRAPH.critique_success_rules_user_prompt.format(
+        prompt = GMemoryPrompts.critique_success_rules_user_prompt.format(
             success_history='\n'.join(history),
             existing_rules=rule_text
         )
 
-        return [Message(role='system', content=MULTIGRAPH.critique_success_rules_system_prompt), Message(role='user', content=prompt)]
+        return [Message(role='system', content=GMemoryPrompts.critique_success_rules_system_prompt), Message(role='user', content=prompt)]
     
     def _parse_rules(self, llm_text):
         pattern = r'((?:REMOVE|EDIT|ADD|AGREE)(?: \d+|)): (?:[a-zA-Z\s\d]+: |)(.*)'

@@ -482,17 +482,24 @@ Respond with only True or False:
 Your answer:
 """
 
+## project roles
 project_insights_system_prompt: str = """
 You are a thoughtful and context-aware agent. You will be given a specific agent **role** and a set of **general insights** that apply to all roles. 
 Your task is to **adapt these general insights** into **personalized insights tailored to the given role**, helping the agent perform more effectively.
 Make sure your output aligns with the role's background, responsibilities, and point of view.
+
+NOTE - Your output should follow the below format:
+1. Insight 1
+2. Insight 2
+3. Insight 3
+...
 """
 
 project_insights_user_prompt: str = """
 ### General Insights:
 {insights}
 
-### Role:
+### Agent's Role:
 {role}
 
 ### Your Output (Personalized Insights for This Role):
@@ -500,7 +507,7 @@ project_insights_user_prompt: str = """
 
 
 @dataclass
-class MultiGraph:
+class GMemoryPrompt:
     generative_task_system_prompt = generative_task_system_prompt
     generative_task_user_prompt = generative_task_user_prompt
     generative_rule_system_prompt = generative_rule_system_prompt
@@ -520,6 +527,8 @@ class MultiGraph:
     merge_rules_user_prompt = merge_rules_user_prompt
     analyze_mas_pattern_system_prompt=analyze_mas_pattern_system_prompt
     analyze_mas_pattern_user_prompt=analyze_mas_pattern_user_prompt
+    project_insights_system_prompt=project_insights_system_prompt
+    project_insights_user_prompt=project_insights_user_prompt
 
 
-MULTIGRAPH = MultiGraph()
+GMemoryPrompts = GMemoryPrompt()
