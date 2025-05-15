@@ -33,4 +33,4 @@ OPENAI_API_KEY = "" # for OpenAI LLM backend
 
 ## 🙏 Acknowledgement
 - We sincerely thank [ExpeL](https://github.com/LeapLabTHU/ExpeL) for providing their prompt designs.
-- We also extend our heartfelt thanks to [AgentSquare](https://github.com/tsinghua-fib-lab/AgentSquare) for offering their dataset environments.
+- We also extend our heartfelt thanks to [AgentSquare](https://github.com/tsinghua-fib-lab/AgentSquare) for their dataset environments and baseline implementations.
