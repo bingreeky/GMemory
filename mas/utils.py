@@ -10,7 +10,6 @@ import math
 
 
 def load_config(config_path: str):
-    """从 YAML 文件加载配置"""
     with open(config_path, "r", encoding="utf-8") as file:
         config = yaml.safe_load(file)
     return config
@@ -72,7 +71,7 @@ class EmbeddingFunc:
 
 
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import os
 
 @dataclass

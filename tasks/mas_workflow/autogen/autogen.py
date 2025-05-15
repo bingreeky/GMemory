@@ -206,22 +206,7 @@ class AutoGen(MetaMAS):
         return len(action_history) >= 2 and current_action == action_history[-1] and current_action == action_history[-2]
 
     def _project_insights(self, insights: list[str]) -> dict[str, list[str]]:
-        """
-        Projects the given insights to different agent roles.
 
-        This method assigns a customized set of insights to each role in the team. If the
-        projection mechanism is disabled or the memory module is not available, all roles 
-        will receive the same raw insights. Otherwise, role-specific projection is performed 
-        using the meta memory module.
-
-        After projection, the number of insights per role is limited to self._insights_topk.
-
-        Args:
-            insights (list[str]): A list of raw insights to be distributed across roles.
-
-        Returns:
-            dict[str, list[str]]: A dictionary mapping each role to its top-k adapted insights.
-        """
         roles_rules: dict[str, list[str]] = {}
         roles = set([agent.profile for agent in self.agents_team.values()])
 

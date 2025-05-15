@@ -24,7 +24,6 @@ class VoyagerMASMemory(MASMemoryBase):
     
     def add_memory(self, mas_message: MASMessage) -> None:
         
-        # summary task: 使用LLM生成的总结替代task_main
         prompt: str = VOYAGER.task_summary_user_instruction.format(
             task_trajectory=mas_message.task_description+mas_message.task_trajectory
         )
@@ -32,10 +31,9 @@ class VoyagerMASMemory(MASMemoryBase):
         response: str = self.llm_model(messages, temperature=0.1)
         mas_message.task_main = response
 
-        # task basic info
         meta_data: dict = MASMessage.to_dict(mas_message)
         memory_doc = Document(
-            page_content=mas_message.task_main,   # 以task_main作为区分
+            page_content=mas_message.task_main,   
             metadata=meta_data
         )
         if mas_message.label == True or mas_message.label == False:
@@ -49,17 +47,15 @@ class VoyagerMASMemory(MASMemoryBase):
 
     def retrieve_memory(
         self, 
-        query_task: str,   # 用于检索task的query
+        query_task: str,  
         successful_topk: int = 1, 
         failed_topk: int = 1, 
         **kargs
     ) -> tuple[list, list, list]:
 
-        # vector storage 检索出相似的任务
         true_tasks_doc: list[tuple[Document, float]] = []
         false_tasks_doc: list[tuple[Document, float]] = []
 
-        # vector storage 检索出相似的任务
         if successful_topk != 0:
             true_tasks_doc = self.main_memory.similarity_search_with_score(
                 query=query_task, k=successful_topk, filter={'label': True}
@@ -71,7 +67,6 @@ class VoyagerMASMemory(MASMemoryBase):
         sorted(true_tasks_doc, key=lambda x: x[1]) 
         sorted(false_tasks_doc, key=lambda x: x[1]) 
 
-        # parse
         true_task_messages: list[MASMessage] = []
         false_task_messages: list[MASMessage] = []
         for doc in true_tasks_doc:

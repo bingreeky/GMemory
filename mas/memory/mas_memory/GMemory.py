@@ -80,7 +80,7 @@ class GMemory(MASMemoryBase):
 
         meta_data: dict = MASMessage.to_dict(mas_message)
         memory_doc = Document(
-            page_content=mas_message.task_main,   # 以task_main作为区分
+            page_content=mas_message.task_main,   
             metadata=meta_data
         )
         if mas_message.label == True or mas_message.label == False:
@@ -212,7 +212,7 @@ class GMemory(MASMemoryBase):
                 else:
                     interaction_patterns_score['or'] += 1
             
-            if interaction_patterns_score['and'] > interaction_patterns_score['or']:   # 保守
+            if interaction_patterns_score['and'] > interaction_patterns_score['or']: 
                 pattern_insight: str = "Consider incorporating the responses of other agents when forming your own conclusions."
             else:
                 pattern_insight: str = "Focus on your own reasoning and avoid being overly influenced by the outputs of other agents."
@@ -329,8 +329,7 @@ class GMemory(MASMemoryBase):
         return len(num_records)
 
     def project_insights(self, raw_insights: list[str], role: str = None) -> list[str]:
-        """根据 agent 的角色将 insights 进行适配，并返回适配后的结果。
-        """
+
         def parse_numbered_list(text: str) -> list[str]:
             pattern = r'\d+\.\s+(.*?)(?=\n\d+\.|\Z)'
             items = re.findall(pattern, text.strip(), flags=re.DOTALL)
@@ -420,7 +419,7 @@ class TaskLayer:
         valid_nodes = []
 
         for node in nodes:
-            embedding = self.task_storage._embedding_function.embed_query(node)  # TODO - 缓存embedding
+            embedding = self.task_storage._embedding_function.embed_query(node)  
             if embedding is not None:
                 embeddings.append(embedding)
                 valid_nodes.append(node)
@@ -751,7 +750,7 @@ class InsightsManager:
             self.logger.info('\n---------------\n')
 
         for chunk in successful_task_chunks:
-            success_prompts: list[Message] = self._build_success_prompts(chunk, rule_list)  # 此时rule_list应该已经发生更新
+            success_prompts: list[Message] = self._build_success_prompts(chunk, rule_list) 
             success_prompts[0] = replace(success_prompts[0], content=success_prompts[0].content + suffix)
             response: str = self.llm_model(success_prompts)
             parsed_operations = self._parse_rules(response)
@@ -849,7 +848,7 @@ class InsightsManager:
                 elif (rule_num is None) or (rule_num > len(self.insights_memory)) or (rule_num <= 0):   
                     delete_indices.append(i)
                         
-            elif operation_type == 'REMOVE' or operation_type == 'AGREE':  # 
+            elif operation_type == 'REMOVE' or operation_type == 'AGREE':  
                 if (rule_num is None) or (rule_num > len(self.insights_memory)) or (rule_num <= 0):   
                     delete_indices.append(i)
             
@@ -872,7 +871,7 @@ class InsightsManager:
                     rule_data: dict = self.insights_memory[rule_index]
                     remove_strength = 3 if list_full else 1
                     rule_data['score'] -= remove_strength
-                    rule_data['negative_correlation_tasks'] = list(set(rule_data['negative_correlation_tasks'] + relative_tasks))   # 负相关任务
+                    rule_data['negative_correlation_tasks'] = list(set(rule_data['negative_correlation_tasks'] + relative_tasks))  
 
                 elif operation_type == 'AGREE':
                     rule_index: int = self._retrieve_rule_index(operation_rule_text) 

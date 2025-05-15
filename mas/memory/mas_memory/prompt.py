@@ -322,10 +322,10 @@ Do not mention the trials in the rules because all the rules should be GENERALLY
 
 critique_compare_rules_system_prompt = """
 You are an advanced reasoning agent capable of deriving rules based on examples. You will be given two similar tasks: 
-the first one is correct, and the second one is incorrect, 对于失败的trajectory已经给出了失败原因.
+the first one is correct, and the second one is incorrect, The reason for failure has already been provided for the failed trajectory.
 
 Requirements:
-- 将失败原因转为insights, 供后续的agents参考, 避免犯相同的错误;
+- Convert the reasons for failure into insights for future agents to reference, in order to avoid making the same mistakes.
 - The insights you summarize must follow the "XXX, because XXX" format. They should not mention specific items but should instead extract general success principles applicable to similar tasks. These insights must be enlightening and provide guidance for future problems.  
 
 """

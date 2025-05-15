@@ -15,7 +15,7 @@ class GenerativeMASMemory(MASMemoryBase):
         super().__post_init__()
 
         self.main_memory = Chroma(          
-            embedding_function=self.embedding_func,  # caculate the vector(embedding)
+            embedding_function=self.embedding_func,      # caculate the vector(embedding)
             persist_directory=self.persist_dir           # store directory
         )
     
@@ -23,7 +23,7 @@ class GenerativeMASMemory(MASMemoryBase):
 
         meta_data: dict = MASMessage.to_dict(mas_message)
         memory_doc = Document(
-            page_content=mas_message.task_main,   # 以task_main作为区分
+            page_content=mas_message.task_main,   
             metadata=meta_data
         )
         if mas_message.label == True or mas_message.label == False:
@@ -36,7 +36,7 @@ class GenerativeMASMemory(MASMemoryBase):
 
     def _retrieve_memory_raw(
         self, 
-        query_task: str,   # 用于检索task的query
+        query_task: str, 
         successful_topk: int = 1, 
         failed_topk: int = 1, 
     ) -> tuple[list[MASMessage], list[MASMessage]]:

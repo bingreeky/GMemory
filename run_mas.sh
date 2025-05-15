@@ -5,8 +5,9 @@ if [ -f "./.env" ]; then
 fi
 
 # Options:
-# --mas_memory:  empty, chatdev, metagpt, voyager, generative, memorybank, g-memory
-# --mas_type:    autogen, dylan, graph
+# --mas_memory:    empty, chatdev, metagpt, voyager, generative, memorybank, g-memory
+# --mas_type:      autogen, dylan, graph
+# --use_projector  store_true
 
 python3 tasks/run.py \
     --task alfworld \
