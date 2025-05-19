@@ -235,23 +235,14 @@ class Generative:
 GENERATIVE = Generative()
 
 
-# ---------------------------------------------- MetaGraphMAS memory ----------------------------------------------
+# ---------------------------------------------- G-Memory memory ----------------------------------------------
+# Retrieve tasks based on task relevance
 generative_task_system_prompt = """You are an agent designed to score the relevance between two pieces of text."""
 generative_task_user_prompt = '''You will be given a successful case where you successfully complete the task. Then you will be given an ongoing task. Do not summarize these two cases, but rather evaluate how relevant and helpful the successful case is for the ongoing task, on a scale of 1-10.
 Success Case:
 {trajectory}
 Ongoing task:
 {query_scenario}
-Your output format should be:
-Score: '''
-
-generative_rule_system_prompt = """You are an agent designed to determine whether a rule is relevant and applicable to a given task."""
-generative_rule_user_prompt = '''You will be given a rule. Then you will be given an ongoing task . Evaluate how relevant and helpful the rule is for the ongoing task, on a scale of 1-10.
-Rule:
-{rule}
-Ongoing task:
-{task}
-Your output format should bd:
 Score: '''
 
 # successful trajectory extraction
@@ -305,7 +296,7 @@ Now it's your turn!
 ### Output
 """
 
-## Insights
+# Insights
 finetune_insights_suffix = dict(full = """Focus on REMOVE or EDIT or AGREE rules first, and stop ADD rule unless the new rule is VERY insightful and different from EXISTING RULES.
 """, not_full = """""")
 
@@ -320,6 +311,7 @@ ADD: <NEW RULE>
 
 Do not mention the trials in the rules because all the rules should be GENERALLY APPLICABLE. Each rule should be concise and easy to follow. Any operation can be used MULTIPLE times. Do at most 4 operations and each existing rule can only get a maximum of 1 operation. """
 
+#
 critique_compare_rules_system_prompt = """
 You are an advanced reasoning agent capable of deriving rules based on examples. You will be given two similar tasks: 
 the first one is correct, and the second one is incorrect, The reason for failure has already been provided for the failed trajectory.
@@ -372,7 +364,7 @@ critique_success_rules_user_prompt = """
 By examining the successful trials, and the list of existing rules, you can perform the following operations: add, edit, remove, or agree so that the new list of rules are general and high level insights of the successful trials or proposed way of Thought so they can be used as helpful tips to different tasks in the future. Have an emphasis on tips that help the agent perform better Thought and Action. Follow the below format:
 """ + format_rules_operation_template
 
-# detect mistakes
+# detect mistakes in trajectory
 detect_mistakes_system_prompt = """You are an analytical agent. You will be given a task and a failed trajectory.
 The reason for the failure is that the final task state does not match the required task state.
 
@@ -398,38 +390,7 @@ This is a failed trajectory.:
 Your output:
 """
 
-# learn lessons
-learn_lessons_system_prompt = """You are a summary-focused agent. You will be given a failed trajectory along with its failure reason, as well as a successful trajectory on a similar task.
-Your task is to analyze the successful trajectory to determine how it avoided failure and provide a solution to address such failures.
-
-## NOTE:
-- Your solution should be concise, impactful, and provide clear guidance.
-- Your solution must be entirely derived from the successful case, without introducing any actions beyond what is present in the successful trajectory.
-
-## Your output format:
-### Summary of Success
-......
-
-### Solution to Avoid Failure
-......
-"""
-
-
-learn_lessons_user_prompt = """
-## Successful trajectory
-{true_traj}
-
-## Failed trajectory
-### trajectory
-{false_traj}
-
-### Fail reason
-{fail_reason}
-
-Your output:
-"""
-
-# merge rules prompt
+# merge rules
 merge_rules_system_prompt = """You are an agent skilled at summarizing and distilling insights. You are given a list of insights that were previously extracted from similar tasks. These insights may contain redundancy or overlap.
 
 Your job is to **merge and consolidate similar insights**, and output a refined version that is **clear, actionable, and concise**.
@@ -482,7 +443,7 @@ Respond with only True or False:
 Your answer:
 """
 
-## project roles
+# project insights according to agent's role
 project_insights_system_prompt: str = """
 You are a thoughtful and context-aware agent. You will be given a specific agent **role** and a set of **general insights** that apply to all roles. 
 Your task is to **adapt these general insights** into **personalized insights tailored to the given role**, helping the agent perform more effectively.
@@ -496,22 +457,47 @@ NOTE - Your output should follow the below format:
 """
 
 project_insights_user_prompt: str = """
+### Agent's Role:
+{role}
+
 ### General Insights:
 {insights}
+
+### Your Output (Personalized Insights for This Role):
+"""
+
+# project insights according to agent's role and trajectory
+project_insights_with_traj_system_prompt: str = """
+You are a thoughtful and context-aware agent. You will be provided with a successfully executed **trajectory**, a specific agent **role**, and a set of **general insights** applicable across all roles.
+Your task is to **adapt these general insights** into **personalized insights** that are specifically tailored to the given role and its trajectory. These personalized insights should help the agent improve future performance by aligning with their unique background, responsibilities, and perspective.
+Make sure your output reflects an understanding of the role's context and promotes actionable, role-relevant advice.
+
+NOTE - Your output must strictly follow the format below:
+1. Insight 1
+2. Insight 2
+3. Insight 3
+...
+"""
+
+project_insights_with_traj_user_prompt: str = """
+### Trajectory
+{trajectory}
 
 ### Agent's Role:
 {role}
 
+### General Insights:
+{insights}
+
 ### Your Output (Personalized Insights for This Role):
 """
+
 
 
 @dataclass
 class GMemoryPrompt:
     generative_task_system_prompt = generative_task_system_prompt
     generative_task_user_prompt = generative_task_user_prompt
-    generative_rule_system_prompt = generative_rule_system_prompt
-    generative_rule_user_prompt = generative_rule_user_prompt
     extract_true_traj_system_prompt = extract_true_traj_system_prompt
     extract_true_traj_user_prompt = extract_true_traj_user_prompt
     finetune_insights_suffix = finetune_insights_suffix
@@ -521,14 +507,14 @@ class GMemoryPrompt:
     critique_success_rules_user_prompt = critique_success_rules_user_prompt
     detect_mistakes_system_prompt = detect_mistakes_system_prompt
     detect_mistakes_user_prompt = detect_mistakes_user_prompt
-    learn_lessons_system_prompt = learn_lessons_system_prompt
-    learn_lessons_user_prompt = learn_lessons_user_prompt
     merge_rules_system_prompt = merge_rules_system_prompt
     merge_rules_user_prompt = merge_rules_user_prompt
     analyze_mas_pattern_system_prompt=analyze_mas_pattern_system_prompt
     analyze_mas_pattern_user_prompt=analyze_mas_pattern_user_prompt
     project_insights_system_prompt=project_insights_system_prompt
     project_insights_user_prompt=project_insights_user_prompt
+    project_insights_with_traj_system_prompt=project_insights_with_traj_system_prompt
+    project_insights_with_traj_user_prompt=project_insights_with_traj_user_prompt
 
 
 GMemoryPrompts = GMemoryPrompt()

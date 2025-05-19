@@ -18,6 +18,10 @@ class ReasoningBase:
 
 
 class ReasoningIO(ReasoningBase):
+    """
+    A subclass of ReasoningBase that defines how to perform a reasoning call
+    just by using an underlying language model (LLM).
+    """
 
     def __call__(self, prompts: list[Message], config: ReasoningConfig) -> str:
         

@@ -9,13 +9,30 @@ pip install -r requirements.txt
 
 ## 🚀 Quick Start
 
+### 🌳 Environments
+Please download the ALFWorld, PDDL, FEVER datasets and place it in the data folder.
+- 🏠 [ALFWorld](https://github.com/alfworld/alfworld)
+- 🐹 [PDDL](https://github.com/hkust-nlp/AgentBoard)
+- 🌡️ [FEVER](https://github.com/awslabs/fever)
+
+The file structure should be organized as follows:
+```
+data
+└── alfworld
+    └── alfworld_tasks_suffix.json
+└── pddl
+    └── test.json
+└── fever
+    └── fever_dev.jsonl
+```
+
 ### 🔑 Add API keys in template.env and change its name to .env
 ```
 OPENAI_API_BASE = "" # the BASE_URL of OpenAI LLM backend
-OPENAI_API_KEY = "" # for OpenAI LLM backend
+OPENAI_API_KEY = ""  # for OpenAI LLM backend
 ```
 
-### 🔎 Getting Started
+### 🔎 Choices Overview
 - Available memories: ***Empty, ChatDev, MetaGPT, Voyager, Generative, MemoryBank, G-Memory***
 - Available MAS: ***AutoGen, DyLAN, MacNet***
 
@@ -31,6 +48,12 @@ OPENAI_API_KEY = "" # for OpenAI LLM backend
     python tasks/run.py --task fever --reasoning io --mas_memory g-memory --mas_trials 15 --mas_type autogen --model <your model here>
     ```
 
+## 🫡 Citation
+If you find this repository helpful, a citation to our paper would be greatly appreciated:
+```
+```
+
 ## 🙏 Acknowledgement
 - We sincerely thank [ExpeL](https://github.com/LeapLabTHU/ExpeL) for providing their prompt designs.
 - We also extend our heartfelt thanks to [AgentSquare](https://github.com/tsinghua-fib-lab/AgentSquare) for their dataset environments and baseline implementations.
+

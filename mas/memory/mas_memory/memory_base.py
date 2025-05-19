@@ -12,7 +12,18 @@ from mas.llm import LLMCallable
 
 @dataclass
 class MASMemoryBase(StorageNameSpace, ABC):
+    """
+    Abstract base class for managing multi-agent system (MAS) memory within a namespace.
+    This class handles the lifecycle of task contexts, including creation, updating, saving,
+    and retrieval of memory states associated with multi-agent tasks.
 
+    Attributes:
+        llm_model (LLMCallable): A callable interface to a large language model used for reasoning or generation.
+        embedding_func (EmbeddingFunc): A function or callable to generate embeddings from text or other data.
+
+    Post-initialization:
+        Creates a directory for persisting memory data based on global configuration and namespace.
+    """
     llm_model: LLMCallable
     embedding_func: EmbeddingFunc
     
@@ -42,8 +53,8 @@ class MASMemoryBase(StorageNameSpace, ABC):
 
         return node_id
     
-    def move_memory_state(self, action: str, observation: str, **args) -> None:
-        self.current_task_context.move_state(action, observation, **args)
+    def move_memory_state(self, action: str, observation: str, **kargs) -> None:
+        self.current_task_context.move_state(action, observation, **kargs)
     
     def save_task_context(self, label: bool, feedback: str = None) -> MASMessage:
         if self.current_task_context == None:
@@ -67,7 +78,7 @@ class MASMemoryBase(StorageNameSpace, ABC):
     def retrieve_memory(self, **kargs) -> tuple[list, list, list]:
         return [], [], []
     
-    def update_memory(self, query: str, **args) -> None:
+    def update_memory(self, query: str, **kargs) -> None:
         pass
     
     def backward(self, reward, **kwargs) -> None:

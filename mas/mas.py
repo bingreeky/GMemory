@@ -5,11 +5,10 @@ from typing import Iterable, Optional, Dict, Any
 from .agents import Agent, Env
 from .reasoning import ReasoningBase
 from .memory import MASMemoryBase
-from mas.llm import LLMCallable
 
 @dataclass
 class MetaMAS:
-    """对MAS系统中的成员进行统一管理, 实现mas的整体调度
+    """Unified management of members in the MAS system to achieve overall scheduling of the MAS.
     """
     agents_team: Dict[str, Agent] = field(default_factory=dict)  
     env: Optional[Env] = None  

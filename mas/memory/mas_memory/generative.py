@@ -20,7 +20,15 @@ class GenerativeMASMemory(MASMemoryBase):
         )
     
     def add_memory(self, mas_message: MASMessage) -> None:
+        """
+        Add a MAS message to the main memory if it has a valid label.
 
+        Args:
+            mas_message (MASMessage): The message representing a completed task to be stored.
+
+        Raises:
+            ValueError: If the MAS message does not have a valid label (True/False).
+        """
         meta_data: dict = MASMessage.to_dict(mas_message)
         memory_doc = Document(
             page_content=mas_message.task_main,   
@@ -73,11 +81,30 @@ class GenerativeMASMemory(MASMemoryBase):
     def retrieve_memory(
         self, 
         query_task: str,         
-        successful_topk: int = 2, 
+        successful_topk: int = 1, 
         failed_topk: int = 1,
         **kargs
     ) -> tuple[list, list, list]:
+        """
+        Retrieve and rank relevant memory trajectories for a given task.
 
+        This method fetches raw successful and failed task trajectories similar to the query task.
+        For successful trajectories, it computes an importance score using an LLM by prompting it
+        to assess task relevance. The top-K most important successful tasks and the top-K failed tasks
+        are then returned.
+
+        Args:
+            query_task (str): The task to be used as a query.
+            successful_topk (int, optional): Number of top successful trajectories to return. Defaults to 2.
+            failed_topk (int, optional): Number of top failed trajectories to return. Defaults to 1.
+            **kargs: Additional arguments (currently unused).
+
+        Returns:
+            tuple[list, list, list]: A tuple containing:
+                - Top successful task trajectories
+                - Top failed task trajectories
+                - An empty list placeholder for future insights
+        """
         successful_task_trajectories, failed_task_trajectories = self._retrieve_memory_raw(
             query_task, 2 * successful_topk, 2 * failed_topk)
         
@@ -98,4 +125,4 @@ class GenerativeMASMemory(MASMemoryBase):
         
         top_fail_task_trajectories = failed_task_trajectories[:failed_topk]
 
-        return top_success_task_trajectories, top_fail_task_trajectories, []
+        return top_success_task_trajectories, top_fail_task_trajectories, [] 

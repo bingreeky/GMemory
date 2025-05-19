@@ -4,15 +4,13 @@ from langchain.docstore.document import Document
 import os
 import copy
 import re
-from typing import Iterable, Literal
+from typing import Iterable
 import random
 from collections import defaultdict
 import networkx as nx
 import numpy as np
 from finch import FINCH
 import pickle
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
 import networkx as nx
 import logging
 
@@ -23,9 +21,17 @@ from .prompt import GMemoryPrompts
 from mas.utils import load_json, write_json, random_divide_list
 from mas.llm import LLMCallable, Message
 
-
 @dataclass
 class GMemory(MASMemoryBase):
+    """
+    G-Memory: Tracing Hierarchical Memory for Multi-Agent Systems
+    A three-tier hierarchical graph structure compo sed of the Insight Graph, Query Graph, and Interaction Graph.
+
+    1. Interaction Graph - Trajectory Condensation: During the task-solving process, the multi-agent system (MAS) generates a chain of states, where each state represents a step in the process of arriving at the final answer. Behind each state is a corresponding message graph.
+       Each task corresponds to a chain of states, which connects the middle and bottom layers of the multi-layer graph.
+    2. Query Graph - Based on the current task, the system retrieves previously successful records. A k-hop approach is used to expand the search scope within the query graph.
+    3. Insight Graph - Insights Retrieval: Relevant insights are retrieved based on the current task to assist in decision-making.
+    """
     def __post_init__(self):
         super().__post_init__()
         
@@ -38,7 +44,6 @@ class GMemory(MASMemoryBase):
         self._start_insights_threshold: int = self.global_config.get('start_insights_threshold', 5)
         self._rounds_per_insights: int = self.global_config.get('rounds_per_insights', 5) 
         self._insights_point_num: int = self.global_config.get('insights_point_num', 5)
-        self._analyze_pattern: bool = self.global_config.get('analyze_pattern', False)
 
         self.task_layer = TaskLayer(
             working_dir=self.persist_dir,
@@ -64,18 +69,27 @@ class GMemory(MASMemoryBase):
             'start_insights_threshold': self._start_insights_threshold,
             'rounds_per_insights': self._rounds_per_insights,
             'insights_point_num': self._insights_point_num,
-            'analyze_pattern': self._analyze_pattern,
             'working_dir': self.persist_dir
         }
 
 
     def add_memory(self, mas_message: MASMessage) -> None:
+        """
+        Add the mas_message corresponding to a completed task into memory:
+        Step 1: Sparsification - remove incorrect steps
+        Step 2: Add the sparsified trajectories to memory
+        Step 3: If the number of steps in memory reaches a certain threshold, perform fine-tuning on the insights in memory
 
+        Args:
+            mas_message (MASMessage): The MAS message corresponding to a completed task
+
+        Raises:
+            ValueError: mas_message must have label!
+        """
+        # sparsification
         mas_message = self._extract_mas_message(mas_message=mas_message)  
-        if self._analyze_pattern:
-            interaction_pattern: str = self.analyze_mas_pattern(mas_message=mas_message, mode='llm')
-            mas_message.add_extra_field('interaction_pattern', interaction_pattern)
         
+        # add into memory
         self.task_layer.add_task_node(mas_message.task_main)
 
         meta_data: dict = MASMessage.to_dict(mas_message)
@@ -88,6 +102,7 @@ class GMemory(MASMemoryBase):
         else:
             raise ValueError('The mas_message must have label!')
         
+        # finetune and merge insights
         if self.memory_size >= self._start_insights_threshold and self.memory_size % self._rounds_per_insights == 0:
             self.insights_layer.finetune_insights(self._insights_point_num)
         if self.memory_size % 20 == 0: 
@@ -117,7 +132,8 @@ class GMemory(MASMemoryBase):
 
         true_tasks_doc: list[Document] = []
         false_tasks_doc: list[Document] = []
-
+        
+        # find related tasks in task layer
         related_point_num: int = max((successful_topk + failed_topk) // 2, 1)
         task_mains: list[str] = self.task_layer.retrieve_related_task(query_task=query_task, node_num=related_point_num, hop=self._hop)
         for task_main in task_mains:
@@ -129,7 +145,8 @@ class GMemory(MASMemoryBase):
                 false_tasks_doc.append(doc)
             else:
                 raise RuntimeError('The document object\'s metadata should have `label` attribute.')
-         
+        
+        # If the specified number is not met, fill in the rest using similarity-based augmentation.
         if len(true_tasks_doc) < successful_topk:
             true_tasks_doc = self.main_memory.similarity_search(
                 query=query_task, k=successful_topk, filter={'label': True}
@@ -145,7 +162,8 @@ class GMemory(MASMemoryBase):
             for doc in false_tasks_doc:
                 if doc not in false_tasks_doc:
                     false_tasks_doc.append(doc)
-                
+
+        # order by similarity        
         origin_embedding: list[float] = self.embedding_func.embed_query(query_task)
         true_tasks_doc_with_score = sort_and_filter_by_similarity(true_tasks_doc, threshold)[:successful_topk]
         false_tasks_doc_with_score = sort_and_filter_by_similarity(false_tasks_doc, threshold)[:failed_topk]
@@ -161,7 +179,8 @@ class GMemory(MASMemoryBase):
             meta_data: dict = doc.metadata
             mas_message: MASMessage = MASMessage.from_dict(meta_data)
             false_task_messages.append(mas_message)
-
+        
+        # get insights and order by relelvance
         insights_with_score = self.insights_layer.query_insights_with_score(query_task, top_k=insight_windows)
         insights = [insight for insight, _ in insights_with_score][:insight_windows]
 
@@ -172,17 +191,31 @@ class GMemory(MASMemoryBase):
         query_task: str,         
         successful_topk: int = 2, 
         failed_topk: int = 1,
-        insight_windows: int = 10,
+        insight_topk: int = 10,
         threshold: float = 0.3,
         **args
     ) -> tuple[list, list, list]: 
+        """Access the memory and return the results.
 
+        Args:
+            query_task (str): The task to query.
+            successful_topk (int, optional): Number of successful cases to retrieve. Defaults to 2.
+            failed_topk (int, optional): Number of failed cases to retrieve. Defaults to 1.
+            insight_topk (int, optional): Number of insights to retrieve. Defaults to 10.
+            threshold (float, optional): Similarity threshold for retrieving cases. Defaults to 0.3.
+
+        Returns:
+            tuple[list, list, list]: A tuple containing successful cases, failed cases, and insights.
+        """
+        
+        # retrieve raw tasks
         successful_task_trajectories: list[MASMessage]
         failed_task_trajectories: list[MASMessage]
         insights: list[str]
         successful_task_trajectories, failed_task_trajectories, insights = self._retrieve_memory_raw(
-            query_task, 2*successful_topk, 2*failed_topk, 2*insight_windows, threshold)
+            query_task, 2*successful_topk, 2*failed_topk, 2*insight_topk, threshold)
         
+        # retrieve tasks based on task relevance
         importance_score: list[float] = []
         for success_task in successful_task_trajectories:
             prompt: str = GMemoryPrompts.generative_task_user_prompt.format(
@@ -198,26 +231,13 @@ class GMemory(MASMemoryBase):
                                                            key=lambda x: x[0], reverse=True)]
         top_success_task_trajectories = sorted_success_tasks[:successful_topk]
         top_success_task_trajectories = successful_task_trajectories[:successful_topk]
-
+        
+        # directly get failed tasks
         top_fail_task_trajectories = failed_task_trajectories[:failed_topk]
-
-        top_k_insights = insights[:insight_windows]
+        
+        # directlt get insights
+        top_k_insights = insights[:insight_topk]
         self.insights_cache = top_k_insights
-
-        if self._analyze_pattern:
-            interaction_patterns_score: dict = {'and': 0, 'or': 0}
-            for traj in top_success_task_trajectories:
-                if traj.label == True:
-                    interaction_patterns_score['and'] += 1
-                else:
-                    interaction_patterns_score['or'] += 1
-            
-            if interaction_patterns_score['and'] > interaction_patterns_score['or']: 
-                pattern_insight: str = "Consider incorporating the responses of other agents when forming your own conclusions."
-            else:
-                pattern_insight: str = "Focus on your own reasoning and avoid being overly influenced by the outputs of other agents."
-
-            top_k_insights.append(pattern_insight)
 
         return top_success_task_trajectories, top_fail_task_trajectories, top_k_insights
 
@@ -225,14 +245,12 @@ class GMemory(MASMemoryBase):
     def _extract_mas_message(self, mas_message: MASMessage) -> MASMessage:
 
         mas_message_copy: MASMessage = copy.deepcopy(mas_message)
-
         state_chain: StateChain = mas_message_copy.chain_of_states
         
         for state_id in reversed(range(len(state_chain))):
             if state_chain.get_state(state_id).graph.get('reward', 0) < 0:
                 state_chain.pop_state(state_id)
         
-
         trajectory = ''
         for state in state_chain:
             trajectory += f'> {state.graph['action']}\n{state.graph['observation']}\n'
@@ -240,7 +258,7 @@ class GMemory(MASMemoryBase):
         if mas_message_copy.label == True:
             mas_message_copy.task_trajectory = trajectory
 
-
+        
         trajectory = re.sub(r'\d+', '', trajectory)
         mas_message_copy.add_extra_field('clean_traj', trajectory)
 
@@ -271,50 +289,6 @@ class GMemory(MASMemoryBase):
         response: str = self.llm_model(messages)
 
         return response
-    
-    
-    def analyze_mas_pattern(self, mas_message: MASMessage, mode: Literal['llm', 'embd']='llm') -> Literal['and', 'or']:
-
-        compute_graph: nx.DiGraph = mas_message.chain_of_states.get_state(idx=-1)
-        zero_indegree_nodes = [node for node, deg in compute_graph.in_degree() if deg == 0]
-        if len(zero_indegree_nodes) == 0:
-            raise ValueError('No zero in-degree nodes found in the graph.')
-        
-        messages: list[str] = []
-        for node in zero_indegree_nodes:
-            message = compute_graph.nodes[node].get('message')
-            messages.append(message)
-        
-        final_message: str = compute_graph.graph.get('action')   
-
-        if mode == 'llm':
-            agents_init_messages: str = '\n'.join([f'response from agent {i}: {message}' for i, message in enumerate(messages)])
-            user_prompt: str = GMemoryPrompts.analyze_mas_pattern_user_prompt.format(
-                agents_init_outputs=agents_init_messages,
-                mas_output=final_message
-            )
-            messages = [Message('system', GMemoryPrompts.analyze_mas_pattern_system_prompt),
-                        Message('user', user_prompt)]
-            response = self.llm_model(messages)
-            if 'true' in response:
-                return 'and'
-            else:    
-                return 'or'
-                
-        if mode == 'embd':
-
-            all_texts = messages + [final_message]
-            embeddings: list[list[float]] = self.embedding_func.embed_documents(all_texts)  
-            
-            agent_embeddings = np.array(embeddings[:-1]) 
-            final_embedding = np.array(embeddings[-1]).reshape(1, -1)  
-
-            similarities = cosine_similarity(agent_embeddings, final_embedding).flatten()
-
-            if np.all(similarities > 0.8): 
-                return 'or'
-            else: 
-                return 'and'
 
     def backward(self, reward: bool):
 
@@ -327,31 +301,54 @@ class GMemory(MASMemoryBase):
     def memory_size(self):
         num_records = self.main_memory.get()["ids"]
         return len(num_records)
+    
+    def project_insights(self, raw_insights: list[str], role: str = None, task_traj: str = None) -> list[str]:
+        """
+        Projects raw insights into role-specific insights based on the given role and optionally a task trajectory.
 
-    def project_insights(self, raw_insights: list[str], role: str = None) -> list[str]:
+        Args:
+            raw_insights (list[str]): A list of raw insight strings.
+            role (str, optional): The role to tailor the insights for. Defaults to None.
+            task_traj (str, optional): A string representing the task trajectory. Defaults to None.
 
+        Returns:
+            list[str]: A list of processed insights tailored to the specified role.
+        """
         def parse_numbered_list(text: str) -> list[str]:
             pattern = r'\d+\.\s+(.*?)(?=\n\d+\.|\Z)'
             items = re.findall(pattern, text.strip(), flags=re.DOTALL)
             return [item.strip() for item in items]
         
+        # If no role is provided, return the raw insights as they are.
         if not role:
             return raw_insights
         
+        # Determine which system and user prompts to use based on whether a task trajectory is provided
         raw_insights_str = '\n'.join(raw_insights)
-        user_prompt: str = GMemoryPrompts.project_insights_user_prompt.format(
-            role=role,
-            insights=raw_insights_str
-        )
-        messages = [Message('system', GMemoryPrompts.project_insights_system_prompt),
+        if not task_traj:
+            system_prompt = GMemoryPrompts.project_insights_system_prompt
+            user_prompt: str = GMemoryPrompts.project_insights_user_prompt.format(
+                role=role,
+                insights=raw_insights_str
+            )
+        else:
+            system_prompt = GMemoryPrompts.project_insights_with_traj_system_prompt
+            user_prompt: str = GMemoryPrompts.project_insights_with_traj_user_prompt.format(
+                role=role,
+                insights=raw_insights_str,
+                trajectory=task_traj
+            )
+        messages = [Message('system', system_prompt),
                     Message('user', user_prompt)]
+        
+        # Use the language model to generate role-specific insights
         role_insights = self.llm_model(messages)
+
         try: 
             role_insights = parse_numbered_list(role_insights)
             return role_insights
         except:
             return raw_insights
-        
 
 @dataclass
 class TaskLayer:
@@ -376,6 +373,11 @@ class TaskLayer:
             print("New empty graph created")
 
     def add_task_node(self, task_main: str) -> None:
+        """Add a task node to the task graph.
+
+        Args:
+            task_main (str): task name
+        """
         if task_main in self.graph:
             return  
 
@@ -385,9 +387,8 @@ class TaskLayer:
             query=task_main,
             k=10 
         )
-
+        
         for doc, distance in results:
-
             similarity = 1 - distance
             if similarity < self.similarity_threshold:
                 continue  
@@ -402,7 +403,17 @@ class TaskLayer:
         self._index_done()
  
     def retrieve_related_task(self, query_task: str, node_num: int, hop: int = 1) -> list[str]:
+        """
+        Retrieve related tasks from the graph based on similarity and local neighborhood expansion.
 
+        Args:
+            query_task (str): The task used as the query input.
+            node_num (int): The number of top similar tasks to retrieve based on similarity scores.
+            hop (int, optional): The number of hops used to expand the neighborhood in the graph. Defaults to 1.
+
+        Returns:
+            list[str]: A list of related task nodes, including top similar tasks and their neighbors within the given hop.
+        """
         tasks: list[tuple[Document, float]] = self.task_storage.similarity_search_with_score(query=query_task, k=node_num)
         top_nodes = [doc[0].page_content for doc in tasks]
 
@@ -413,6 +424,12 @@ class TaskLayer:
         return list(related_nodes)
     
     def cluster_tasks(self) -> None:
+        """
+        Perform clustering on tasks in the graph using their embeddings and assign cluster IDs.
+
+        This method extracts all nodes from the graph, computes embeddings for each node using the
+        task storage's embedding function, and applies the FINCH clustering algorithm with cosine similarity.
+        """
         nodes = list(self.graph.nodes)
 
         embeddings = []
@@ -436,45 +453,11 @@ class TaskLayer:
         for node, label in zip(valid_nodes, labels):
             self.graph.nodes[node]['cluster_id'] = int(label)
         self._index_done()
-        
-    def visualize_graph(self, save_path: str = "graph.png", legend_path: str = "graph_node_map.txt") -> None:
-
-        pos = nx.spring_layout(self.graph, seed=42)
-        cluster_ids = nx.get_node_attributes(self.graph, 'cluster_id')
-
-        clusters = list(set(cluster_ids.values()))
-        colors = cm.get_cmap('tab20', len(clusters))
-
-        node_labels = {node: f"Node{idx}" for idx, node in enumerate(self.graph.nodes)}
-
-        node_colors = [
-            colors(clusters.index(cluster_ids[node])) if node in cluster_ids else (0.5, 0.5, 0.5)
-            for node in self.graph.nodes
-        ]
-
-        plt.figure(figsize=(12, 9))
-        nx.draw_networkx_edges(self.graph, pos, alpha=0.4)
-        nx.draw_networkx_nodes(self.graph, pos, node_color=node_colors, node_size=200, alpha=0.9)
-        nx.draw_networkx_labels(self.graph, pos, labels=node_labels, font_size=8)
-
-        plt.axis("off")
-        plt.title("TaskLayer Clustering Visualization")
-        plt.tight_layout()
-        plt.savefig(save_path)
-        print(f"Graph visualization saved to {save_path}")
-
-        with open(legend_path, 'w', encoding='utf-8') as f:
-            for node, label in node_labels.items():
-                f.write(f"{label}: {node}\n")
-        print(f"Node label mapping saved to {legend_path}")
-
 
     def _index_done(self) -> None:
         
         with open(self._graph_save_path, "wb") as f:
             pickle.dump(self.graph, f)
-        
-        self.visualize_graph(save_path=self._graph_pic_save_path, legend_path=self._node_match_save_path)
 
     def __iter__(self) -> Iterable[tuple[str, int]]: 
         return ((node, self.graph.nodes[node]['cluster_id']) for node in self.graph.nodes)

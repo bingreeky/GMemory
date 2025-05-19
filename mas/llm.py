@@ -83,8 +83,8 @@ class GPTChat(LLM):
         
         messages = [{"role": msg.role, "content": msg.content} for msg in messages]
 
-        max_retries = 5  # 最大重试次数
-        wait_time = 1  # 初始等待时间（秒）
+        max_retries = 5  
+        wait_time = 1 
 
         for attempt in range(max_retries):
             try:

@@ -109,7 +109,7 @@ class AutoGen(MetaMAS):
             query_task=task_main,
             successful_topk=self._successful_topk,
             failed_topk=self._failed_topk,
-            insight_windows=self._insights_topk,
+            insight_topk=self._insights_topk,
             threshold=self._threshold
         )
         successful_shots: list[str] = [format_task_context(

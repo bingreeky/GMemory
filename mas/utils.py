@@ -1,6 +1,5 @@
 from sentence_transformers import SentenceTransformer
 import yaml
-import numpy as np
 import os
 from typing import Union, Any
 import random
@@ -70,31 +69,3 @@ class EmbeddingFunc:
         return self.func.encode(query).tolist()
 
 
-
-from dataclasses import dataclass
-import os
-
-@dataclass
-class Log:
-    persist_file: str = None
-
-    def __post_init__(self):
-        self.log: str = ''
-
-    def add_info(self, info: str) -> None:
-        self.log += info + "\n"
-
-    def save(self) -> None:
-        if not self.persist_file:
-            print("Warning: No persist file set. Log not saved.")
-            return
-
-        try:
-            with open(self.persist_file, "a", encoding="utf-8") as f:
-                f.write(self.log)
-            self.log = ""  
-        except Exception as e:
-            print(f"Error saving log: {e}")
-
-    def __str__(self) -> str:
-        return self.log

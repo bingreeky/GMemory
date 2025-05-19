@@ -10,8 +10,6 @@ from mas.llm import Message
 
 @dataclass
 class VoyagerMASMemory(MASMemoryBase):
-    """memory from Voyager: inside trial -> cross trials
-    """
 
     def __post_init__(self):
         super().__post_init__()
@@ -23,7 +21,14 @@ class VoyagerMASMemory(MASMemoryBase):
         )
     
     def add_memory(self, mas_message: MASMessage) -> None:
-        
+        """Add the given MAS message object to memory and generate a task summary based on the task description and trajectory.
+
+        Args:
+            mas_message (MASMessage): The message representing a completed task to be stored.
+
+        Raises:
+            ValueError: If the MAS message does not have a valid label (True/False).
+        """
         prompt: str = VOYAGER.task_summary_user_instruction.format(
             task_trajectory=mas_message.task_description+mas_message.task_trajectory
         )
@@ -52,7 +57,19 @@ class VoyagerMASMemory(MASMemoryBase):
         failed_topk: int = 1, 
         **kargs
     ) -> tuple[list, list, list]:
+        """Retrieve and rank relevant memory trajectories for a given task.
 
+        Args:
+            query_task (str): The task to be used as a query.
+            successful_topk (int, optional): Number of top successful trajectories to return. Defaults to 1.
+            failed_topk (int, optional): Number of top failed trajectories to return. Defaults to 1.
+
+        Returns:
+            tuple[list, list, list]: A tuple containing:
+                - Top successful task trajectories
+                - Top failed task trajectories
+                - An empty list placeholder for future insights
+        """
         true_tasks_doc: list[tuple[Document, float]] = []
         false_tasks_doc: list[tuple[Document, float]] = []
 

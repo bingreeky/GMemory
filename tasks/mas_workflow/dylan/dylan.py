@@ -181,7 +181,7 @@ class DyLAN(MetaMAS):
             query_task=task_main,
             successful_topk=self._successful_topk,
             failed_topk=self._failed_topk,
-            insight_windows=self._insights_topk,
+            insight_topk=self._insights_topk,
             threshold=self._threshold
         )
         successful_shots: list[str] = [format_task_context(
@@ -321,12 +321,12 @@ class DyLAN(MetaMAS):
         if not answers:
             return "No active response."
         
-        # 如果达成一致, 则使用多数的答案
+        # If consensus is reached, use the majority answer.
         if self._reach_consensus(col=col):
             counter = Counter(answers)
             most_common_answer, count = counter.most_common(1)[0]   
             return most_common_answer
-        # 否则, 使用 summary agent 进行总结
+        # Otherwise, use the summary agent to generate a summary.
         else:
             upstream_responses: str = ''
             for i, answer in enumerate(answers):

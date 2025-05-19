@@ -6,6 +6,15 @@ from networkx.readwrite import json_graph
 
 @dataclass
 class StorageNameSpace:
+    """
+    StorageNameSpace represents a namespace for storage-related tasks,
+    such as indexing and querying.
+
+    Attributes:
+        namespace (str): The identifier for this storage namespace.
+        global_config (dict): A dictionary containing global configuration
+                              settings for the namespace.
+    """
     namespace: str
     global_config: dict
 
@@ -18,6 +27,17 @@ class StorageNameSpace:
 
 @dataclass
 class AgentMessage:
+    """
+    AgentMessage represents a structured message exchanged between agents,
+    including optional instructions and metadata.
+
+    Attributes:
+        agent_name (Optional[str]): The name of the agent sending or receiving the message.
+        system_instruction (Optional[str]): Optional system-level instruction guiding the agent's behavior.
+        user_instruction (Optional[str]): Optional user-level instruction or query.
+        message (Optional[str]): The core message content (response or statement).
+        extra_fields (dict[str, Any]): A dictionary to hold additional custom fields or metadata.
+    """
     agent_name: Optional[str] = None
     system_instruction: Optional[str] = None
     user_instruction: Optional[str]  = None
@@ -32,6 +52,15 @@ class AgentMessage:
 
 @dataclass
 class StateChain:
+    """
+    Manages a chain of directed graph states representing the evolution of agent messages and their relationships.
+
+    Each state is a NetworkX DiGraph, where nodes represent agent messages and edges represent connections (e.g., spatial edges)
+    between agents. The class supports adding messages, moving to new states, and serializing/deserializing the chain.
+
+    Attributes:
+        chain_of_states (list[nx.DiGraph]): Internal list storing the sequence of graph states.
+    """
     def __post_init__(self):
         initial_state = nx.DiGraph()
         initial_state.graph["name_counter"] = {}
@@ -106,6 +135,19 @@ class StateChain:
 
 @dataclass
 class MASMessage:
+    """
+    Represents a multi-agent system (MAS) message that encapsulates the main task, 
+    its description, the trajectory of task actions and observations, and the 
+    associated chain of states tracking the message evolution.
+
+    Attributes:
+        task_main (str): The main task or objective description.
+        task_description (Optional[str]): Additional details or description of the task.
+        task_trajectory (Optional[str]): A textual log of the sequence of actions and observations. Defaults to a prompt format.
+        label (Optional[bool]): An optional label or flag associated with the task.
+        chain_of_states (StateChain): A StateChain instance tracking the evolution of states/messages in the task.
+        extra_fields (dict[str, Any]): A dictionary for storing additional arbitrary fields related to the message.
+    """
     task_main: str
     task_description: Optional[str] = None
     task_trajectory: Optional[str] = '\n\n>'
