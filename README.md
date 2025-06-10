@@ -2,7 +2,7 @@
 
 
 ## 👋 Introduction
-This repo is the official implementation of [***G-Memory: Tracing Hierarchical Memory for Multi-Agent Systems***]().
+This repo is the official implementation of [***G-Memory: Tracing Hierarchical Memory for Multi-Agent Systems***](https://arxiv.org/abs/2506.07398).
 
 Our method, G-Memory, empowers multi-agent systems with a hierarchical memory architecture that continuously evolves through interaction. Inspired by organizational memory theory, G-Memory captures generalizable insights and agent-specific collaboration trajectories across tasks using a structured graph-based design. When a new task arrives, it retrieves relevant past experiences and distilled knowledge to inform agent behavior and coordination. As agents complete tasks, G-Memory updates its memory hierarchy with new interactions, enabling teams to adapt and improve over time.
 
@@ -59,6 +59,12 @@ OPENAI_API_KEY = ""  # for OpenAI LLM backend
 ## 🫡 Citation
 If you find this repository helpful, a citation to our paper would be greatly appreciated:
 ```
+@article{zhang2025g-memory,
+  title={G-Memory: Tracing Hierarchical Memory for Multi-Agent Systems},
+  author={Zhang, Guibin and Fu, Muxin and Wan, Guancheng and Yu, Miao and Wang, Kun and Yan, Shuicheng},
+  journal={arXiv preprint arXiv:2506.07398},
+  year={2025}
+}
 ```
 
 ## 🙏 Acknowledgement
