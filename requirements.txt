@@ -1,3 +1,4 @@
+alfworld==0.3.5
 attr==0.3.2
 camel==0.1.2
 datasets==3.5.0
@@ -19,7 +20,6 @@ openai==1.78.1
 Pillow==11.2.1
 python-dotenv==1.1.0
 PyYAML==6.0.1
-PyYAML==6.0.2
 scienceworld==1.2.2
 scikit_learn==1.6.1
 seaborn==0.13.2
