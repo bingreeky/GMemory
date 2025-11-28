@@ -32,6 +32,7 @@ class MASMemoryBase(StorageNameSpace, ABC):
         os.makedirs(self.persist_dir, exist_ok=True)
         
     # ---------------------------------- inside-trial memory ----------------------------------
+    # Called by Autogen to set the current task context.
     def init_task_context( 
         self, 
         task_main: str,    
@@ -44,11 +45,22 @@ class MASMemoryBase(StorageNameSpace, ABC):
         )
         return self.current_task_context
     
+
     def add_agent_node(
         self, 
         agent_message: AgentMessage,
         upstream_agent_ids: list[str]
     ) -> str:
+        """
+        Adds an agent node (message) to the current task context (which is a MASMessage).
+
+        Args:
+            agent_message (AgentMessage): The message from the agent to be added.
+            upstream_agent_ids (list[str]): List of agent IDs that are upstream of this node.
+
+        Returns:
+            str: The node ID of the newly added agent node.
+        """
         node_id: str = self.current_task_context.add_message_to_current_state(agent_message, upstream_agent_ids)
 
         return node_id
@@ -68,10 +80,13 @@ class MASMemoryBase(StorageNameSpace, ABC):
         return self.current_task_context
 
     def summarize(self, **kargs) -> str:
-        return self.current_task_context.task_description + self.current_task_context.task_trajectory
+        summarisation = self.current_task_context.task_description + self.current_task_context.task_trajectory
+        #print(f'SUMMARIZATION: {summarisation}')
+        return summarisation
     
 
     # ---------------------------------- cross-trials memory ----------------------------------
+    # Add memory is currently a no-op, as the MASMessage from save_task_context is not stored in the memory.
     def add_memory(self, mas_message: MASMessage):
         pass
     

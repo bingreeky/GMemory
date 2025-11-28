@@ -11,16 +11,16 @@ from mas.agents import Env
 from .autogen_prompt import AUTOGEN_PROMPT 
 from ..format import format_task_prompt_with_insights, format_task_context
 
-import sys
-
 
 @dataclass
-class AutoGen(MetaMAS):   
+class AutoGenHotPot(MetaMAS):   
 
     def __post_init__(self):
 
-        self.solver_name: str = 'solver'
-        self.ground_truth_name: str = 'ground_truth'
+        self.decomposer_name: str = 'decomposer'
+        self.evidence_selector_name: str = 'evidence_selector'
+        self.synthesizer_name: str = 'synthesizer'
+        self.fact_checker_name: str = 'fact_checker'
         self.observers = []   
 
         self.reasoning_config = ReasoningConfig(temperature=0, stop_strs=['\n'])
@@ -43,18 +43,34 @@ class AutoGen(MetaMAS):
         if not isinstance(mas_memory, MASMemoryBase):
             raise TypeError("mas_memory module must be an instance of MASMemoryBase")
         
-        solver_agent: Agent = Agent(
-            name=self.solver_name, 
-            role='solver', 
-            system_instruction=AUTOGEN_PROMPT.solver_system_prompt,
+        decomposer_agent: Agent = Agent(
+            name=self.decomposer_name, 
+            role='decomposer', 
+            system_instruction=AUTOGEN_PROMPT.decomposer_system_prompt,
             reasoning_module=reasoning,
             memory_module=None
         )
 
-        ground_truth_agent: Agent = Agent(
-            name=self.ground_truth_name,
-            role="ground truth agent",
-            system_instruction=AUTOGEN_PROMPT.ground_truth_system_prompt,
+        evidence_selector_agent: Agent = Agent(
+            name=self.evidence_selector_name,
+            role="evidence selector agent",
+            system_instruction=AUTOGEN_PROMPT.evidence_selector_system_prompt,
+            reasoning_module=reasoning,
+            memory_module=None           
+        )
+
+        synthesizer_agent: Agent = Agent(
+            name=self.synthesizer_name,
+            role="synthesizer agent",
+            system_instruction=AUTOGEN_PROMPT.synthesizer_system_prompt,
+            reasoning_module=reasoning,
+            memory_module=None           
+        )
+
+        fact_checker_agent: Agent = Agent(
+            name=self.fact_checker_name,
+            role="fact checker agent",
+            system_instruction=AUTOGEN_PROMPT.fact_checker_system_prompt,
             reasoning_module=reasoning,
             memory_module=None           
         )
@@ -62,8 +78,7 @@ class AutoGen(MetaMAS):
         env_executor = env
         
         self.hire([
-            solver_agent,
-            ground_truth_agent
+            decomposer_agent, evidence_selector_agent, synthesizer_agent, fact_checker_agent
         ])
         self.set_env(env_executor)
         self.meta_memory = mas_memory
@@ -98,8 +113,12 @@ class AutoGen(MetaMAS):
         
         # Initialize environment and agents
         env: Env = self.env
-        solver: Agent = self.get_agent(self.solver_name)
-        ground_truth: Agent = self.get_agent(self.ground_truth_name)
+        decomposer: Agent = self.get_agent(self.decomposer_name)
+        evidence_selector: Agent = self.get_agent(self.evidence_selector_name)
+        synthesizer: Agent = self.get_agent(self.synthesizer_name)
+        fact_checker: Agent = self.get_agent(self.fact_checker_name)
+
+
         env.reset()
         
         self.meta_memory.init_task_context(task_main, task_description) 
@@ -126,7 +145,7 @@ class AutoGen(MetaMAS):
             few_shots=few_shots, 
             memory_few_shots=successful_shots,
             insights=raw_rules,
-            task_description=self.meta_memory.summarize(solver_message=solver.total_system_instruction)
+            task_description=self.meta_memory.summarize(solver_message=decomposer.total_system_instruction)
         )
         self.notify_observers(user_prompt)
 
@@ -138,16 +157,14 @@ class AutoGen(MetaMAS):
             user_prompt: str = format_task_prompt_with_insights(
                 few_shots=few_shots, 
                 memory_few_shots=successful_shots,
-                insights=roles_rules.get(solver.profile, raw_rules),
-                task_description=self.meta_memory.summarize(solver_message=solver.total_system_instruction)
+                insights=roles_rules.get(decomposer.profile, raw_rules),
+                task_description=self.meta_memory.summarize(solver_message=decomposer.total_system_instruction)
             )
             tries = 0
-
-            print(f"\n==== SOLVER AGENT PROMPT ====\n{user_prompt}\n==== END SOLVER AGENT PROMPT ====\n", file=sys.stderr)
             
             while tries < 3:
                 try:  
-                    action: str = solver.response(user_prompt, self.reasoning_config)
+                    action: str = decomposer.response(user_prompt, self.reasoning_config)
                     if action == '':
                         continue
                     action = env.process_action(action)
@@ -158,30 +175,6 @@ class AutoGen(MetaMAS):
 
             name: str = solver.name
             system_instruction = solver.system_instruction
-            
-            if self._solver_stuck(action, action_history):
-                user_prompt: str = format_task_prompt_with_insights(
-                    few_shots=few_shots, 
-                    memory_few_shots=successful_shots,
-                    insights=roles_rules.get(ground_truth.profile, raw_rules),
-                    task_description=self.meta_memory.summarize(solver_message=solver.total_system_instruction)
-                )
-
-                print(f'==== GROUND TRUTH AGENT PROMPT ==== \n{user_prompt}\n====END GROUNDTRUTH AGENT PROMPT ====\n', file=sys.stderr)
-
-                tries = 0
-                while tries < 3:
-                    try: 
-                        action: str = ground_truth.response(user_prompt, self.reasoning_config)
-                        if action == '':
-                            continue
-                        action = env.process_action(action)
-                        break
-                    except Exception as e:
-                        print(f'Error during execution of ground truth agent: {e}')
-                    tries += 1
-                name: str = ground_truth.name
-                system_instruction = ground_truth.system_instruction
             
             agent_message: AgentMessage = AgentMessage(
                 agent_name=name,
@@ -210,34 +203,6 @@ class AutoGen(MetaMAS):
 
         return final_reward, final_done
     
-    def _solver_stuck(self, current_action: str, action_history: list[str]) -> bool:
-        """
-        Determines whether the agent is stuck by repeating the same action.
-
-        If the current action is identical to the last two actions in the history,
-        the agent is considered to be stuck in a loop.
-
-        Args:
-            current_action (str): The action currently being executed by the agent.
-            action_history (list[str]): A chronological list of previously taken actions.
-
-        Returns:
-            bool: True if the last two actions are the same as the current action; False otherwise.
-        """
-        identical = len(action_history) >= 2 and current_action == action_history[-1] and current_action == action_history[-2]
-
-        double_think = len(action_history) >= 3 and "think" in current_action and "think" in action_history[-1] and "think" in action_history[-2]
-
-        similar = False
-        if len(action_history) >= 3:
-            similarity_12 = SequenceMatcher(None, current_action, action_history[-1]).ratio()
-            similarity_13 = SequenceMatcher(None, current_action, action_history[-2]).ratio()
-            similarity_23 = SequenceMatcher(None, action_history[-1], action_history[-2]).ratio()
-
-            threshold = 0.8
-            similar =  all(similarity > threshold for similarity in [similarity_12, similarity_13, similarity_23])
-
-        return identical or double_think or similar
     def _project_insights(self, insights: list[str]) -> dict[str, list[str]]:
         """
         Process insights to generate a dictionary matching roles to insights, based on whether a projector is used.

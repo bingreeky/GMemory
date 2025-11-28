@@ -142,3 +142,8 @@ class FeverRecorder(BaseRecorder):
 
         message = f'reward: {reward}, ave reward: {self.rewards / self.counts}.\ndone: {done}, ave done: {self.dones / self.counts}'
         self.log(message)
+
+    def average_results(self):
+        average_rewards = self.rewards / self.counts
+        average_dones = self.dones / self.counts
+        return average_rewards, average_dones

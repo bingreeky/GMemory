@@ -128,3 +128,6 @@ class AlfworldRecorder(BaseRecorder):
         self.log("rs: " + str(self.results))
         self.log("cnts: " + str(self.counts))
 
+    def average_results(self):
+        average_results = sum(self.results) / sum(self.counts)
+        return average_results, average_results

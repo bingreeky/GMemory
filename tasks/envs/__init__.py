@@ -32,7 +32,7 @@ with open(TASKS_PATH['fever'], 'r') as f:
             'env_name': 'fever',
         }
         for row in (json.loads(line) for line in f) 
-    ][:100]
+    ]
 
 
 TASK_NAMES = ["barman", "blockworld", "gripper", "tyreworld"]
@@ -40,9 +40,9 @@ pddl_tasks: list[dict] = get_all_environment_configs(TASK_NAMES, TASKS_PATH['pdd
 
 
 TASK_DATA = {
-    'alfworld': alfworld_tasks,
-    'fever': fever_tasks,
-    'pddl': pddl_tasks
+    'alfworld': alfworld_tasks[0:1],
+    'fever': fever_tasks[0:1],
+    'pddl': pddl_tasks[0:1]
 }
 
 ENVS = {

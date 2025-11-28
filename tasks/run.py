@@ -14,7 +14,7 @@ from mas.agents import Agent
 from mas.module_map import module_map
 from mas.reasoning import ReasoningBase
 from mas.memory import MASMemoryBase
-from mas.llm import LLMCallable, GPTChat, get_price
+from mas.llm import LLMCallable, GPTChat, get_price, get_intrinsic_price
 from mas.mas import MetaMAS
 from mas.utils import EmbeddingFunc
 
@@ -86,7 +86,7 @@ def build_mas(
     task_manager.mas.add_observer(task_manager.recorder)  
     task_manager.mas.build_system(reasoning_module, mas_memory_module, task_manager.env, task_manager.mas_config)
 
-def run_task(task_manager: TaskManager) -> None:
+def run_task(task_manager: TaskManager, seed: int) -> None:
 
     task_manager.recorder.dataset_begin()
     
@@ -107,8 +107,14 @@ def run_task(task_manager: TaskManager) -> None:
             task_manager.recorder.log(agent.add_task_instruction(task_instruction))
 
         reward, done = task_manager.mas.schedule(task_config) 
-    
         task_manager.recorder.task_end(reward, done)             
+
+        completion_tokens, prompt_tokens, _ = get_price()
+        intrinsic_completion_tokens, intrinsic_prompt_tokens = get_intrinsic_price()
+        task_manager.recorder.log(f'completion_tokens:{completion_tokens}, prompt_tokens:{prompt_tokens}\n')
+        task_manager.recorder.log(f'intrinsic completion tokens:{intrinsic_completion_tokens}, intrinsic_prompt_tokens:{intrinsic_prompt_tokens}\n')
+
+        task_manager.recorder.log(f'seed: {seed}\n')
     
     task_manager.recorder.dataset_end()
 
@@ -116,7 +122,6 @@ def run_task(task_manager: TaskManager) -> None:
 
 if __name__ == '__main__':
     # settings
-    random.seed(42)
 
     parser = argparse.ArgumentParser(description='Run tasks with specified modules.')
     parser.add_argument('--task', type=str, choices=['alfworld', 'fever', 'pddl'])
@@ -131,6 +136,7 @@ if __name__ == '__main__':
     parser.add_argument('--threshold', type=float, default=0.0, help='threshold for traj similarity.')
     parser.add_argument('--use_projector', action='store_true', help='whether to use role projector.')
     parser.add_argument('--hop', type=int, default=1, help='hop for traj similarity.')
+    parser.add_argument('--seed', type=int, default=42, help='seed')
 
     args = parser.parse_args()
 
@@ -140,9 +146,12 @@ if __name__ == '__main__':
     model_type: str = args.model
     mas_memory_type: str = args.mas_memory
     reasoning_type: str = args.reasoning
-    
+
+    seed = args.seed
+    random.seed(seed)
+
     # dir
-    WORKING_DIR = os.path.join('./.db3', get_model_type(model_type), task, mas_type, f'{mas_memory_type}')
+    WORKING_DIR = os.path.join('./.db-review', get_model_type(model_type), task, mas_type, f'{mas_memory_type}')
     # if os.path.exists(WORKING_DIR):
     #     shutil.rmtree(WORKING_DIR)
     os.makedirs(WORKING_DIR, exist_ok=True)
@@ -160,8 +169,10 @@ if __name__ == '__main__':
     )
 
     build_mas(task_configs, reasoning_type, mas_memory_type, model_type)
-    run_task(task_configs)
+    run_task(task_configs, seed)
 
     # postprocess
     completion_tokens, prompt_tokens, _ = get_price()
+    intrinsic_completion_tokens, intrinsic_prompt_tokens = get_intrinsic_price()
     task_configs.recorder.log(f'completion_tokens:{completion_tokens}, prompt_tokens:{prompt_tokens}, price={completion_tokens*15/1000000+prompt_tokens*5/1000000}')
+    task_configs.recorder.log(f'intrinsic completion tokens:{intrinsic_completion_tokens}, intrinsic_prompt_tokens:{intrinsic_prompt_tokens}')

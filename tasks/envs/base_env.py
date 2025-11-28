@@ -69,6 +69,10 @@ class BaseRecorder:
 
         if self.current_task_id is None or self.current_task_config is None:
             raise RuntimeError('The task id or the task config should not be None.')
+
+    def average_results(self):
+        """ Returns a tuple (average rewards, average dones) """
+        pass
         
     def dataset_begin(self) -> None:
         

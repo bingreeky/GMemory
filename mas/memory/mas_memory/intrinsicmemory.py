@@ -3,7 +3,7 @@ import os
 import sys
 
 from .memory_base import MASMemoryBase
-from .prompt import INTRINSICMEMORY
+from .prompt import INTRINSICMEMORYDEFAULT
 from ..common import MASMessage,AgentMessage # a MASMessage, which is a specific type of message used in MAS
 from mas.llm import Message, GPTChat # a "normal" message, not a MASMessage?
 
@@ -24,7 +24,10 @@ class IntrinsicMASMemory(MASMemoryBase):
         self.counter: int = 0
         self.agent_intrinsic_memory: str = ""
 
-    def summarize(self, solver_message="") -> str:
+        self.memory_update_prompt = INTRINSICMEMORYDEFAULT.memory_update_prompt
+        self.memory_system_prompt = ""
+
+    def summarize(self, solver_message="", template_instructions="") -> str:
 
         """UPDATE AGENT MEMORY STEP"""
 
@@ -34,32 +37,27 @@ class IntrinsicMASMemory(MASMemoryBase):
             raise RuntimeError('The current task memory is empty.')
 
         # Construct the user prompt for memory update with memory update prompt, task description, and latest agent output
-        #MEMORY_UPDATE_PROMPT = INTRINSICMEMORY.memory_update_prompt
-        #TASK_DESCRIPTION = f'"TASK DESCRIPTION: {mas_message.task_description}'
-        #AGENT_MEMORY = f'CURRENT AGENT MEMORY: {self.agent_intrinsic_memory}'
-        #LATEST_AGENT_OUTPUT = f'LATEST AGENT OUTPUT: {mas_message.task_trajectory}'
-        #memory_update_user_prompt: list[Message] = [Message('system', MEMORY_UPDATE_PROMPT), Message('user', TASK_DESCRIPTION), Message('user', AGENT_MEMORY), Message('user', LATEST_AGENT_OUTPUT)]
-
-        user_prompt = INTRINSICMEMORY.memory_update_prompt.format(
+        memory_update_prompt = self.memory_update_prompt.format(
                 solver_system_message=solver_message,
+                template_instructions=template_instructions,
                 task_description=mas_message.task_description,
                 task_trajectory=mas_message.task_trajectory,
-                #current_memory=self.agent_intrinsic_memory,
+                current_memory=self.agent_intrinsic_memory,
         )
 
-        messages = [Message("system", INTRINSICMEMORY.memory_system_prompt), Message("user", user_prompt)]
+        messages = [Message("system", self.memory_system_prompt), Message("user", memory_update_prompt)]
 
-
-        print(f"----MEMORY----\n{user_prompt}\n----END MEMORY----\n", file=sys.stderr)
+        print(f"==== MEMORY UPDATE PROMPT ==== \n{memory_update_prompt}\n==== END MEMORY UPDATE PROMPT ====\n", file=sys.stderr)
 
         # only summarise after some history has been built up
         if len(mas_message.task_trajectory) > 5:
             self.agent_intrinsic_memory = self.llm_model(messages)
 
-        print(f"==== NEW MEMORY ====\n{self.agent_intrinsic_memory}\n==========", file=sys.stderr)
         injection = "You can only perform one action. Output in a single line your next action"
 
-        return mas_message.task_description + "\n\n" + self.agent_intrinsic_memory + "\n\n" + injection
+        summary_message = mas_message.task_description + "\n\n### Agent Memory\n" + self.agent_intrinsic_memory + "\n\n" + mas_message.task_trajectory + "\n\n" + injection
+
+        return summary_message
 
 
     def save_task_context(self, label: bool, feedback: str = None) -> MASMessage:

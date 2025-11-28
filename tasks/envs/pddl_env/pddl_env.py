@@ -345,6 +345,9 @@ class PDDLRecorder(BaseRecorder):
 
     def _get_average_done(self) -> float:
         return sum(self.dones.values()) / sum(self.cnts.values())
+
+    def average_results(self):
+        return self._get_average_reward(), self._get_average_done()
     
         
 # Define the mapping of predicate names to their natural language formats  

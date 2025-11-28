@@ -35,3 +35,4 @@ class ChatDevMASMemory(MASMemoryBase):
     def save_task_context(self, label: bool, feedback: str = None) -> MASMessage:
         self.counter = 0
         return super().save_task_context(label, feedback=feedback)
+    

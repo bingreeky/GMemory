@@ -440,9 +440,15 @@ class TaskLayer:
             if embedding is not None:
                 embeddings.append(embedding)
                 valid_nodes.append(node)
+
+        
+        
+
         try: 
             X = np.vstack(embeddings)
             _,_,labels = FINCH(X,distance='cosine')
+
+            #labels = fin.fit_predict(X)
         except Exception as e:   
             print(f"FINCH clustering failed: {e}")
             labels = np.zeros(len(valid_nodes), dtype=int)
@@ -525,8 +531,8 @@ class InsightsManager:
 
             self.logger.info('------- Merge Insights -------')
             self.logger.info(f'Task type: {task_type}')
-            self.logger.info("Origin rules: \n{}".format('\n'.join(related_rules)))
-            self.logger.info("Merged rules: \n{}".format('\n'.join(merged_rules)))
+            #self.logger.info(f"Origin rules: \n{'\n'.join(related_rules)}")
+            #self.logger.info(f"Merged rules: \n{'\n'.join(merged_rules)}")
             
         self.insights_memory.clear()
 
