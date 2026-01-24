@@ -1,0 +1,135 @@
+﻿node_id,node_text,cluster_id
+0,look_at_obj-look at bowl under the desklamp.___0,0.0
+1,pick_two_obj-put two soapbar in garbagecan.___1,1.0
+2,pick_cool_then_place-put a cool tomato in microwave.___2,2.0
+3,pick_clean_then_place-put a clean plate in countertop.___3,3.0
+4,pick_clean_then_place-put a clean soapbar in countertop.___4,4.0
+5,pick_cool_then_place-cool some lettuce and put it in countertop.___5,5.0
+6,pick_clean_then_place-clean some pan and put it in countertop.___6,6.0
+7,pick_clean_then_place-put a clean plate in countertop.___7,3.0
+8,pick_heat_then_place-put a hot mug in coffeemachine.___8,7.0
+9,pick_and_place-put some saltshaker on drawer.___9,8.0
+10,pick_clean_then_place-clean some bowl and put it in cabinet.___10,9.0
+11,pick_and_place-put a vase in safe.___11,10.0
+12,pick_cool_then_place-cool some potato and put it in microwave.___12,11.0
+13,pick_cool_then_place-cool some mug and put it in coffeemachine.___13,12.0
+14,pick_heat_then_place-heat some egg and put it in garbagecan.___14,13.0
+15,pick_cool_then_place-put a cool mug in coffeemachine.___15,12.0
+16,pick_heat_then_place-put a hot cup in cabinet.___16,14.0
+17,pick_clean_then_place-put a clean mug in coffeemachine.___17,15.0
+18,pick_clean_then_place-clean some soapbar and put it in cabinet.___18,16.0
+19,pick_heat_then_place-put a hot cup in cabinet.___19,14.0
+20,pick_clean_then_place-clean some knife and put it in countertop.___20,17.0
+21,pick_clean_then_place-clean some cloth and put it in countertop.___21,6.0
+22,look_at_obj-examine the bowl with the desklamp.___22,0.0
+23,pick_clean_then_place-put a clean egg in microwave.___23,18.0
+24,pick_and_place-put some peppershaker on drawer.___24,19.0
+25,pick_and_place-put a pencil in shelf.___25,20.0
+26,pick_and_place-put a soapbottle in toilet.___26,21.0
+27,pick_and_place-put some saltshaker on cabinet.___27,22.0
+28,pick_and_place-put some saltshaker on cabinet.___28,22.0
+29,pick_cool_then_place-put a cool lettuce in countertop.___29,5.0
+30,pick_and_place-put some watch on safe.___30,23.0
+31,pick_heat_then_place-heat some apple and put it in garbagecan.___31,24.0
+32,pick_heat_then_place-heat some apple and put it in garbagecan.___32,24.0
+33,look_at_obj-look at cd under the desklamp.___33,25.0
+34,pick_cool_then_place-put a cool pan in countertop.___34,26.0
+35,pick_two_obj-put two pillow in sofa.___35,27.0
+36,pick_heat_then_place-put a hot cup in cabinet.___36,14.0
+37,pick_clean_then_place-put a clean knife in countertop.___37,17.0
+38,look_at_obj-examine the alarmclock with the desklamp.___38,28.0
+39,pick_cool_then_place-cool some mug and put it in coffeemachine.___39,12.0
+40,pick_cool_then_place-cool some bread and put it in countertop.___40,29.0
+41,look_at_obj-examine the pencil with the desklamp.___41,30.0
+42,pick_two_obj-put two keychain in safe.___42,31.0
+43,pick_two_obj-put two peppershaker in drawer.___43,32.0
+44,pick_cool_then_place-cool some pan and put it in countertop.___44,26.0
+45,pick_and_place-put a pencil in shelf.___45,20.0
+46,pick_and_place-put some soapbottle on toilet.___46,21.0
+47,pick_two_obj-put two peppershaker in drawer.___47,32.0
+48,pick_clean_then_place-clean some plate and put it in countertop.___48,3.0
+49,pick_heat_then_place-heat some egg and put it in garbagecan.___49,13.0
+50,pick_cool_then_place-cool some potato and put it in microwave.___50,11.0
+51,pick_and_place-put a mug in desk.___51,33.0
+52,pick_heat_then_place-put a hot potato in garbagecan.___52,34.0
+53,pick_two_obj-find two soapbar and put them in cabinet.___53,16.0
+54,pick_heat_then_place-heat some apple and put it in fridge.___54,35.0
+55,pick_two_obj-put two pillow in sofa.___55,27.0
+56,pick_clean_then_place-put a clean mug in coffeemachine.___56,15.0
+57,pick_and_place-put a peppershaker in drawer.___57,19.0
+58,pick_and_place-put some watch on safe.___58,23.0
+59,pick_heat_then_place-heat some tomato and put it in garbagecan.___59,36.0
+60,look_at_obj-examine the book with the desklamp.___60,37.0
+61,pick_cool_then_place-cool some potato and put it in microwave.___61,11.0
+62,look_at_obj-examine the cd with the desklamp.___62,25.0
+63,pick_heat_then_place-heat some mug and put it in coffeemachine.___63,7.0
+64,look_at_obj-look at pencil under the desklamp.___64,30.0
+65,pick_clean_then_place-clean some soapbar and put it in cabinet.___65,16.0
+66,pick_heat_then_place-heat some apple and put it in fridge.___66,35.0
+67,look_at_obj-examine the book with the desklamp.___67,37.0
+68,pick_heat_then_place-heat some mug and put it in cabinet.___68,38.0
+69,look_at_obj-look at bowl under the desklamp.___69,0.0
+70,pick_two_obj-find two pillow and put them in sofa.___70,27.0
+71,pick_heat_then_place-heat some mug and put it in coffeemachine.___71,7.0
+72,pick_cool_then_place-put a cool tomato in microwave.___72,2.0
+73,pick_and_place-put a mug in desk.___73,33.0
+74,pick_clean_then_place-clean some egg and put it in microwave.___74,18.0
+75,pick_heat_then_place-put a hot tomato in garbagecan.___75,36.0
+76,pick_clean_then_place-clean some bowl and put it in cabinet.___76,9.0
+77,pick_cool_then_place-put a cool mug in cabinet.___77,39.0
+78,pick_clean_then_place-put a clean spatula in drawer.___78,40.0
+79,pick_clean_then_place-put a clean mug in coffeemachine.___79,15.0
+80,pick_clean_then_place-clean some spatula and put it in drawer.___80,40.0
+81,pick_and_place-put some watch on safe.___81,23.0
+82,look_at_obj-examine the pencil with the desklamp.___82,30.0
+83,pick_clean_then_place-clean some cloth and put it in cabinet.___83,41.0
+84,pick_and_place-put a saltshaker in drawer.___84,8.0
+85,pick_two_obj-put two cd in safe.___85,31.0
+86,pick_heat_then_place-heat some apple and put it in garbagecan.___86,24.0
+87,look_at_obj-examine the mug with the desklamp.___87,42.0
+88,pick_cool_then_place-cool some pan and put it in countertop.___88,26.0
+89,pick_heat_then_place-put a hot apple in fridge.___89,35.0
+90,pick_and_place-put some saltshaker on cabinet.___90,22.0
+91,pick_clean_then_place-clean some cloth and put it in cabinet.___91,41.0
+92,pick_clean_then_place-put a clean pan in countertop.___92,6.0
+93,pick_clean_then_place-clean some spatula and put it in drawer.___93,40.0
+94,look_at_obj-examine the mug with the desklamp.___94,42.0
+95,pick_cool_then_place-cool some mug and put it in cabinet.___95,39.0
+96,pick_heat_then_place-put a hot mug in cabinet.___96,38.0
+97,pick_clean_then_place-clean some soapbar and put it in cabinet.___97,16.0
+98,look_at_obj-look at mug under the desklamp.___98,42.0
+99,pick_and_place-put some mug on desk.___99,33.0
+100,look_at_obj-look at alarmclock under the desklamp.___100,28.0
+101,look_at_obj-examine the book with the desklamp.___101,37.0
+102,pick_two_obj-put two soapbar in garbagecan.___102,1.0
+103,pick_cool_then_place-cool some bread and put it in countertop.___103,29.0
+104,look_at_obj-examine the alarmclock with the desklamp.___104,28.0
+105,look_at_obj-examine the cd with the desklamp.___105,25.0
+106,pick_heat_then_place-heat some egg and put it in garbagecan.___106,13.0
+107,pick_clean_then_place-put a clean soapbar in countertop.___107,4.0
+108,pick_two_obj-put two soapbar in garbagecan.___108,1.0
+109,pick_and_place-put a soapbottle in toilet.___109,21.0
+110,pick_and_place-put some vase on safe.___110,10.0
+111,pick_cool_then_place-cool some lettuce and put it in countertop.___111,5.0
+112,pick_two_obj-put two cd in safe.___112,31.0
+113,pick_clean_then_place-put a clean egg in microwave.___113,18.0
+114,pick_two_obj-find two toiletpaper and put them in cabinet.___114,16.0
+115,pick_cool_then_place-put a cool bread in countertop.___115,29.0
+116,pick_cool_then_place-cool some mug and put it in cabinet.___116,39.0
+117,pick_clean_then_place-clean some soapbar and put it in countertop.___117,4.0
+118,pick_cool_then_place-put a cool tomato in microwave.___118,2.0
+119,pick_heat_then_place-heat some potato and put it in garbagecan.___119,34.0
+120,pick_two_obj-put two keychain in safe.___120,
+121,pick_clean_then_place-clean some pan and put it in countertop.___121,
+122,pick_two_obj-find two cd and put them in safe.___122,
+123,pick_and_place-put some peppershaker on drawer.___123,
+124,pick_two_obj-find two peppershaker and put them in drawer.___124,
+125,pick_heat_then_place-put a hot mug in cabinet.___125,
+126,pick_two_obj-find two soapbar and put them in cabinet.___126,
+127,pick_clean_then_place-put a clean bowl in cabinet.___127,
+128,pick_and_place-put a saltshaker in drawer.___128,
+129,pick_and_place-put a pencil in shelf.___129,
+130,pick_heat_then_place-put a hot tomato in garbagecan.___130,
+131,pick_clean_then_place-put a clean knife in countertop.___131,
+132,pick_and_place-put a vase in safe.___132,
+133,pick_clean_then_place-put a clean cloth in countertop.___133,

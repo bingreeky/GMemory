@@ -1,0 +1,1415 @@
+[
+  {
+    "rule": "Use a systematic approach to search for items, focusing on the most likely locations first, and verify each step to ensure task completion and efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-look at bowl under the desklamp.___0",
+      "look_at_obj-examine the bowl with the desklamp.___22",
+      "look_at_obj-look at bowl under the desklamp.___69"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Choose a different location if the desired spot is unavailable.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_two_obj-put two soapbar in garbagecan.___1",
+      "pick_two_obj-put two soapbar in garbagecan.___102",
+      "pick_two_obj-put two soapbar in garbagecan.___108"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the object is placed in a suitable location or find an alternative.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_two_obj-put two soapbar in garbagecan.___1",
+      "pick_two_obj-put two soapbar in garbagecan.___102",
+      "pick_two_obj-put two soapbar in garbagecan.___108"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the presence, compatibility, and suitability of required items in likely and less obvious locations, prioritize core task objectives, and ensure thorough completion of each step to streamline efficiency and avoid unnecessary actions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool tomato in microwave.___2",
+      "pick_cool_then_place-put a cool tomato in microwave.___72",
+      "pick_cool_then_place-put a cool tomato in microwave.___118"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the required item is present in the environment before starting the task to prevent failure.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool tomato in microwave.___2",
+      "pick_cool_then_place-put a cool tomato in microwave.___72",
+      "pick_cool_then_place-put a cool tomato in microwave.___118"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clear and verify the target location for obstacles, ensure item compatibility and suitability, use appropriate appliances, and expand search to other locations if necessary, while verifying each step for task completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean plate in countertop.___3",
+      "pick_clean_then_place-put a clean plate in countertop.___7",
+      "pick_clean_then_place-clean some plate and put it in countertop.___48"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Choose a different location if the desired spot is unavailable.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean soapbar in countertop.___4",
+      "pick_clean_then_place-put a clean soapbar in countertop.___107",
+      "pick_clean_then_place-clean some soapbar and put it in countertop.___117"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the object is placed in a suitable location or find an alternative.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean soapbar in countertop.___4",
+      "pick_clean_then_place-put a clean soapbar in countertop.___107",
+      "pick_clean_then_place-clean some soapbar and put it in countertop.___117"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use a systematic approach with tools to adjust placement strategies based on obstacles or failures, ensuring items are efficiently located and placed in appropriate locations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some lettuce and put it in countertop.___5",
+      "pick_cool_then_place-put a cool lettuce in countertop.___29",
+      "pick_cool_then_place-cool some lettuce and put it in countertop.___111"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Focus on the core objective of each task step to enhance effectiveness.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some pan and put it in countertop.___6",
+      "pick_clean_then_place-clean some cloth and put it in countertop.___21",
+      "pick_clean_then_place-put a clean pan in countertop.___92"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the presence, compatibility, and suitability of items and target locations, check for obstructions and ensure commands function correctly before each step, follow systematic search and placement methods, confirm each action, and recheck environment responses if placement fails, considering alternative methods or locations, and ensure the final placement aligns with the task objective, and double-check the task requirements before finalizing the placement.",
+    "score": 4,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Streamline tasks by eliminating unnecessary steps, focusing on core objectives, and using available tools, while systematically searching for items by checking likely locations in a logical order, verifying each step, and maintaining cleanliness.",
+    "score": 3,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Consider alternative locations if an object cannot be placed directly into the intended spot, and clean items if necessary before placing them in designated areas.",
+    "score": 3,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure thoroughness by checking less obvious locations and confirming the absence of the item if necessary, to avoid unnecessary time spent searching.",
+    "score": 3,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Prioritize task objectives to ensure focus on core goals, and verify the environment's response after each action to ensure successful execution.",
+    "score": 5,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Systematically search for items to increase the likelihood of quick discovery.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Confirm task completion by verifying that all steps are fully achieved and that the final placement meets the specific requirements of the task.",
+    "score": 4,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the presence of required items before initiating tasks.",
+    "score": 3,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Eliminate unnecessary actions and focus on core objectives to improve efficiency.",
+    "score": 3,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___71",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Adapt tasks based on environmental feedback to optimize performance.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some saltshaker on drawer.___9",
+      "pick_and_place-put a saltshaker in drawer.___84"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Check for hidden constraints or requirements when actions fail repeatedly.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a vase in safe.___11",
+      "pick_and_place-put some vase on safe.___110"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Confirm the availability and location of required items before starting the task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some potato and put it in microwave.___12",
+      "pick_cool_then_place-cool some potato and put it in microwave.___50",
+      "pick_cool_then_place-cool some potato and put it in microwave.___61"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use tools effectively and verify the final placement and condition of items to ensure task completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some potato and put it in microwave.___12",
+      "pick_cool_then_place-cool some potato and put it in microwave.___50",
+      "pick_cool_then_place-cool some potato and put it in microwave.___61"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the target location is suitable for the task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some potato and put it in microwave.___12",
+      "pick_cool_then_place-cool some potato and put it in microwave.___50",
+      "pick_cool_then_place-cool some potato and put it in microwave.___61"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the environment's state and object placement after each action to ensure correct execution.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some mug and put it in coffeemachine.___13",
+      "pick_cool_then_place-put a cool mug in coffeemachine.___15",
+      "pick_cool_then_place-cool some mug and put it in coffeemachine.___39"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use alternative surfaces or locations if direct placement fails or is not possible.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some mug and put it in coffeemachine.___13",
+      "pick_cool_then_place-put a cool mug in coffeemachine.___15",
+      "pick_cool_then_place-cool some mug and put it in coffeemachine.___39"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure specific placement commands are recognized to prevent misplacement.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some mug and put it in coffeemachine.___13",
+      "pick_cool_then_place-put a cool mug in coffeemachine.___15",
+      "pick_cool_then_place-cool some mug and put it in coffeemachine.___39"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the functionality and accessibility of the target object before placing an item.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___14",
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___49",
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___106"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Follow each placement action with a confirmation step to ensure successful completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___14",
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___49",
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___106"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Recheck the environment's response, item compatibility, and object orientation if the placement fails.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___14",
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___49",
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___106"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Consider alternative methods or locations if the placement continues to fail.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___14",
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___49",
+      "pick_heat_then_place-heat some egg and put it in garbagecan.___106"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the target location's availability, suitability, and explicit allowance before placing an item.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-put a hot cup in cabinet.___16",
+      "pick_heat_then_place-put a hot cup in cabinet.___19",
+      "pick_heat_then_place-put a hot cup in cabinet.___36"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the environment's response is accurately interpreted and the target location is clear and can accommodate the object.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-put a hot cup in cabinet.___16",
+      "pick_heat_then_place-put a hot cup in cabinet.___19",
+      "pick_heat_then_place-put a hot cup in cabinet.___36"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Follow each placement action with a confirmation step to verify successful completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-put a hot cup in cabinet.___16",
+      "pick_heat_then_place-put a hot cup in cabinet.___19",
+      "pick_heat_then_place-put a hot cup in cabinet.___36"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Recheck the environment's response, item compatibility, and object orientation if the placement fails.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-put a hot cup in cabinet.___16",
+      "pick_heat_then_place-put a hot cup in cabinet.___19",
+      "pick_heat_then_place-put a hot cup in cabinet.___36"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Consider alternative methods or locations if placement still fails.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-put a hot cup in cabinet.___16",
+      "pick_heat_then_place-put a hot cup in cabinet.___19",
+      "pick_heat_then_place-put a hot cup in cabinet.___36"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure tools and substitute items support the task's core objective and meet the requirements.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-put a hot cup in cabinet.___16",
+      "pick_heat_then_place-put a hot cup in cabinet.___19",
+      "pick_heat_then_place-put a hot cup in cabinet.___36"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the environment is clear of obstructions and limitations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean mug in coffeemachine.___17",
+      "pick_clean_then_place-put a clean mug in coffeemachine.___56",
+      "pick_clean_then_place-put a clean mug in coffeemachine.___79"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Place items in suitable locations using specific commands, and adjust strategies based on feedback.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean mug in coffeemachine.___17",
+      "pick_clean_then_place-put a clean mug in coffeemachine.___56",
+      "pick_clean_then_place-put a clean mug in coffeemachine.___79"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure items are compatible with their target locations; use nearby surfaces or containers if direct placement is not possible.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean mug in coffeemachine.___17",
+      "pick_clean_then_place-put a clean mug in coffeemachine.___56",
+      "pick_clean_then_place-put a clean mug in coffeemachine.___79"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Choose a different location if the desired spot is unavailable.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some soapbar and put it in cabinet.___18",
+      "pick_two_obj-find two soapbar and put them in cabinet.___53",
+      "pick_clean_then_place-clean some soapbar and put it in cabinet.___65",
+      "pick_clean_then_place-clean some soapbar and put it in cabinet.___97",
+      "pick_two_obj-find two toiletpaper and put them in cabinet.___114"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the object is placed in a suitable location or find an alternative.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some soapbar and put it in cabinet.___18",
+      "pick_two_obj-find two soapbar and put them in cabinet.___53",
+      "pick_clean_then_place-clean some soapbar and put it in cabinet.___65",
+      "pick_clean_then_place-clean some soapbar and put it in cabinet.___97",
+      "pick_two_obj-find two toiletpaper and put them in cabinet.___114"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the target location's availability and suitability for the object before attempting to place it.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some knife and put it in countertop.___20",
+      "pick_clean_then_place-put a clean knife in countertop.___37"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure each placement action is followed by a confirmation step to verify the successful completion of the task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some knife and put it in countertop.___20",
+      "pick_clean_then_place-put a clean knife in countertop.___37"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Recheck the environment's response, the item's compatibility with the location, and the object's orientation if the placement action fails.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some knife and put it in countertop.___20",
+      "pick_clean_then_place-put a clean knife in countertop.___37"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Systematically search for items by checking all likely locations in order and verify the absence of the item in each location.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some knife and put it in countertop.___20",
+      "pick_clean_then_place-put a clean knife in countertop.___37"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the object is compatible with the target location and that the location is not already occupied by incompatible items.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some knife and put it in countertop.___20",
+      "pick_clean_then_place-put a clean knife in countertop.___37"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Accurately interpret the environment's response to confirm the placement action's success.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-clean some knife and put it in countertop.___20",
+      "pick_clean_then_place-put a clean knife in countertop.___37"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify container contents and accessibility before interaction.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean egg in microwave.___23",
+      "pick_clean_then_place-clean some egg and put it in microwave.___74",
+      "pick_clean_then_place-put a clean egg in microwave.___113"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Complete each step successfully using appropriate appliances and locations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean egg in microwave.___23",
+      "pick_clean_then_place-clean some egg and put it in microwave.___74",
+      "pick_clean_then_place-put a clean egg in microwave.___113"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Acknowledge environmental feedback to prevent task failures.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean egg in microwave.___23",
+      "pick_clean_then_place-clean some egg and put it in microwave.___74",
+      "pick_clean_then_place-put a clean egg in microwave.___113"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Consider alternative locations or methods for placing the item if the initial attempt fails.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some peppershaker on drawer.___24",
+      "pick_and_place-put a peppershaker in drawer.___57"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Account for the possibility of the environment not recognizing the placement due to the object's orientation or alignment.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some peppershaker on drawer.___24",
+      "pick_and_place-put a peppershaker in drawer.___57"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the target location is suitable and verify all necessary conditions before performing actions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a pencil in shelf.___25",
+      "pick_and_place-put a pencil in shelf.___45"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use the correct command format and check environment feedback after each action to prevent failures and repetitions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a pencil in shelf.___25",
+      "pick_and_place-put a pencil in shelf.___45"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the target location is suitable, accessible, and can accommodate the item before placing it.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a soapbottle in toilet.___26",
+      "pick_and_place-put some soapbottle on toilet.___46",
+      "pick_and_place-put a soapbottle in toilet.___109"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Confirm each placement action to ensure the task is completed successfully.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a soapbottle in toilet.___26",
+      "pick_and_place-put some soapbottle on toilet.___46",
+      "pick_and_place-put a soapbottle in toilet.___109"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Recheck the environment's response, item compatibility, and object orientation if the placement fails.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a soapbottle in toilet.___26",
+      "pick_and_place-put some soapbottle on toilet.___46",
+      "pick_and_place-put a soapbottle in toilet.___109"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Consider alternative methods or locations if the placement still does not succeed.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a soapbottle in toilet.___26",
+      "pick_and_place-put some soapbottle on toilet.___46",
+      "pick_and_place-put a soapbottle in toilet.___109"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the successful completion of each placement action through a confirmation step.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some saltshaker on cabinet.___27",
+      "pick_and_place-put some saltshaker on cabinet.___28",
+      "pick_and_place-put some saltshaker on cabinet.___90"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Recheck the environment's response, item compatibility, and object orientation if the placement fails.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some saltshaker on cabinet.___27",
+      "pick_and_place-put some saltshaker on cabinet.___28",
+      "pick_and_place-put some saltshaker on cabinet.___90"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the target location can accommodate the object before placing it.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some saltshaker on cabinet.___27",
+      "pick_and_place-put some saltshaker on cabinet.___28",
+      "pick_and_place-put some saltshaker on cabinet.___90"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use alternative methods or locations if placement continues to fail.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some saltshaker on cabinet.___27",
+      "pick_and_place-put some saltshaker on cabinet.___28",
+      "pick_and_place-put some saltshaker on cabinet.___90"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the environment's response and the item's compatibility with the location before and after each placement action.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some watch on safe.___30",
+      "pick_and_place-put some watch on safe.___58",
+      "pick_and_place-put some watch on safe.___81"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Confirm the successful completion of each placement action by checking the environment's response multiple times if necessary.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some watch on safe.___30",
+      "pick_and_place-put some watch on safe.___58",
+      "pick_and_place-put some watch on safe.___81"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Systematically search for items by checking all likely locations in order, ensuring a thorough search by verifying the absence of the item in each location.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some watch on safe.___30",
+      "pick_and_place-put some watch on safe.___58",
+      "pick_and_place-put some watch on safe.___81"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If placement fails, consider alternative methods or locations for the item and ensure the environment's response is accurately interpreted.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put some watch on safe.___30",
+      "pick_and_place-put some watch on safe.___58",
+      "pick_and_place-put some watch on safe.___81"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Conduct a thorough search in all locations, including containers, atop objects, and inside appliances, kitchenware, and furniture, using a systematic approach.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some apple and put it in garbagecan.___31",
+      "pick_heat_then_place-heat some apple and put it in garbagecan.___32",
+      "pick_heat_then_place-heat some apple and put it in garbagecan.___86"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Adjust the search strategy if the item is not found, considering it might be absent.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some apple and put it in garbagecan.___31",
+      "pick_heat_then_place-heat some apple and put it in garbagecan.___32",
+      "pick_heat_then_place-heat some apple and put it in garbagecan.___86"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Break tasks into clear steps, use prior information, verify each step, ensure item availability and suitable placement, streamline actions, prioritize objectives, search systematically, and confirm completion to enhance efficiency and success.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_cool_then_place-cool some pan and put it in countertop.___44",
+      "pick_cool_then_place-cool some pan and put it in countertop.___88"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure items are placed appropriately by considering their size, location characteristics, and the functionality of the target object, verify the environment's response after each action, and systematically search all likely locations to efficiently find and place items while prioritizing task objectives.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_cool_then_place-cool some pan and put it in countertop.___44",
+      "pick_cool_then_place-cool some pan and put it in countertop.___88"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the target location's suitability and availability before placing the object.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_cool_then_place-cool some pan and put it in countertop.___44",
+      "pick_cool_then_place-cool some pan and put it in countertop.___88"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Confirm the environment's response after each placement action to ensure success.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_cool_then_place-cool some pan and put it in countertop.___44",
+      "pick_cool_then_place-cool some pan and put it in countertop.___88"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Repeat actions or try alternative locations if the initial placement fails.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_cool_then_place-cool some pan and put it in countertop.___44",
+      "pick_cool_then_place-cool some pan and put it in countertop.___88"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Focus on the core objective of each task step to improve efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_cool_then_place-cool some pan and put it in countertop.___44",
+      "pick_cool_then_place-cool some pan and put it in countertop.___88"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Prioritize checking locations based on common storage practices to increase search efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_cool_then_place-cool some pan and put it in countertop.___44",
+      "pick_cool_then_place-cool some pan and put it in countertop.___88"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the environment is clear, suitable, and accessible for the task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_two_obj-put two pillow in sofa.___35",
+      "pick_two_obj-put two pillow in sofa.___55",
+      "pick_two_obj-find two pillow and put them in sofa.___70"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use tools and items effectively to support the task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_two_obj-put two pillow in sofa.___35",
+      "pick_two_obj-put two pillow in sofa.___55",
+      "pick_two_obj-find two pillow and put them in sofa.___70"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Search for items in common and less common locations based on their purpose.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_two_obj-put two pillow in sofa.___35",
+      "pick_two_obj-put two pillow in sofa.___55",
+      "pick_two_obj-find two pillow and put them in sofa.___70"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Check feedback and the environment after each action to ensure progress.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_two_obj-put two pillow in sofa.___35",
+      "pick_two_obj-put two pillow in sofa.___55",
+      "pick_two_obj-find two pillow and put them in sofa.___70"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If an item is not found in expected locations, broaden the search to include less common areas and reassess the task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_two_obj-put two pillow in sofa.___35",
+      "pick_two_obj-put two pillow in sofa.___55",
+      "pick_two_obj-find two pillow and put them in sofa.___70"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Prioritize common locations and use memory of previous item locations to start the search.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the alarmclock with the desklamp.___38",
+      "look_at_obj-look at alarmclock under the desklamp.___100",
+      "look_at_obj-examine the alarmclock with the desklamp.___104"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Expand search to less common areas if the item is not found in obvious locations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the alarmclock with the desklamp.___38",
+      "look_at_obj-look at alarmclock under the desklamp.___100",
+      "look_at_obj-examine the alarmclock with the desklamp.___104"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the item's presence and accessibility, and check for environmental constraints or obstructions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the alarmclock with the desklamp.___38",
+      "look_at_obj-look at alarmclock under the desklamp.___100",
+      "look_at_obj-examine the alarmclock with the desklamp.___104"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use environmental features to optimize visibility and task execution speed.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the alarmclock with the desklamp.___38",
+      "look_at_obj-look at alarmclock under the desklamp.___100",
+      "look_at_obj-examine the alarmclock with the desklamp.___104"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Focus on the core objective to minimize unnecessary steps and improve efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the alarmclock with the desklamp.___38",
+      "look_at_obj-look at alarmclock under the desklamp.___100",
+      "look_at_obj-examine the alarmclock with the desklamp.___104"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Retry actions and verify environment feedback if an item is not found initially.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the alarmclock with the desklamp.___38",
+      "look_at_obj-look at alarmclock under the desklamp.___100",
+      "look_at_obj-examine the alarmclock with the desklamp.___104"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Streamline the process by eliminating unnecessary steps and prioritizing search locations based on likelihood.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some bread and put it in countertop.___40",
+      "pick_cool_then_place-cool some bread and put it in countertop.___103",
+      "pick_cool_then_place-put a cool bread in countertop.___115"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use systematic methods to ensure thorough completion of all task steps.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-cool some bread and put it in countertop.___40",
+      "pick_cool_then_place-cool some bread and put it in countertop.___103",
+      "pick_cool_then_place-put a cool bread in countertop.___115"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the environment's state and feedback after each action to ensure task progress and correctness, systematically search for items, and prioritize locations based on the task requirements, including confirming the presence of the required item before moving on to the next step.",
+    "score": 4,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the book with the desklamp.___67",
+      "look_at_obj-examine the pencil with the desklamp.___41",
+      "look_at_obj-look at pencil under the desklamp.___64",
+      "look_at_obj-examine the pencil with the desklamp.___82"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Observe environment feedback to confirm the successful completion of actions like taking or putting items.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_two_obj-put two peppershaker in drawer.___43",
+      "pick_two_obj-put two peppershaker in drawer.___47"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the target location is appropriate and check for obstructions or containers that can hold the object.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a mug in desk.___51",
+      "pick_and_place-put a mug in desk.___73",
+      "pick_and_place-put some mug on desk.___99"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If the surface is occupied, explore open spaces or containers within the area to accommodate the object.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_and_place-put a mug in desk.___51",
+      "pick_and_place-put a mug in desk.___73",
+      "pick_and_place-put some mug on desk.___99"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Conduct a thorough search in all potential locations, verify the presence and compatibility of items, and ensure the target location is clear and accessible before each placement action, following up with a confirmation step to validate successful completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some apple and put it in fridge.___54",
+      "pick_heat_then_place-heat some apple and put it in fridge.___66",
+      "pick_heat_then_place-put a hot apple in fridge.___89"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use a systematic approach to search for items, starting with common locations and expanding to less common areas if necessary.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the book with the desklamp.___60",
+      "look_at_obj-examine the book with the desklamp.___67",
+      "look_at_obj-examine the book with the desklamp.___101"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the presence and accessibility of items by observing environmental feedback and leveraging previous locations to optimize efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the book with the desklamp.___60",
+      "look_at_obj-examine the book with the desklamp.___67",
+      "look_at_obj-examine the book with the desklamp.___101"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure all required items are located before proceeding to avoid task delays.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the book with the desklamp.___60",
+      "look_at_obj-examine the book with the desklamp.___67",
+      "look_at_obj-examine the book with the desklamp.___101"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Enhance visibility with environmental features like desklamps and reattempt actions if initial searches are inconclusive.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the book with the desklamp.___60",
+      "look_at_obj-examine the book with the desklamp.___67",
+      "look_at_obj-examine the book with the desklamp.___101"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Focus on the core task objective and confirm the final state and placement of items to ensure task completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the book with the desklamp.___60",
+      "look_at_obj-examine the book with the desklamp.___67",
+      "look_at_obj-examine the book with the desklamp.___101"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the environment feedback after each action to ensure correct recognition and execution.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool mug in cabinet.___77",
+      "pick_cool_then_place-cool some mug and put it in cabinet.___95",
+      "pick_cool_then_place-cool some mug and put it in cabinet.___116"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the item is no longer in your possession and is compatible with the target location.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean spatula in drawer.___78",
+      "pick_clean_then_place-clean some spatula and put it in drawer.___80",
+      "pick_clean_then_place-clean some spatula and put it in drawer.___93"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Systematically break tasks into clear steps, verify each component, use logical searches and previous information, focus on core objectives, maintain cleanliness, and ensure environmental feedback for thorough and efficient task completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "look_at_obj-examine the mug with the desklamp.___94",
+      "look_at_obj-look at mug under the desklamp.___98"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use tools and prioritize objectives to facilitate task completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "look_at_obj-examine the mug with the desklamp.___94",
+      "look_at_obj-look at mug under the desklamp.___98"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Search systematically to find items quickly.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "look_at_obj-examine the mug with the desklamp.___94",
+      "look_at_obj-look at mug under the desklamp.___98"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify each step to ensure full task achievement.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "look_at_obj-examine the mug with the desklamp.___94",
+      "look_at_obj-look at mug under the desklamp.___98"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If an object cannot be placed in a location due to an obstruction, clear the space or remove the obstruction before attempting to place the object again.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_clean_then_place-put a clean soapbar in countertop.___4"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If an object cannot be placed in the desired location, consider clearing the space or removing an item to make room for the object.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_clean_then_place-put a clean soapbar in countertop.___4"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "When attempting to place an object, if the action fails, try a different approach such as clearing the space or removing an item from the target location.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_clean_then_place-put a clean soapbar in countertop.___4"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure all likely locations are systematically checked, including less obvious places, and verify the presence of the item in each location before moving on to the next, and confirm the suitability of the location for the task, because it ensures thorough and organized searching and adapts to unexpected obstacles while preventing the oversight of the item's presence, ensuring the item can be placed correctly, and verifying the receptacle's capacity to accommodate the item, and confirming the item's existence in the environment, and ensuring the item is in a state that allows for the task to be completed.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-put a hot tomato in garbagecan.___75",
+      "pick_clean_then_place-put a clean plate in countertop.___3",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_and_place-put some saltshaker on cabinet.___27",
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_cool_then_place-put a cool tomato in microwave.___72",
+      "pick_heat_then_place-heat some apple and put it in fridge.___54"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the receptacle is in the correct state before attempting to place an item inside, because it prevents issues with placing items in closed or inaccessible receptacles.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_heat_then_place-put a hot tomato in garbagecan.___75"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the receptacle is explicitly confirmed to be in the correct state (e.g., open) before attempting to place an item inside, because it prevents issues with placing items in closed or inaccessible receptacles.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_heat_then_place-put a hot tomato in garbagecan.___75"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "When searching for an item, consider all possible locations where the item could be placed, including less obvious places like closed drawers or safes.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the pencil with the desklamp.___82",
+      "look_at_obj-examine the book with the desklamp.___67"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure that the required item is located and taken before proceeding to the next step in the task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the pencil with the desklamp.___41",
+      "look_at_obj-examine the book with the desklamp.___67"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If a required location is occupied, attempt to clear space or find an alternative suitable location that meets the task requirements, because it ensures the task can be completed even when the primary location is unavailable.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_clean_then_place-put a clean plate in countertop.___3"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If all primary locations are occupied or unavailable, consider alternative locations that can be cleared or rearranged to accommodate the item, because it ensures the task can be completed even when primary locations are not available.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_clean_then_place-put a clean plate in countertop.___3"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use the appropriate appliance or location for the required action (e.g., fridge for cooling, sinkbasin for cleaning), and ensure the item is returned to the correct state as specified in the task, and verify the item's state matches the task requirements before proceeding to the next step, and confirm the item's presence in the environment, because it ensures the task is performed correctly and efficiently while preventing the oversight of the item's state and existence.",
+    "score": 6,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_and_place-put some saltshaker on cabinet.___27",
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_cool_then_place-put a cool tomato in microwave.___72",
+      "pick_heat_then_place-heat some apple and put it in fridge.___54"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the item being searched for is correctly identified and its presence is confirmed in each location before proceeding to the next step, because it prevents the failure to recognize the item when it is present.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-heat some apple and put it in fridge.___54"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Before starting the task, mentally map out all potential locations where the item could be found, including less common places, to ensure a comprehensive search strategy, because it prevents overlooking potential locations and ensures a more efficient search process.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_heat_then_place-heat some apple and put it in fridge.___54"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the availability and suitability of the placement location before attempting to place the item, because it prevents placing items in occupied or unsuitable locations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_and_place-put some saltshaker on cabinet.___27"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the receptacle's capacity and suitability for the item before attempting to place it, because it ensures the task can be completed without encountering obstacles due to the receptacle's limitations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_and_place-put some saltshaker on cabinet.___27"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Eliminate unnecessary steps and focus on core objectives, because streamlining the process improves execution efficiency and reduces the likelihood of errors.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "When searching for an item, ensure all potential locations are systematically checked, including less obvious places, to avoid missing the item.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_two_obj-put two soapbar in garbagecan.___108"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If an item is not found in the expected locations, consider rechecking those locations or exploring alternative locations where the item might be present.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_two_obj-put two soapbar in garbagecan.___108"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "When a task requires multiple instances of an item, ensure that the search is thorough enough to locate all necessary instances before proceeding with the task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_two_obj-put two soapbar in garbagecan.___108"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If an item is not found after a thorough search, consider rechecking the task requirements or the environment description for any overlooked details or alternative locations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-look at pencil under the desklamp.___64",
+      "pick_two_obj-put two soapbar in garbagecan.___108"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "When performing a task, verify the presence of all necessary items in the environment before initiating the task steps.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-look at pencil under the desklamp.___64",
+      "pick_two_obj-put two soapbar in garbagecan.___108"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Systematically search for the required item by checking all possible locations in a logical order, because it ensures thoroughness and efficiency in finding the item.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-look at pencil under the desklamp.___64",
+      "look_at_obj-look at bowl under the desklamp.___0",
+      "pick_clean_then_place-put a clean pan in countertop.___92"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Once the required item is found, immediately take it to the next location specified in the task, because it streamlines the process and reduces the chances of forgetting the task objective.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-look at pencil under the desklamp.___64",
+      "look_at_obj-look at bowl under the desklamp.___0",
+      "pick_clean_then_place-put a clean pan in countertop.___92"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use the environment's existing features (like sinkbasin) for necessary actions (like cleaning), because it optimizes the use of available resources and simplifies the task execution.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-look at pencil under the desklamp.___64",
+      "look_at_obj-look at bowl under the desklamp.___0",
+      "pick_clean_then_place-put a clean pan in countertop.___92"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Turn on or use the required device (like desklamp) once you reach its location, because it directly fulfills the task requirement and avoids unnecessary steps.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-look at pencil under the desklamp.___64",
+      "look_at_obj-look at bowl under the desklamp.___0",
+      "pick_clean_then_place-put a clean pan in countertop.___92"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the existence of the required item in the environment before initiating the task, because it prevents the pursuit of a task that cannot be completed due to the absence of the required item.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_cool_then_place-put a cool tomato in microwave.___72"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "When an item is not found in expected locations, consider the possibility that the item may not be present in the environment and adjust the search strategy accordingly, because it prevents unnecessary and time-consuming searches in locations where the item is unlikely to be found.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_cool_then_place-put a cool tomato in microwave.___72"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the final step of the task is completed, such as placing the item in the correct location or performing the final action required, because it ensures the task is fully completed and meets all specified requirements.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_clean_then_place-put a clean pan in countertop.___92",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the target location for placing an item is available and suitable before attempting to place it there.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_and_place-put some mug on desk.___99"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "If the initial target location is unavailable, explore other suitable locations that meet the task requirements.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_and_place-put some mug on desk.___99"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Eliminate unnecessary steps, because focusing on core objectives improves execution efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "look_at_obj-examine the mug with the desklamp.___94",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Systematically search for items, because a methodical approach ensures nothing is overlooked.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "look_at_obj-examine the mug with the desklamp.___94",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify completion of each task step, because thoroughness prevents missing crucial actions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "look_at_obj-examine the mug with the desklamp.___94",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Recall previous findings, because memory aids in locating items more efficiently.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "look_at_obj-examine the mug with the desklamp.___87",
+      "look_at_obj-examine the mug with the desklamp.___94",
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure that the final placement of an item directly corresponds to the task objective, and verify the environment's response to confirm successful completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure that the final placement of an item aligns with the specific requirements of the task, such as placing a hot mug in a coffeemachine, rather than alternative locations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "pick_heat_then_place-put a hot mug in coffeemachine.___8"
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure that each step logically leads to the next, maintaining a clear and direct path towards task completion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "pick_heat_then_place-heat some mug and put it in coffeemachine.___63",
+      "pick_cool_then_place-put a cool pan in countertop.___34",
+      "look_at_obj-examine the mug with the desklamp.___87"
+    ],
+    "negative_correlation_tasks": []
+  }
+]

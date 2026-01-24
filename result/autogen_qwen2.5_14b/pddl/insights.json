@@ -1,0 +1,545 @@
+[
+  {
+    "rule": "Prepare all necessary ingredients and tools, verify the validity of actions before each step, use clean containers for mixing and serving, follow a planned sequence to minimize errors and repetitions, and ensure hygiene throughout the process.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot7 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient3. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the completeness and correctness of all ingredients and tools before combining them in a clean shaker, streamline actions to avoid redundancy, and ensure each step directly contributes to the goal without errors or unnecessary repetitions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot7 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient3. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify all necessary ingredients are in the shaker before shaking.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot7 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient3. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Check the valid actions list before pouring ingredients.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot7 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient3. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Execute actions immediately after confirming they are valid and necessary.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot7 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient3. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify cocktail details, prepare ingredients, use clean containers, follow correct sequence, mix thoroughly, double-check containers and final pour, and minimize steps by keeping shot glasses accessible.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot3 contains cocktail3. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Prepare all ingredients and tools, follow the correct sequence of actions for each cocktail, verify the validity of each step, use the designated clean shot glass for the final preparation, and proceed efficiently to the next cocktail without unnecessary checks.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail5. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail4. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail6. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure all necessary ingredients are correctly combined in a clean shaker, verify the shaker's contents, and pour the completed cocktail into the designated shot glass to satisfy the task requirements.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail5. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail4. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail6. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Pour all required ingredients into a clean shaker before shaking to ensure accuracy and efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail5. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail4. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail6. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Proceed directly to the next step after completing each task to minimize errors and streamline the process.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail1. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail5. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail4. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail6. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify all ingredients and tools before mixing, combine them thoroughly in a clean shaker, double-check the shaker's contents for completeness, pour into clean shot glasses, and ensure each step directly contributes to the goal without redundancy.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail4. , shot2 contains cocktail1. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail3. , shot2 contains cocktail2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail5. , shot2 contains cocktail1. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the validity of each action using the valid actions list before adding ingredients to the shaker or shot glass.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail4. , shot2 contains cocktail1. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail3. , shot2 contains cocktail2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail5. , shot2 contains cocktail1. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure all required ingredients are added to the shaker before proceeding to shake the cocktail.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail4. , shot2 contains cocktail1. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail3. , shot2 contains cocktail2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail5. , shot2 contains cocktail1. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Execute actions promptly after verifying their validity to avoid delays in achieving the goal.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot2 contains cocktail3. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail4. , shot2 contains cocktail1. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail3. , shot2 contains cocktail2. ",
+      "The goal is to satisfy the following conditions: shot1 contains cocktail5. , shot2 contains cocktail1. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Break down tasks into smaller steps to simplify execution and reduce errors.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. ",
+      "The goal is to satisfy the following conditions: shot2 contains ingredient2. , shot3 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains ingredient2. , shot3 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot3 contains ingredient3. , shot6 contains ingredient2. , shot9 contains ingredient1. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use both hands effectively by assigning one for grasping and the other for holding dispensers to improve efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. ",
+      "The goal is to satisfy the following conditions: shot2 contains ingredient2. , shot3 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains ingredient2. , shot3 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot3 contains ingredient3. , shot6 contains ingredient2. , shot9 contains ingredient1. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify task requirements, ingredients, and final states to ensure completeness and accuracy.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. ",
+      "The goal is to satisfy the following conditions: shot2 contains ingredient2. , shot3 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains ingredient2. , shot3 contains ingredient3. ",
+      "The goal is to satisfy the following conditions: shot3 contains ingredient3. , shot6 contains ingredient2. , shot9 contains ingredient1. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify actions frequently to ensure validity and systematic progress.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b2 is on b1., b3 is on b2.",
+      "The goal is to satisfy the following conditions: b2 is on b3., b3 is on b1."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Move seamlessly to the next task after completion to stay focused on the goal.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b2 is on b1., b3 is on b2.",
+      "The goal is to satisfy the following conditions: b2 is on b3., b3 is on b1."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Inflate wheels after loosening nuts, following each step carefully.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b2 is on b1., b3 is on b2.",
+      "The goal is to satisfy the following conditions: b2 is on b3., b3 is on b1."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use clear blocks as stable foundations for stacking.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b2 is on b1., b3 is on b2.",
+      "The goal is to satisfy the following conditions: b2 is on b3., b3 is on b1."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Prioritize moving blocks to the table before stacking to avoid unnecessary repositioning.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b2 is on b1., b3 is on b2.",
+      "The goal is to satisfy the following conditions: b2 is on b3., b3 is on b1."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the current state and prioritize moving obstructing blocks to the table.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b7., b2 is on b5., b3 is on b2., b4 is on b1., b5 is on b6., b7 is on b3.",
+      "The goal is to satisfy the following conditions: b1 is on b6., b3 is on b5., b6 is on b2.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b2 is on b6., b3 is on b7., b5 is on b3., b6 is on b5., b7 is on b4."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the target block is clear before manipulation.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b7., b2 is on b5., b3 is on b2., b4 is on b1., b5 is on b6., b7 is on b3.",
+      "The goal is to satisfy the following conditions: b1 is on b6., b3 is on b5., b6 is on b2.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b2 is on b6., b3 is on b7., b5 is on b3., b6 is on b5., b7 is on b4."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Minimize unnecessary movements and avoid redundant actions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b7., b2 is on b5., b3 is on b2., b4 is on b1., b5 is on b6., b7 is on b3.",
+      "The goal is to satisfy the following conditions: b1 is on b6., b3 is on b5., b6 is on b2.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b2 is on b6., b3 is on b7., b5 is on b3., b6 is on b5., b7 is on b4."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Correctly identify and manipulate specific blocks to achieve the goal efficiently.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b7., b2 is on b5., b3 is on b2., b4 is on b1., b5 is on b6., b7 is on b3.",
+      "The goal is to satisfy the following conditions: b1 is on b6., b3 is on b5., b6 is on b2.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b2 is on b6., b3 is on b7., b5 is on b3., b6 is on b5., b7 is on b4."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the final state matches the required configuration.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b7., b2 is on b5., b3 is on b2., b4 is on b1., b5 is on b6., b7 is on b3.",
+      "The goal is to satisfy the following conditions: b1 is on b6., b3 is on b5., b6 is on b2.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b2 is on b6., b3 is on b7., b5 is on b3., b6 is on b5., b7 is on b4."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Prioritize moving blocks to the table before stacking to ensure they are in their final positions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b2 is on b1., b3 is on b4.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b2 is on b3., b3 is on b4."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Confirm each action's validity after every move to ensure correct execution.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b2 is on b1., b3 is on b4.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b2 is on b3., b3 is on b4."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Proceed to the next item after verifying the completion of each task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b2 is on b1., b3 is on b4.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b2 is on b3., b3 is on b4."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the current state and prioritize moving obstructing blocks to the table.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b3., b3 is on b5.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b3 is on b5., b4 is on b1.",
+      "The goal is to satisfy the following conditions: b3 is on b5., b4 is on b3."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the target block is clear before manipulation.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b3., b3 is on b5.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b3 is on b5., b4 is on b1.",
+      "The goal is to satisfy the following conditions: b3 is on b5., b4 is on b3."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Minimize unnecessary movements and avoid redundant actions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b3., b3 is on b5.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b3 is on b5., b4 is on b1.",
+      "The goal is to satisfy the following conditions: b3 is on b5., b4 is on b3."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Correctly identify and manipulate specific blocks to achieve the goal efficiently.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b3., b3 is on b5.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b3 is on b5., b4 is on b1.",
+      "The goal is to satisfy the following conditions: b3 is on b5., b4 is on b3."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the final state matches the required configuration.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: b1 is on b3., b3 is on b5.",
+      "The goal is to satisfy the following conditions: b1 is on b2., b3 is on b5., b4 is on b1.",
+      "The goal is to satisfy the following conditions: b3 is on b5., b4 is on b3."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Plan the sequence of actions to directly contribute to achieving the goal conditions and minimize errors.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at rooma. , ball4 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Validate each action's feasibility before execution to prevent wasting time and resources.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at rooma. , ball4 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure all balls are moved according to task requirements to maintain progress and efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at rooma. , ball4 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Continuously verify the status of objects and the environment, use the `check valid actions` command before each action, and plan movements to minimize trips by grouping objects going to the same location, ensuring all objects end up in their correct final positions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at rooma. , ball5 is at roomb. , ball6 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Continuously validate actions and verify the state of objects and the environment after each action to ensure all items are moved to their correct locations and all conditions are met.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at rooma. , ball5 is at roomb. , ball6 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Plan the sequence of actions to directly contribute to the goal and avoid unnecessary movements.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at rooma. , ball5 is at roomb. , ball6 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify valid actions before picking up or dropping balls to minimize errors and waste.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at rooma. , ball5 is at roomb. , ball6 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure all balls are moved according to task requirements through clear and structured planning.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at rooma. , ball5 is at roomb. , ball6 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Continuously verify the status of objects and the environment, adjust the movement plan to account for initial distributions and changes in object locations, use valid actions to move objects efficiently in batches, and ensure all objects reach their correct final locations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball10 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at rooma. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at rooma. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at rooma. , ball5 is at rooma. , ball6 is at rooma. , ball7 is at rooma. , ball8 is at rooma. , ball9 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Always check for valid actions before performing any task to ensure smooth progression.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball10 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at rooma. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at rooma. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at rooma. , ball5 is at rooma. , ball6 is at rooma. , ball7 is at rooma. , ball8 is at rooma. , ball9 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use the `check valid actions` command if the current action is not valid to identify the next possible action.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: ball1 is at roomb. , ball10 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at rooma. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at rooma. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. ",
+      "The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at rooma. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at rooma. , ball5 is at rooma. , ball6 is at rooma. , ball7 is at rooma. , ball8 is at rooma. , ball9 is at rooma. "
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Frequently check the validity of actions to avoid invalid operations.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., r1 is on the-hub1., w1 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., r1 is on the-hub1., r2 is on the-hub2., w1 is in boot., w2 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., w1 is in boot., w2 is in boot., w3 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., Wheel r4 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., r4 is on the-hub4., w1 is in boot., w2 is in boot., w3 is in boot., w4 is in boot.",
+      "The goal is to satisfy the following conditions: r1 is on the-hub1., w1 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated.",
+      "The goal is to satisfy the following conditions: Wheel r3 is inflated., w1 is in boot., w2 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r3 is on the-hub3., w3 is in boot."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Move on to the next relevant task immediately after completing the current one.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., r1 is on the-hub1., w1 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., r1 is on the-hub1., r2 is on the-hub2., w1 is in boot., w2 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., w1 is in boot., w2 is in boot., w3 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., Wheel r4 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., r4 is on the-hub4., w1 is in boot., w2 is in boot., w3 is in boot., w4 is in boot.",
+      "The goal is to satisfy the following conditions: r1 is on the-hub1., w1 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated.",
+      "The goal is to satisfy the following conditions: Wheel r3 is inflated., w1 is in boot., w2 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r3 is on the-hub3., w3 is in boot."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure all steps are followed correctly, such as inflating wheels after loosening nuts.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., r1 is on the-hub1., w1 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., r1 is on the-hub1., r2 is on the-hub2., w1 is in boot., w2 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., w1 is in boot., w2 is in boot., w3 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., Wheel r4 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., r4 is on the-hub4., w1 is in boot., w2 is in boot., w3 is in boot., w4 is in boot.",
+      "The goal is to satisfy the following conditions: r1 is on the-hub1., w1 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated.",
+      "The goal is to satisfy the following conditions: Wheel r3 is inflated., w1 is in boot., w2 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r3 is on the-hub3., w3 is in boot."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify and proceed to the next specific item after completing a task.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., r1 is on the-hub1., w1 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., r1 is on the-hub1., r2 is on the-hub2., w1 is in boot., w2 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., w1 is in boot., w2 is in boot., w3 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., Wheel r4 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., r4 is on the-hub4., w1 is in boot., w2 is in boot., w3 is in boot., w4 is in boot.",
+      "The goal is to satisfy the following conditions: r1 is on the-hub1., w1 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated.",
+      "The goal is to satisfy the following conditions: Wheel r3 is inflated., w1 is in boot., w2 is in boot.",
+      "The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r3 is on the-hub3., w3 is in boot."
+    ],
+    "negative_correlation_tasks": []
+  }
+]

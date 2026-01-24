@@ -1,0 +1,923 @@
+[
+  {
+    "rule": "Verify all key elements including dates, seasons, and timelines to ensure accuracy.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Colin Kaepernick became a starting quarterback during the 49ers 63rd season in the National Football League.",
+      "Claim: Colin Kaepernick became a starter during the 49ers 63rd season in the Republican Party.",
+      "Claim: Colin Kaepernick is a poker player."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use a step-by-step approach to break down complex tasks, ensuring each step is clearly defined.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Colin Kaepernick became a starting quarterback during the 49ers 63rd season in the National Football League.",
+      "Claim: Colin Kaepernick became a starter during the 49ers 63rd season in the Republican Party.",
+      "Claim: Colin Kaepernick is a poker player."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Explicitly address and refute each component of the claim with specific evidence.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Colin Kaepernick became a starting quarterback during the 49ers 63rd season in the National Football League.",
+      "Claim: Colin Kaepernick became a starter during the 49ers 63rd season in the Republican Party.",
+      "Claim: Colin Kaepernick is a poker player."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the final conclusion mentions specific details to avoid ambiguity.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Colin Kaepernick became a starting quarterback during the 49ers 63rd season in the National Football League.",
+      "Claim: Colin Kaepernick became a starter during the 49ers 63rd season in the Republican Party.",
+      "Claim: Colin Kaepernick is a poker player."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise and explicit language to clearly indicate the refutation of the claim.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Colin Kaepernick became a starting quarterback during the 49ers 63rd season in the National Football League.",
+      "Claim: Colin Kaepernick became a starter during the 49ers 63rd season in the Republican Party.",
+      "Claim: Colin Kaepernick is a poker player."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Construct a step-by-step approach using precise search terms to verify the claim by cross-referencing multiple reliable sources, ensuring the genre and specific details match, and clearly state whether the claim is supported or refuted with specific evidence, avoiding \"NOT ENOUGH INFO\" unless all sources are thoroughly searched.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Tilda Swinton is a vegan.",
+      "Claim: Shooter is about an expert marksman who tries to stop the assassination of the president.",
+      "Claim: House is a sitcom.",
+      "Claim: The Cretaceous ended.",
+      "Claim: Nicholas Brody is a character on Homeland.",
+      "Claim: Sean Penn is only ever a stage actor.",
+      "Claim: CBS is the network that aired The Millers.",
+      "Claim: Edgar Wright is a person.",
+      "Claim: Giada at Home was only available on DVD.",
+      "Claim: Aristotle spent time in Athens.",
+      "Claim: Noah Cyrus is a younger sister of Macy Grey.",
+      "Claim: Sancho Panza is a character in Don Quixote.",
+      "Claim: The Adventures of Pluto Nash was reviewed by Ron Underwood.",
+      "Claim: Tim Roth is an English actor.",
+      "Claim: Viola Davis appeared in Kate & Leopold as Darth Maul.",
+      "Claim: Starrcade was an annual professional wrestling event that began in 1988.",
+      "Claim: Jack Falahee is a person who acts.",
+      "Claim: Home for the Holidays stars an American actress.",
+      "Claim: Taran Killam is an American writer.",
+      "Claim: Ron Weasley is a President.",
+      "Claim: Sheryl Lee has yet to appear in a film as of 2016."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify claims by directly searching for the subject and its relation to the claim to ensure accuracy and gather sufficient evidence.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Tilda Swinton is a vegan.",
+      "Claim: Shooter is about an expert marksman who tries to stop the assassination of the president.",
+      "Claim: House is a sitcom.",
+      "Claim: The Cretaceous ended.",
+      "Claim: Nicholas Brody is a character on Homeland.",
+      "Claim: Sean Penn is only ever a stage actor.",
+      "Claim: CBS is the network that aired The Millers.",
+      "Claim: Edgar Wright is a person.",
+      "Claim: Giada at Home was only available on DVD.",
+      "Claim: Aristotle spent time in Athens.",
+      "Claim: Noah Cyrus is a younger sister of Macy Grey.",
+      "Claim: Sancho Panza is a character in Don Quixote.",
+      "Claim: The Adventures of Pluto Nash was reviewed by Ron Underwood.",
+      "Claim: Tim Roth is an English actor.",
+      "Claim: Viola Davis appeared in Kate & Leopold as Darth Maul.",
+      "Claim: Starrcade was an annual professional wrestling event that began in 1988.",
+      "Claim: Jack Falahee is a person who acts.",
+      "Claim: Home for the Holidays stars an American actress.",
+      "Claim: Taran Killam is an American writer.",
+      "Claim: Ron Weasley is a President.",
+      "Claim: Sheryl Lee has yet to appear in a film as of 2016."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Accompany the conclusion (SUPPORTS or REFUTES) with a clear statement summarizing the evidence to avoid ambiguity.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Tilda Swinton is a vegan.",
+      "Claim: Shooter is about an expert marksman who tries to stop the assassination of the president.",
+      "Claim: House is a sitcom.",
+      "Claim: The Cretaceous ended.",
+      "Claim: Nicholas Brody is a character on Homeland.",
+      "Claim: Sean Penn is only ever a stage actor.",
+      "Claim: CBS is the network that aired The Millers.",
+      "Claim: Edgar Wright is a person.",
+      "Claim: Giada at Home was only available on DVD.",
+      "Claim: Aristotle spent time in Athens.",
+      "Claim: Noah Cyrus is a younger sister of Macy Grey.",
+      "Claim: Sancho Panza is a character in Don Quixote.",
+      "Claim: The Adventures of Pluto Nash was reviewed by Ron Underwood.",
+      "Claim: Tim Roth is an English actor.",
+      "Claim: Viola Davis appeared in Kate & Leopold as Darth Maul.",
+      "Claim: Starrcade was an annual professional wrestling event that began in 1988.",
+      "Claim: Jack Falahee is a person who acts.",
+      "Claim: Home for the Holidays stars an American actress.",
+      "Claim: Taran Killam is an American writer.",
+      "Claim: Ron Weasley is a President.",
+      "Claim: Sheryl Lee has yet to appear in a film as of 2016."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the claim by cross-referencing multiple reliable sources, clearly stating the conclusion (e.g., \"REFUTES\" or \"SUPPORTS\") based on direct evidence, and acknowledge any data limitations without making assumptions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Fox 2000 Pictures released the film Soul Food.",
+      "Claim: Damon Albarn's debut album was released in 2011.",
+      "Claim: Happiness in Slavery is a gospel song by Nine Inch Nails.",
+      "Claim: Murda Beatz's real name is Marshall Mathers.",
+      "Claim: Drake Bell put out an EP.",
+      "Claim: Hot Right Now is mistakenly attributed to DJ Fresh.",
+      "Claim: Tenacious D started in 1997.",
+      "Claim: Mel B released a song on Virgin Records in 2007.",
+      "Claim: Jennifer Lopez made a single.",
+      "Claim: Reign Over Me was released in 2017.",
+      "Claim: Same Old Love is disassociated from Selena Gomez.",
+      "Claim: Weekly Idol is hosted by Yoo Jae Suk."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify claims by constructing precise search queries with specific entity and context details, rephrase queries if necessary, cross-reference multiple sources, and clearly conclude whether the claim is supported or refuted based on the evidence, explicitly citing contradictions or lack of supporting information.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Fox 2000 Pictures released the film Soul Food.",
+      "Claim: Damon Albarn's debut album was released in 2011.",
+      "Claim: Happiness in Slavery is a gospel song by Nine Inch Nails.",
+      "Claim: Murda Beatz's real name is Marshall Mathers.",
+      "Claim: Drake Bell put out an EP.",
+      "Claim: Hot Right Now is mistakenly attributed to DJ Fresh.",
+      "Claim: Tenacious D started in 1997.",
+      "Claim: Mel B released a song on Virgin Records in 2007.",
+      "Claim: Jennifer Lopez made a single.",
+      "Claim: Reign Over Me was released in 2017.",
+      "Claim: Same Old Love is disassociated from Selena Gomez.",
+      "Claim: Weekly Idol is hosted by Yoo Jae Suk."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify claims by searching for specific information and comparing it with the claim to ensure accuracy, then report the conclusion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Fox 2000 Pictures released the film Soul Food.",
+      "Claim: Damon Albarn's debut album was released in 2011.",
+      "Claim: Happiness in Slavery is a gospel song by Nine Inch Nails.",
+      "Claim: Murda Beatz's real name is Marshall Mathers.",
+      "Claim: Drake Bell put out an EP.",
+      "Claim: Hot Right Now is mistakenly attributed to DJ Fresh.",
+      "Claim: Tenacious D started in 1997.",
+      "Claim: Mel B released a song on Virgin Records in 2007.",
+      "Claim: Jennifer Lopez made a single.",
+      "Claim: Reign Over Me was released in 2017.",
+      "Claim: Same Old Love is disassociated from Selena Gomez.",
+      "Claim: Weekly Idol is hosted by Yoo Jae Suk."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure task completion by accurately reporting the verified information.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Fox 2000 Pictures released the film Soul Food.",
+      "Claim: Damon Albarn's debut album was released in 2011.",
+      "Claim: Happiness in Slavery is a gospel song by Nine Inch Nails.",
+      "Claim: Murda Beatz's real name is Marshall Mathers.",
+      "Claim: Drake Bell put out an EP.",
+      "Claim: Hot Right Now is mistakenly attributed to DJ Fresh.",
+      "Claim: Tenacious D started in 1997.",
+      "Claim: Mel B released a song on Virgin Records in 2007.",
+      "Claim: Jennifer Lopez made a single.",
+      "Claim: Reign Over Me was released in 2017.",
+      "Claim: Same Old Love is disassociated from Selena Gomez.",
+      "Claim: Weekly Idol is hosted by Yoo Jae Suk."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the claim by using specific search terms related to its components, cross-reference multiple reliable sources, refine search strategies as needed, and clearly state whether the claim is supported or refuted based on gathered evidence.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Anne Rice was born in New Jersey.",
+      "Claim: Shane Black was born in 1961.",
+      "Claim: Men in Black II stars eight children.",
+      "Claim: Jenna Jameson worked as a glamor model and a stripper.",
+      "Claim: Steve Wozniak was born after the Apple II came out.",
+      "Claim: XHamster's The Sex Factor forces eight men and eight women to battle to become a porn star."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise search terms related to the claim and review results for consistency with the claim's genre or classification.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Telemundo is a English-language television network.",
+      "Claim: A&E is a cable and satellite television network."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Cross-reference findings with reliable sources to verify the genre, language, and classification of the media.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Telemundo is a English-language television network.",
+      "Claim: A&E is a cable and satellite television network."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Prioritize queries that directly address the claim, including specific entities and contexts.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Telemundo is a English-language television network.",
+      "Claim: A&E is a cable and satellite television network."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Systematically address the claim by verifying all key elements and clearly stating whether the claim is supported or refuted.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Telemundo is a English-language television network.",
+      "Claim: A&E is a cable and satellite television network."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Search for related entities or indirect information if direct evidence is not found.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Telemundo is a English-language television network.",
+      "Claim: A&E is a cable and satellite television network."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Avoid concluding \"NOT ENOUGH INFO\" without thorough verification across all potential sources.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Telemundo is a English-language television network.",
+      "Claim: A&E is a cable and satellite television network."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use specific search terms and cross-reference multiple sources to verify the claim, refining searches as needed to avoid ambiguity.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: There is a capital called Mogadishu.",
+      "Claim: Mohra is a truck."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly state whether the claim is supported or refuted based on explicit evidence, ensuring the conclusion aligns with the task's objective.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: There is a capital called Mogadishu.",
+      "Claim: Mohra is a truck."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Summarize the evidence and reasoning leading to the conclusion in a clear and explicit statement.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: There is a capital called Mogadishu.",
+      "Claim: Mohra is a truck."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Thoroughly analyze the claim by using precise search terms to verify the specific entity, its genre, and all core components across multiple reliable sources; clearly conclude whether the claim is verified or refuted with supporting details, and avoid \"NOT ENOUGH INFO\" without exhaustive verification.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Savages was exclusively a German film.",
+      "Claim: Hourglass is performed by a Russian singer-songwriter.",
+      "Claim: Hedda Gabler's world premiere took place at the Battle of Hastings.",
+      "Claim: Matteo Renzi is German.",
+      "Claim: The heart beats at a resting rate close to 22 beats per minute."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify claims by searching for direct information to ensure accuracy.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Savages was exclusively a German film.",
+      "Claim: Hourglass is performed by a Russian singer-songwriter.",
+      "Claim: Hedda Gabler's world premiere took place at the Battle of Hastings.",
+      "Claim: Matteo Renzi is German.",
+      "Claim: The heart beats at a resting rate close to 22 beats per minute."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Refute claims if the search confirms the attributed information is inaccurate.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Savages was exclusively a German film.",
+      "Claim: Hourglass is performed by a Russian singer-songwriter.",
+      "Claim: Hedda Gabler's world premiere took place at the Battle of Hastings.",
+      "Claim: Matteo Renzi is German.",
+      "Claim: The heart beats at a resting rate close to 22 beats per minute."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise, specific search terms to verify claims by cross-referencing multiple reliable sources, refining queries based on initial results, and clearly stating whether the claim is supported or refuted with evidence, ensuring each step addresses the core components and context of the claim.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Andrew Kevin Walker is only Chinese.",
+      "Claim: Simón Bolívar is only known as Simón Bolívar.",
+      "Claim: David Packouz refused to be an entrepreneur."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify claims by cross-referencing detailed information from multiple sources.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Andrew Kevin Walker is only Chinese.",
+      "Claim: Simón Bolívar is only known as Simón Bolívar.",
+      "Claim: David Packouz refused to be an entrepreneur."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Focus on the core task to enhance efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Andrew Kevin Walker is only Chinese.",
+      "Claim: Simón Bolívar is only known as Simón Bolívar.",
+      "Claim: David Packouz refused to be an entrepreneur."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the final output format matches the requirements.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Andrew Kevin Walker is only Chinese.",
+      "Claim: Simón Bolívar is only known as Simón Bolívar.",
+      "Claim: David Packouz refused to be an entrepreneur."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise search terms and refine searches iteratively to find relevant information efficiently.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Charles Manson has been proven innocent of all crimes.",
+      "Claim: There are not rumors that Augustus' wife, Livia, poisoned him."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the relevance and context of found information by cross-checking with multiple reliable sources.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Charles Manson has been proven innocent of all crimes.",
+      "Claim: There are not rumors that Augustus' wife, Livia, poisoned him."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly state the conclusion (SUPPORTS or REFUTES) based on gathered evidence.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Charles Manson has been proven innocent of all crimes.",
+      "Claim: There are not rumors that Augustus' wife, Livia, poisoned him."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the search query is precise, verify the accuracy of the information source, explicitly state the conclusion (\"REFUTES\" or \"SUPPORTS\") based on evidence, and review the final response for clarity and format accuracy.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Don Bradman retired from soccer.",
+      "Claim: Brad Wilk helped co-found Rage in 1962.",
+      "Claim: Marcus Bentley is a broadcaster.",
+      "Claim: In the End has baseball in it.",
+      "Claim: Juventus F.C. rejected their traditional black-and-white-striped home uniform in 1903.",
+      "Claim: New Orleans Pelicans compete in the National Football Association.",
+      "Claim: The Road to El Dorado stars Tim Allen."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise search terms to verify the claim, cross-referencing multiple sources if necessary.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Don Bradman retired from soccer.",
+      "Claim: Brad Wilk helped co-found Rage in 1962.",
+      "Claim: Marcus Bentley is a broadcaster.",
+      "Claim: In the End has baseball in it.",
+      "Claim: Juventus F.C. rejected their traditional black-and-white-striped home uniform in 1903.",
+      "Claim: New Orleans Pelicans compete in the National Football Association.",
+      "Claim: The Road to El Dorado stars Tim Allen."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly state \"VERIFIES\" or \"REFUTES\" with specific details, avoiding \"NOT ENOUGH INFO\" unless all sources are exhausted.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Don Bradman retired from soccer.",
+      "Claim: Brad Wilk helped co-found Rage in 1962.",
+      "Claim: Marcus Bentley is a broadcaster.",
+      "Claim: In the End has baseball in it.",
+      "Claim: Juventus F.C. rejected their traditional black-and-white-striped home uniform in 1903.",
+      "Claim: New Orleans Pelicans compete in the National Football Association.",
+      "Claim: The Road to El Dorado stars Tim Allen."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Search for related entities or indirect information to gather sufficient evidence when direct information is unavailable.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Don Bradman retired from soccer.",
+      "Claim: Brad Wilk helped co-found Rage in 1962.",
+      "Claim: Marcus Bentley is a broadcaster.",
+      "Claim: In the End has baseball in it.",
+      "Claim: Juventus F.C. rejected their traditional black-and-white-striped home uniform in 1903.",
+      "Claim: New Orleans Pelicans compete in the National Football Association.",
+      "Claim: The Road to El Dorado stars Tim Allen."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the claim's title, position, and duration to ensure accuracy.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: L.A. Reid has served as the CEO of Arista Records for four years.",
+      "Claim: L.A. Reid has served as the president of a record label."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Analyze search results critically to reflect the claim's details accurately.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: L.A. Reid has served as the CEO of Arista Records for four years.",
+      "Claim: L.A. Reid has served as the president of a record label."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Conclude based on verified information, ensuring alignment with the facts.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: L.A. Reid has served as the CEO of Arista Records for four years.",
+      "Claim: L.A. Reid has served as the president of a record label."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Break down the claim into components and use specific search terms related to the claim's context and entity.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Annette Badland was in the 2015 NBA Finals.",
+      "Claim: Magic Johnson did not play for the Lakers.",
+      "Claim: Magic Johnson was a tap dancer."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Conduct thorough searches, cross-referencing multiple authoritative sources, and broaden search terms if necessary.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Annette Badland was in the 2015 NBA Finals.",
+      "Claim: Magic Johnson did not play for the Lakers.",
+      "Claim: Magic Johnson was a tap dancer."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Analyze search results to address all aspects of the claim, ensuring each step directly supports the conclusion.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Annette Badland was in the 2015 NBA Finals.",
+      "Claim: Magic Johnson did not play for the Lakers.",
+      "Claim: Magic Johnson was a tap dancer."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Explicitly state whether the claim is refuted or confirmed based on the evidence found, using clear and supported conclusions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Annette Badland was in the 2015 NBA Finals.",
+      "Claim: Magic Johnson did not play for the Lakers.",
+      "Claim: Magic Johnson was a tap dancer."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure final actions are clearly formatted and directly address the claim's validity with supporting evidence.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Annette Badland was in the 2015 NBA Finals.",
+      "Claim: Magic Johnson did not play for the Lakers.",
+      "Claim: Magic Johnson was a tap dancer."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify claims by analyzing search results and related searches, clearly stating whether the claim is supported, refuted, or lacks sufficient evidence.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Ann Richards was professionally involved in politics.",
+      "Claim: Janet Leigh was incapable of writing."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Focus on core objectives to enhance task efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Ann Richards was professionally involved in politics.",
+      "Claim: Janet Leigh was incapable of writing."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use disambiguation and related searches when direct information is unavailable.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Ann Richards was professionally involved in politics.",
+      "Claim: Janet Leigh was incapable of writing."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Conclude tasks by addressing the claim directly, providing a clear stance or indicating insufficient evidence.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Ann Richards was professionally involved in politics.",
+      "Claim: Janet Leigh was incapable of writing."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use specific search terms and cross-reference multiple sources to verify the claim, refining searches as needed to avoid ambiguity.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Bermuda Triangle is in the western part of the Himalayas.",
+      "Claim: The highest point of the Hindu Kush is Everest.",
+      "Claim: Bermuda Triangle is also known by another name."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly state whether the claim is supported or refuted based on explicit evidence, ensuring the conclusion aligns with the task's objective.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Bermuda Triangle is in the western part of the Himalayas.",
+      "Claim: The highest point of the Hindu Kush is Everest.",
+      "Claim: Bermuda Triangle is also known by another name."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Construct precise search queries using specific entities, contexts, and details from the claim to directly address the claim's core.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Marnie was directed by someone who was \"The Master of Nothing\".",
+      "Claim: Ashton Kutcher was directed by George Clooney."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Cross-reference multiple sources and cover all relevant platforms to verify the claim's accuracy.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Marnie was directed by someone who was \"The Master of Nothing\".",
+      "Claim: Ashton Kutcher was directed by George Clooney."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Rephrase queries if initial searches are inconclusive.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Marnie was directed by someone who was \"The Master of Nothing\".",
+      "Claim: Ashton Kutcher was directed by George Clooney."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly state the conclusion (SUPPORTS or REFUTES) based on gathered evidence, citing contradictions or lack of supporting information directly.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Marnie was directed by someone who was \"The Master of Nothing\".",
+      "Claim: Ashton Kutcher was directed by George Clooney."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise and clear search terms to enhance accuracy and relevance.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Advertising is a personal message.",
+      "Claim: Brazzers is a company."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Refine searches with specific keywords if initial results are unclear or ambiguous.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Advertising is a personal message.",
+      "Claim: Brazzers is a company."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly explain and state any refutation when evidence contradicts the claim.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Advertising is a personal message.",
+      "Claim: Brazzers is a company."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise search terms including the specific entity, context, and details from the claim.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Private Lives is a three act play from 1930.",
+      "Claim: A View to a Kill is an action movie.",
+      "Claim: Vedam was written and directed by Christopher Nolan.",
+      "Claim: Veeram is something other than an Indian Tamil film.",
+      "Claim: Jayasudha is an actor that stars in Daag.",
+      "Claim: Despicable Me 2 was directed by a lake.",
+      "Claim: Tool has won three Oscars."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Cross-reference multiple sources to verify the accuracy of the claim.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Private Lives is a three act play from 1930.",
+      "Claim: A View to a Kill is an action movie.",
+      "Claim: Vedam was written and directed by Christopher Nolan.",
+      "Claim: Veeram is something other than an Indian Tamil film.",
+      "Claim: Jayasudha is an actor that stars in Daag.",
+      "Claim: Despicable Me 2 was directed by a lake.",
+      "Claim: Tool has won three Oscars."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Rephrase queries if initial searches are inconclusive and ensure searches cover all relevant platforms.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Private Lives is a three act play from 1930.",
+      "Claim: A View to a Kill is an action movie.",
+      "Claim: Vedam was written and directed by Christopher Nolan.",
+      "Claim: Veeram is something other than an Indian Tamil film.",
+      "Claim: Jayasudha is an actor that stars in Daag.",
+      "Claim: Despicable Me 2 was directed by a lake.",
+      "Claim: Tool has won three Oscars."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly state the conclusion (SUPPORTS or REFUTES) based on gathered evidence, citing contradictions or lack of support.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Private Lives is a three act play from 1930.",
+      "Claim: A View to a Kill is an action movie.",
+      "Claim: Vedam was written and directed by Christopher Nolan.",
+      "Claim: Veeram is something other than an Indian Tamil film.",
+      "Claim: Jayasudha is an actor that stars in Daag.",
+      "Claim: Despicable Me 2 was directed by a lake.",
+      "Claim: Tool has won three Oscars."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Conclude with \"NOT ENOUGH INFO\" if insufficient data is available.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Private Lives is a three act play from 1930.",
+      "Claim: A View to a Kill is an action movie.",
+      "Claim: Vedam was written and directed by Christopher Nolan.",
+      "Claim: Veeram is something other than an Indian Tamil film.",
+      "Claim: Jayasudha is an actor that stars in Daag.",
+      "Claim: Despicable Me 2 was directed by a lake.",
+      "Claim: Tool has won three Oscars."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify specific details like dates and years explicitly.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Private Lives is a three act play from 1930.",
+      "Claim: A View to a Kill is an action movie.",
+      "Claim: Vedam was written and directed by Christopher Nolan.",
+      "Claim: Veeram is something other than an Indian Tamil film.",
+      "Claim: Jayasudha is an actor that stars in Daag.",
+      "Claim: Despicable Me 2 was directed by a lake.",
+      "Claim: Tool has won three Oscars."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Take further verification steps if initial searches do not clearly refute or confirm the claim.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Private Lives is a three act play from 1930.",
+      "Claim: A View to a Kill is an action movie.",
+      "Claim: Vedam was written and directed by Christopher Nolan.",
+      "Claim: Veeram is something other than an Indian Tamil film.",
+      "Claim: Jayasudha is an actor that stars in Daag.",
+      "Claim: Despicable Me 2 was directed by a lake.",
+      "Claim: Tool has won three Oscars."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use specific search terms and multiple reliable sources to verify the claim.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Harold Macmillan was born on February 20, 1894.",
+      "Claim: John Dolmayan was born on July 15, 1873."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Refine search terms with precise context if initial searches are unsuccessful.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Harold Macmillan was born on February 20, 1894.",
+      "Claim: John Dolmayan was born on July 15, 1873."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly state whether the claim is supported or refuted based on gathered evidence.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Harold Macmillan was born on February 20, 1894.",
+      "Claim: John Dolmayan was born on July 15, 1873."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Focus on the core objective to streamline the task and improve efficiency.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Harold Macmillan was born on February 20, 1894.",
+      "Claim: John Dolmayan was born on July 15, 1873."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise, reliable search terms and cross-reference multiple official sources to verify the claim, refining searches as needed; clearly state whether the claim is supported or refuted with specific evidence, ensuring all core components are addressed and avoiding vague conclusions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: James VI and I was a major advocate of a single parliament for Scotland and England.",
+      "Claim: Saxony is in Ireland.",
+      "Claim: Topman has clothing outlets in six Irish cities and towns.",
+      "Claim: Wales' population changed."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the claim by addressing its specific aspects comprehensively.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: James VI and I was a major advocate of a single parliament for Scotland and England.",
+      "Claim: Saxony is in Ireland.",
+      "Claim: Topman has clothing outlets in six Irish cities and towns.",
+      "Claim: Wales' population changed."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Ensure the conclusion is explicitly stated based on the evidence found.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: James VI and I was a major advocate of a single parliament for Scotland and England.",
+      "Claim: Saxony is in Ireland.",
+      "Claim: Topman has clothing outlets in six Irish cities and towns.",
+      "Claim: Wales' population changed."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Align the findings with the task's objective.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: James VI and I was a major advocate of a single parliament for Scotland and England.",
+      "Claim: Saxony is in Ireland.",
+      "Claim: Topman has clothing outlets in six Irish cities and towns.",
+      "Claim: Wales' population changed."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Use precise search terms to verify the claim, focusing on core objectives like genre, language, and specific details.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: A working animal is trained to perform life saving tasks.",
+      "Claim: Seohyun is a dog."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Cross-reference multiple reliable sources to ensure all key elements are supported.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: A working animal is trained to perform life saving tasks.",
+      "Claim: Seohyun is a dog."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Explicitly confirm specific dates or years mentioned in the claim.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: A working animal is trained to perform life saving tasks.",
+      "Claim: Seohyun is a dog."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Clearly state \"VERIFIES\" or \"REFUTES\" with specific details to conclude the verification process.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: A working animal is trained to perform life saving tasks.",
+      "Claim: Seohyun is a dog."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Mention any contradicting details to avoid ambiguity.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: A working animal is trained to perform life saving tasks.",
+      "Claim: Seohyun is a dog."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify claims by cross-referencing multiple reliable sources, refining search terms as needed, and clearly stating whether the claim is supported or refuted based on direct evidence, acknowledging any limitations in the available data.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Billboard Dad is a genre of music.",
+      "Claim: Island Records is a music school.",
+      "Claim: Heavy Metal music was developed in the early 1970's."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Work within data constraints and avoid making assumptions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Billboard Dad is a genre of music.",
+      "Claim: Island Records is a music school.",
+      "Claim: Heavy Metal music was developed in the early 1970's."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Acknowledge information limitations when concluding.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Billboard Dad is a genre of music.",
+      "Claim: Island Records is a music school.",
+      "Claim: Heavy Metal music was developed in the early 1970's."
+    ],
+    "negative_correlation_tasks": []
+  },
+  {
+    "rule": "Verify the claim by cross-referencing multiple reliable sources, clearly stating the conclusion (REFUTES or SUPPORTS) based on specific evidence, and acknowledging any data limitations without making assumptions.",
+    "score": 2,
+    "positive_correlation_tasks": [
+      "Claim: Caroline Kennedy is a Catholic.",
+      "Claim: Christa McAuliffe taught social studies at Concord High School."
+    ],
+    "negative_correlation_tasks": []
+  }
+]

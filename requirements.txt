@@ -24,6 +24,5 @@ scienceworld==1.2.2
 scikit_learn==1.6.1
 seaborn==0.13.2
 sentence_transformers==3.4.1
-skimage==0.0
 tqdm==4.66.5
 wikipedia==1.4.0

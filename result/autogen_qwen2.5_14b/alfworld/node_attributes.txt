@@ -1,0 +1,402 @@
+[0]  cluster_id=0.0
+look_at_obj-look at bowl under the desklamp.___0
+
+[1]  cluster_id=1.0
+pick_two_obj-put two soapbar in garbagecan.___1
+
+[2]  cluster_id=2.0
+pick_cool_then_place-put a cool tomato in microwave.___2
+
+[3]  cluster_id=3.0
+pick_clean_then_place-put a clean plate in countertop.___3
+
+[4]  cluster_id=4.0
+pick_clean_then_place-put a clean soapbar in countertop.___4
+
+[5]  cluster_id=5.0
+pick_cool_then_place-cool some lettuce and put it in countertop.___5
+
+[6]  cluster_id=6.0
+pick_clean_then_place-clean some pan and put it in countertop.___6
+
+[7]  cluster_id=3.0
+pick_clean_then_place-put a clean plate in countertop.___7
+
+[8]  cluster_id=7.0
+pick_heat_then_place-put a hot mug in coffeemachine.___8
+
+[9]  cluster_id=8.0
+pick_and_place-put some saltshaker on drawer.___9
+
+[10]  cluster_id=9.0
+pick_clean_then_place-clean some bowl and put it in cabinet.___10
+
+[11]  cluster_id=10.0
+pick_and_place-put a vase in safe.___11
+
+[12]  cluster_id=11.0
+pick_cool_then_place-cool some potato and put it in microwave.___12
+
+[13]  cluster_id=12.0
+pick_cool_then_place-cool some mug and put it in coffeemachine.___13
+
+[14]  cluster_id=13.0
+pick_heat_then_place-heat some egg and put it in garbagecan.___14
+
+[15]  cluster_id=12.0
+pick_cool_then_place-put a cool mug in coffeemachine.___15
+
+[16]  cluster_id=14.0
+pick_heat_then_place-put a hot cup in cabinet.___16
+
+[17]  cluster_id=15.0
+pick_clean_then_place-put a clean mug in coffeemachine.___17
+
+[18]  cluster_id=16.0
+pick_clean_then_place-clean some soapbar and put it in cabinet.___18
+
+[19]  cluster_id=14.0
+pick_heat_then_place-put a hot cup in cabinet.___19
+
+[20]  cluster_id=17.0
+pick_clean_then_place-clean some knife and put it in countertop.___20
+
+[21]  cluster_id=6.0
+pick_clean_then_place-clean some cloth and put it in countertop.___21
+
+[22]  cluster_id=0.0
+look_at_obj-examine the bowl with the desklamp.___22
+
+[23]  cluster_id=18.0
+pick_clean_then_place-put a clean egg in microwave.___23
+
+[24]  cluster_id=19.0
+pick_and_place-put some peppershaker on drawer.___24
+
+[25]  cluster_id=20.0
+pick_and_place-put a pencil in shelf.___25
+
+[26]  cluster_id=21.0
+pick_and_place-put a soapbottle in toilet.___26
+
+[27]  cluster_id=22.0
+pick_and_place-put some saltshaker on cabinet.___27
+
+[28]  cluster_id=22.0
+pick_and_place-put some saltshaker on cabinet.___28
+
+[29]  cluster_id=5.0
+pick_cool_then_place-put a cool lettuce in countertop.___29
+
+[30]  cluster_id=23.0
+pick_and_place-put some watch on safe.___30
+
+[31]  cluster_id=24.0
+pick_heat_then_place-heat some apple and put it in garbagecan.___31
+
+[32]  cluster_id=24.0
+pick_heat_then_place-heat some apple and put it in garbagecan.___32
+
+[33]  cluster_id=25.0
+look_at_obj-look at cd under the desklamp.___33
+
+[34]  cluster_id=26.0
+pick_cool_then_place-put a cool pan in countertop.___34
+
+[35]  cluster_id=27.0
+pick_two_obj-put two pillow in sofa.___35
+
+[36]  cluster_id=14.0
+pick_heat_then_place-put a hot cup in cabinet.___36
+
+[37]  cluster_id=17.0
+pick_clean_then_place-put a clean knife in countertop.___37
+
+[38]  cluster_id=28.0
+look_at_obj-examine the alarmclock with the desklamp.___38
+
+[39]  cluster_id=12.0
+pick_cool_then_place-cool some mug and put it in coffeemachine.___39
+
+[40]  cluster_id=29.0
+pick_cool_then_place-cool some bread and put it in countertop.___40
+
+[41]  cluster_id=30.0
+look_at_obj-examine the pencil with the desklamp.___41
+
+[42]  cluster_id=31.0
+pick_two_obj-put two keychain in safe.___42
+
+[43]  cluster_id=32.0
+pick_two_obj-put two peppershaker in drawer.___43
+
+[44]  cluster_id=26.0
+pick_cool_then_place-cool some pan and put it in countertop.___44
+
+[45]  cluster_id=20.0
+pick_and_place-put a pencil in shelf.___45
+
+[46]  cluster_id=21.0
+pick_and_place-put some soapbottle on toilet.___46
+
+[47]  cluster_id=32.0
+pick_two_obj-put two peppershaker in drawer.___47
+
+[48]  cluster_id=3.0
+pick_clean_then_place-clean some plate and put it in countertop.___48
+
+[49]  cluster_id=13.0
+pick_heat_then_place-heat some egg and put it in garbagecan.___49
+
+[50]  cluster_id=11.0
+pick_cool_then_place-cool some potato and put it in microwave.___50
+
+[51]  cluster_id=33.0
+pick_and_place-put a mug in desk.___51
+
+[52]  cluster_id=34.0
+pick_heat_then_place-put a hot potato in garbagecan.___52
+
+[53]  cluster_id=16.0
+pick_two_obj-find two soapbar and put them in cabinet.___53
+
+[54]  cluster_id=35.0
+pick_heat_then_place-heat some apple and put it in fridge.___54
+
+[55]  cluster_id=27.0
+pick_two_obj-put two pillow in sofa.___55
+
+[56]  cluster_id=15.0
+pick_clean_then_place-put a clean mug in coffeemachine.___56
+
+[57]  cluster_id=19.0
+pick_and_place-put a peppershaker in drawer.___57
+
+[58]  cluster_id=23.0
+pick_and_place-put some watch on safe.___58
+
+[59]  cluster_id=36.0
+pick_heat_then_place-heat some tomato and put it in garbagecan.___59
+
+[60]  cluster_id=37.0
+look_at_obj-examine the book with the desklamp.___60
+
+[61]  cluster_id=11.0
+pick_cool_then_place-cool some potato and put it in microwave.___61
+
+[62]  cluster_id=25.0
+look_at_obj-examine the cd with the desklamp.___62
+
+[63]  cluster_id=7.0
+pick_heat_then_place-heat some mug and put it in coffeemachine.___63
+
+[64]  cluster_id=30.0
+look_at_obj-look at pencil under the desklamp.___64
+
+[65]  cluster_id=16.0
+pick_clean_then_place-clean some soapbar and put it in cabinet.___65
+
+[66]  cluster_id=35.0
+pick_heat_then_place-heat some apple and put it in fridge.___66
+
+[67]  cluster_id=37.0
+look_at_obj-examine the book with the desklamp.___67
+
+[68]  cluster_id=38.0
+pick_heat_then_place-heat some mug and put it in cabinet.___68
+
+[69]  cluster_id=0.0
+look_at_obj-look at bowl under the desklamp.___69
+
+[70]  cluster_id=27.0
+pick_two_obj-find two pillow and put them in sofa.___70
+
+[71]  cluster_id=7.0
+pick_heat_then_place-heat some mug and put it in coffeemachine.___71
+
+[72]  cluster_id=2.0
+pick_cool_then_place-put a cool tomato in microwave.___72
+
+[73]  cluster_id=33.0
+pick_and_place-put a mug in desk.___73
+
+[74]  cluster_id=18.0
+pick_clean_then_place-clean some egg and put it in microwave.___74
+
+[75]  cluster_id=36.0
+pick_heat_then_place-put a hot tomato in garbagecan.___75
+
+[76]  cluster_id=9.0
+pick_clean_then_place-clean some bowl and put it in cabinet.___76
+
+[77]  cluster_id=39.0
+pick_cool_then_place-put a cool mug in cabinet.___77
+
+[78]  cluster_id=40.0
+pick_clean_then_place-put a clean spatula in drawer.___78
+
+[79]  cluster_id=15.0
+pick_clean_then_place-put a clean mug in coffeemachine.___79
+
+[80]  cluster_id=40.0
+pick_clean_then_place-clean some spatula and put it in drawer.___80
+
+[81]  cluster_id=23.0
+pick_and_place-put some watch on safe.___81
+
+[82]  cluster_id=30.0
+look_at_obj-examine the pencil with the desklamp.___82
+
+[83]  cluster_id=41.0
+pick_clean_then_place-clean some cloth and put it in cabinet.___83
+
+[84]  cluster_id=8.0
+pick_and_place-put a saltshaker in drawer.___84
+
+[85]  cluster_id=31.0
+pick_two_obj-put two cd in safe.___85
+
+[86]  cluster_id=24.0
+pick_heat_then_place-heat some apple and put it in garbagecan.___86
+
+[87]  cluster_id=42.0
+look_at_obj-examine the mug with the desklamp.___87
+
+[88]  cluster_id=26.0
+pick_cool_then_place-cool some pan and put it in countertop.___88
+
+[89]  cluster_id=35.0
+pick_heat_then_place-put a hot apple in fridge.___89
+
+[90]  cluster_id=22.0
+pick_and_place-put some saltshaker on cabinet.___90
+
+[91]  cluster_id=41.0
+pick_clean_then_place-clean some cloth and put it in cabinet.___91
+
+[92]  cluster_id=6.0
+pick_clean_then_place-put a clean pan in countertop.___92
+
+[93]  cluster_id=40.0
+pick_clean_then_place-clean some spatula and put it in drawer.___93
+
+[94]  cluster_id=42.0
+look_at_obj-examine the mug with the desklamp.___94
+
+[95]  cluster_id=39.0
+pick_cool_then_place-cool some mug and put it in cabinet.___95
+
+[96]  cluster_id=38.0
+pick_heat_then_place-put a hot mug in cabinet.___96
+
+[97]  cluster_id=16.0
+pick_clean_then_place-clean some soapbar and put it in cabinet.___97
+
+[98]  cluster_id=42.0
+look_at_obj-look at mug under the desklamp.___98
+
+[99]  cluster_id=33.0
+pick_and_place-put some mug on desk.___99
+
+[100]  cluster_id=28.0
+look_at_obj-look at alarmclock under the desklamp.___100
+
+[101]  cluster_id=37.0
+look_at_obj-examine the book with the desklamp.___101
+
+[102]  cluster_id=1.0
+pick_two_obj-put two soapbar in garbagecan.___102
+
+[103]  cluster_id=29.0
+pick_cool_then_place-cool some bread and put it in countertop.___103
+
+[104]  cluster_id=28.0
+look_at_obj-examine the alarmclock with the desklamp.___104
+
+[105]  cluster_id=25.0
+look_at_obj-examine the cd with the desklamp.___105
+
+[106]  cluster_id=13.0
+pick_heat_then_place-heat some egg and put it in garbagecan.___106
+
+[107]  cluster_id=4.0
+pick_clean_then_place-put a clean soapbar in countertop.___107
+
+[108]  cluster_id=1.0
+pick_two_obj-put two soapbar in garbagecan.___108
+
+[109]  cluster_id=21.0
+pick_and_place-put a soapbottle in toilet.___109
+
+[110]  cluster_id=10.0
+pick_and_place-put some vase on safe.___110
+
+[111]  cluster_id=5.0
+pick_cool_then_place-cool some lettuce and put it in countertop.___111
+
+[112]  cluster_id=31.0
+pick_two_obj-put two cd in safe.___112
+
+[113]  cluster_id=18.0
+pick_clean_then_place-put a clean egg in microwave.___113
+
+[114]  cluster_id=16.0
+pick_two_obj-find two toiletpaper and put them in cabinet.___114
+
+[115]  cluster_id=29.0
+pick_cool_then_place-put a cool bread in countertop.___115
+
+[116]  cluster_id=39.0
+pick_cool_then_place-cool some mug and put it in cabinet.___116
+
+[117]  cluster_id=4.0
+pick_clean_then_place-clean some soapbar and put it in countertop.___117
+
+[118]  cluster_id=2.0
+pick_cool_then_place-put a cool tomato in microwave.___118
+
+[119]  cluster_id=34.0
+pick_heat_then_place-heat some potato and put it in garbagecan.___119
+
+[120]  cluster_id=nan
+pick_two_obj-put two keychain in safe.___120
+
+[121]  cluster_id=nan
+pick_clean_then_place-clean some pan and put it in countertop.___121
+
+[122]  cluster_id=nan
+pick_two_obj-find two cd and put them in safe.___122
+
+[123]  cluster_id=nan
+pick_and_place-put some peppershaker on drawer.___123
+
+[124]  cluster_id=nan
+pick_two_obj-find two peppershaker and put them in drawer.___124
+
+[125]  cluster_id=nan
+pick_heat_then_place-put a hot mug in cabinet.___125
+
+[126]  cluster_id=nan
+pick_two_obj-find two soapbar and put them in cabinet.___126
+
+[127]  cluster_id=nan
+pick_clean_then_place-put a clean bowl in cabinet.___127
+
+[128]  cluster_id=nan
+pick_and_place-put a saltshaker in drawer.___128
+
+[129]  cluster_id=nan
+pick_and_place-put a pencil in shelf.___129
+
+[130]  cluster_id=nan
+pick_heat_then_place-put a hot tomato in garbagecan.___130
+
+[131]  cluster_id=nan
+pick_clean_then_place-put a clean knife in countertop.___131
+
+[132]  cluster_id=nan
+pick_and_place-put a vase in safe.___132
+
+[133]  cluster_id=nan
+pick_clean_then_place-put a clean cloth in countertop.___133
+

@@ -1,0 +1,165 @@
+[0]  cluster_id=0
+The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient2. 
+
+[1]  cluster_id=1
+The goal is to satisfy the following conditions: shot2 contains cocktail3. 
+
+[2]  cluster_id=1
+The goal is to satisfy the following conditions: shot3 contains cocktail3. 
+
+[3]  cluster_id=2
+The goal is to satisfy the following conditions: shot1 contains cocktail1. 
+
+[4]  cluster_id=3
+The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot2 contains cocktail3. 
+
+[5]  cluster_id=3
+The goal is to satisfy the following conditions: shot1 contains cocktail4. , shot2 contains cocktail1. 
+
+[6]  cluster_id=3
+The goal is to satisfy the following conditions: shot1 contains cocktail3. , shot2 contains cocktail2. 
+
+[7]  cluster_id=2
+The goal is to satisfy the following conditions: shot1 contains cocktail5. 
+
+[8]  cluster_id=2
+The goal is to satisfy the following conditions: shot1 contains cocktail4. 
+
+[9]  cluster_id=3
+The goal is to satisfy the following conditions: shot1 contains cocktail5. , shot2 contains cocktail1. 
+
+[10]  cluster_id=0
+The goal is to satisfy the following conditions: shot1 contains cocktail2. , shot7 contains ingredient3. 
+
+[11]  cluster_id=4
+The goal is to satisfy the following conditions: shot1 contains ingredient1. 
+
+[12]  cluster_id=4
+The goal is to satisfy the following conditions: shot2 contains ingredient2. , shot3 contains ingredient3. 
+
+[13]  cluster_id=0
+The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains cocktail3. 
+
+[14]  cluster_id=4
+The goal is to satisfy the following conditions: shot1 contains ingredient1. , shot2 contains ingredient2. , shot3 contains ingredient3. 
+
+[15]  cluster_id=0
+The goal is to satisfy the following conditions: shot1 contains cocktail1. , shot2 contains ingredient3. 
+
+[16]  cluster_id=4
+The goal is to satisfy the following conditions: shot3 contains ingredient3. , shot6 contains ingredient2. , shot9 contains ingredient1. 
+
+[17]  cluster_id=2
+The goal is to satisfy the following conditions: shot1 contains cocktail6. 
+
+[18]  cluster_id=5
+The goal is to satisfy the following conditions: b2 is on b1., b3 is on b2.
+
+[19]  cluster_id=6
+The goal is to satisfy the following conditions: b1 is on b7., b2 is on b5., b3 is on b2., b4 is on b1., b5 is on b6., b7 is on b3.
+
+[20]  cluster_id=5
+The goal is to satisfy the following conditions: b2 is on b3., b3 is on b1.
+
+[21]  cluster_id=7
+The goal is to satisfy the following conditions: b2 is on b1., b3 is on b4.
+
+[22]  cluster_id=7
+The goal is to satisfy the following conditions: b1 is on b2., b2 is on b3., b3 is on b4.
+
+[23]  cluster_id=8
+The goal is to satisfy the following conditions: b1 is on b3., b3 is on b5.
+
+[24]  cluster_id=8
+The goal is to satisfy the following conditions: b1 is on b2., b3 is on b5., b4 is on b1.
+
+[25]  cluster_id=8
+The goal is to satisfy the following conditions: b3 is on b5., b4 is on b3.
+
+[26]  cluster_id=6
+The goal is to satisfy the following conditions: b1 is on b6., b3 is on b5., b6 is on b2.
+
+[27]  cluster_id=6
+The goal is to satisfy the following conditions: b1 is on b2., b2 is on b6., b3 is on b7., b5 is on b3., b6 is on b5., b7 is on b4.
+
+[28]  cluster_id=9
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. 
+
+[29]  cluster_id=10
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. 
+
+[30]  cluster_id=10
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. 
+
+[31]  cluster_id=11
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball10 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. 
+
+[32]  cluster_id=12
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball10 is at roomb. , ball11 is at roomb. , ball12 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. 
+
+[33]  cluster_id=9
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at rooma. , ball4 is at rooma. 
+
+[34]  cluster_id=10
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. 
+
+[35]  cluster_id=10
+The goal is to satisfy the following conditions: ball1 is at rooma. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at rooma. 
+
+[36]  cluster_id=11
+The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at rooma. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at rooma. 
+
+[37]  cluster_id=11
+The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. 
+
+[38]  cluster_id=11
+The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at rooma. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at rooma. , ball5 is at rooma. , ball6 is at rooma. , ball7 is at rooma. , ball8 is at rooma. , ball9 is at rooma. 
+
+[39]  cluster_id=9
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at rooma. 
+
+[40]  cluster_id=9
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at rooma. , ball4 is at rooma. 
+
+[41]  cluster_id=12
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball10 is at roomb. , ball11 is at roomb. , ball12 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at rooma. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at roomb. , ball9 is at roomb. 
+
+[42]  cluster_id=12
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball10 is at roomb. , ball11 is at roomb. , ball12 is at roomb. , ball2 is at roomb. , ball3 is at roomb. , ball4 is at roomb. , ball5 is at roomb. , ball6 is at roomb. , ball7 is at roomb. , ball8 is at rooma. , ball9 is at rooma. 
+
+[43]  cluster_id=10
+The goal is to satisfy the following conditions: ball1 is at roomb. , ball2 is at rooma. , ball3 is at roomb. , ball4 is at rooma. , ball5 is at roomb. , ball6 is at rooma. 
+
+[44]  cluster_id=12
+The goal is to satisfy the following conditions: ball1 is at rooma. , ball10 is at roomb. , ball11 is at rooma. , ball12 is at roomb. , ball2 is at roomb. , ball3 is at rooma. , ball4 is at roomb. , ball5 is at rooma. , ball6 is at roomb. , ball7 is at rooma. , ball8 is at roomb. , ball9 is at rooma. 
+
+[45]  cluster_id=13
+The goal is to satisfy the following conditions: Wheel r1 is inflated., r1 is on the-hub1., w1 is in boot.
+
+[46]  cluster_id=13
+The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., r1 is on the-hub1., r2 is on the-hub2., w1 is in boot., w2 is in boot.
+
+[47]  cluster_id=13
+The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., w1 is in boot., w2 is in boot., w3 is in boot.
+
+[48]  cluster_id=13
+The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., Wheel r4 is inflated., r1 is on the-hub1., r2 is on the-hub2., r3 is on the-hub3., r4 is on the-hub4., w1 is in boot., w2 is in boot., w3 is in boot., w4 is in boot.
+
+[49]  cluster_id=13
+The goal is to satisfy the following conditions: r1 is on the-hub1., w1 is in boot.
+
+[50]  cluster_id=13
+The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated.
+
+[51]  cluster_id=13
+The goal is to satisfy the following conditions: Wheel r3 is inflated., w1 is in boot., w2 is in boot.
+
+[52]  cluster_id=14
+The goal is to satisfy the following conditions: w1 is in boot., w2 is in boot.
+
+[53]  cluster_id=14
+The goal is to satisfy the following conditions: w3 is in boot., w4 is in boot.
+
+[54]  cluster_id=13
+The goal is to satisfy the following conditions: Wheel r1 is inflated., Wheel r2 is inflated., Wheel r3 is inflated., r3 is on the-hub3., w3 is in boot.
+
