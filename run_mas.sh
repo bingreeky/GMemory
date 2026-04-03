@@ -7,6 +7,7 @@ fi
 # Options:
 # --mas_memory:    empty, chatdev, metagpt, voyager, generative, memorybank, g-memory
 # --mas_type:      autogen, dylan, macnet
+# --task:          alfworld, fever, pddl, sciworld
 
 python3 tasks/run.py \
     --task alfworld \
