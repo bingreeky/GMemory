@@ -119,7 +119,7 @@ if __name__ == '__main__':
     random.seed(42)
 
     parser = argparse.ArgumentParser(description='Run tasks with specified modules.')
-    parser.add_argument('--task', type=str, choices=['alfworld', 'fever', 'pddl'])
+    parser.add_argument('--task', type=str, choices=['alfworld', 'fever', 'pddl', 'sciworld'])
     parser.add_argument('--mas_type', type=str, choices=['autogen', 'macnet', 'dylan'])
     parser.add_argument('--mas_memory', type=str, default='none', help='Specify mas memory module')
     parser.add_argument('--reasoning', type=str, default='io', help='Specify reasoning module')
