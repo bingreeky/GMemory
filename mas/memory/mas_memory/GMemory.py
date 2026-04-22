@@ -1,6 +1,6 @@
 from dataclasses import dataclass, replace
 from langchain_chroma import Chroma
-from langchain.docstore.document import Document
+from langchain_core.documents import Document
 import os
 import copy
 import re
@@ -9,7 +9,7 @@ import random
 from collections import defaultdict
 import networkx as nx
 import numpy as np
-from finch import FINCH
+from finch import Finch
 import pickle
 import networkx as nx
 import logging
@@ -446,11 +446,11 @@ class TaskLayer:
 
         try: 
             X = np.vstack(embeddings)
-            _,_,labels = FINCH(X,distance='cosine')
+            _,_,labels = Finch(X,distance='cosine')
 
             #labels = fin.fit_predict(X)
         except Exception as e:   
-            print(f"FINCH clustering failed: {e}")
+            print(f"Finch clustering failed: {e}")
             labels = np.zeros(len(valid_nodes), dtype=int)
 
         for node, label in zip(valid_nodes, labels):

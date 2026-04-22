@@ -1,5 +1,5 @@
 from typing import Optional, Union
-from langchain.docstore.document import Document
+from langchain_core.documents import Document
 import string
 import re
 import wikipedia

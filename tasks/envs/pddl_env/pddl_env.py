@@ -4,6 +4,7 @@ import nltk
 import json
 import sys
 import os
+nltk.download('punkt_tab')
 sys.path.append(os.path.join(os.getcwd(), 'tasks', 'envs', 'pddl_env')) 
 sys.path.append(os.path.join(os.getcwd(), 'envs', 'pddl_env')) 
 

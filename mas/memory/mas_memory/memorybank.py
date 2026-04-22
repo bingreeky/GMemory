@@ -2,7 +2,7 @@ import math
 import copy
 from dataclasses import dataclass, field
 from langchain_chroma import Chroma
-from langchain.docstore.document import Document
+from langchain_core.documents import Document
 
 from .memory_base import MASMemoryBase
 from .prompt import MEMORYBANK
