@@ -1,7 +1,7 @@
 import os
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+#sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import shutil
 import yaml
@@ -123,7 +123,6 @@ def run_task(task_manager: TaskManager, seed: int) -> None:
 
     task_manager.recorder.dataset_end()
 
-
 if __name__ == '__main__':
     # settings
 
@@ -155,8 +154,12 @@ if __name__ == '__main__':
     random.seed(seed)
 
     # dir
+<<<<<<< HEAD
     DB_DIR = './.db-icml'
     WORKING_DIR = os.path.join(DB_DIR, get_model_type(model_type), task, mas_type, f'{mas_memory_type}')
+=======
+    WORKING_DIR = os.path.join('./.db-review', get_model_type(model_type), task, mas_type, f'{mas_memory_type}')
+>>>>>>> 1d7c864e5fda3d55609971d1b36e5a0053566122
     # if os.path.exists(WORKING_DIR):
     #     shutil.rmtree(WORKING_DIR)
     os.makedirs(WORKING_DIR, exist_ok=True)

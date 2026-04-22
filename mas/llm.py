@@ -12,7 +12,6 @@ from dataclasses import dataclass
 from abc import ABC, abstractmethod
 
 from .utils import load_config
-
 from datetime import datetime
 
 
