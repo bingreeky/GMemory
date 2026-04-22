@@ -1,0 +1,11 @@
+.git
+.gitignore
+__pycache__/
+*.pyc
+
+.env/
+
+.DS_STORE
+
+slurm/
+conda-env/

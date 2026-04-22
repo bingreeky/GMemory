@@ -1,5 +1,27 @@
 # G-Memory: Tracing Hierarchical Memory for Multi-Agent Systems
 
+## AZURE Usage
+
+```bash
+az container create \
+  --resource-group <my-rg> \
+  --name <my-job-1> \
+  --image myregistry.azurecr.io/myjob:latest \
+  --registry-login-server myregistry.azurecr.io \
+  --registry-username <username> \
+  --registry-password <password> \
+  --restart-policy Never \
+  --environment-variables \
+      TASK=pddl \
+      MEMORY=voyager \
+      MODEL_NAME=bar \
+      SEED=42 \
+      AZURE_API_ENDPOINT="https://your-api-endpoint" \
+  --secure-environment-variables \
+      AZURE_API_KEY="<your-secret-key>"
+
+```
+
 
 ## 👋 Introduction
 This repo is the official implementation of [***G-Memory: Tracing Hierarchical Memory for Multi-Agent Systems***](https://arxiv.org/abs/2506.07398).

@@ -132,7 +132,7 @@ if __name__ == '__main__':
     parser.add_argument('--mas_memory', type=str, default='none', help='Specify mas memory module')
     parser.add_argument('--reasoning', type=str, default='io', help='Specify reasoning module')
     parser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125', help='Specify the LLM model type')
-    parser.add_argument('--max_trials', type=int, default=50, help='max number of steps')
+    parser.add_argument('--max_trials', type=int, default=30, help='max number of steps')
     parser.add_argument('--successful_topk', type=int, default=1, help='Number of successful trajs to be retrieved from memory.')
     parser.add_argument('--failed_topk', type=int, default=0, help='Number of failed trajs to be retrieved from memory.')
     parser.add_argument('--insights_topk', type=int, default=3, help='Number of insights to be retrieved from memory.')
