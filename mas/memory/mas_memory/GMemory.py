@@ -230,7 +230,6 @@ class GMemory(MASMemoryBase):
         sorted_success_tasks = [task for _, task in sorted(zip(importance_score, successful_task_trajectories), 
                                                            key=lambda x: x[0], reverse=True)]
         top_success_task_trajectories = sorted_success_tasks[:successful_topk]
-        top_success_task_trajectories = successful_task_trajectories[:successful_topk]
         
         # directly get failed tasks
         top_fail_task_trajectories = failed_task_trajectories[:failed_topk]

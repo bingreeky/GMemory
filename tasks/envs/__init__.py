@@ -1,14 +1,17 @@
 import json
+import jsonlines
 
 from .base_env import BaseEnv, BaseRecorder
 from .alfworld_env import AlfworldEnv, AlfworldRecorder, get_env_name_from_gamefile, prefixes
+from .sciworld_env import SciworldEnv, SciworldRecorder, build_simplification_str
 from .fever_env import FeverEnv, FeverRecorder
 from .pddl_env.pddl_env import PDDLEnv, PDDLRecorder, get_all_environment_configs
 
 TASKS_PATH = {
     'alfworld': 'data/alfworld/alfworld_tasks_suffix.json',
     'fever': 'data/fever/fever_dev.jsonl',
-    'pddl': 'data/pddl/test.jsonl'  
+    'pddl': 'data/pddl/test.jsonl',
+    'sciworld': 'data/sciworld/test.jsonl',
 }
 
 ## Tasks
@@ -23,6 +26,21 @@ alfworld_tasks: list[dict] = [
         'env_name': get_env_name_from_gamefile(row["gamefile"])
     } for row in json.load(open(TASKS_PATH['alfworld'], "r")) 
 ]
+
+sciworld_tasks: list = []
+with open(TASKS_PATH['sciworld'], 'r+', encoding='utf-8') as f:
+    for item in jsonlines.Reader(f):
+        task_name = item["additional_info"]["env_name"]
+        var = item["additional_info"]["var"]
+        sciworld_tasks.append({
+            "id": item['id'],
+            "task_name": task_name,
+            "var": var,
+            "modified_goal": item["goal"],
+            "subgoals": item['subgoals'],
+            "difficulty": item["difficulty"],
+            "simplification_str": build_simplification_str()
+        })
 
 with open(TASKS_PATH['fever'], 'r') as f:
     fever_tasks = [
@@ -42,17 +60,20 @@ pddl_tasks: list[dict] = get_all_environment_configs(TASK_NAMES, TASKS_PATH['pdd
 TASK_DATA = {
     'alfworld': alfworld_tasks,
     'fever': fever_tasks[:200],
+    'sciworld': sciworld_tasks,
     'pddl': pddl_tasks
 }
 
 ENVS = {
     'alfworld': AlfworldEnv,
+    'sciworld': SciworldEnv,
     'fever': FeverEnv,
     'pddl': PDDLEnv
 }
 
 RECORDERS = {
     'alfworld': AlfworldRecorder,
+    'sciworld': SciworldRecorder,
     'fever': FeverRecorder,
     'pddl': PDDLRecorder
 }

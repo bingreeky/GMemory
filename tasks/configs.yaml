@@ -7,7 +7,12 @@ alfworld:
   env_config_path: tasks/env_configs/alfworld_config.yaml 
   max_steps: 30
   few_shots_num: 1
- 
+
+sciworld:
+  env_config_path: tasks/env_configs/sciworld_config.yaml
+  max_steps: 30
+  few_shots_num: 0
+
 fever:
   env_config_path: tasks/env_configs/fever_config.yaml
   max_steps: 12

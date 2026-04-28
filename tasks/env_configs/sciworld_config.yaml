@@ -1,0 +1,7 @@
+name: scienceworld
+envStepLimit: 30
+seed: 0
+check_inventory: True
+check_actions: check valid actions
+init_prompt_path: ${PROJECT_PATH}/agentboard/prompts/VanillaAgent/scienceworld_base.json
+label_path: ${PROJECT_PATH}/data/scienceworld/test.jsonl
