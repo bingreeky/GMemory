@@ -78,9 +78,15 @@ class AutoGen(MetaMAS):
         
         self.set_env(env_executor)
         
-        # Set up individual memories for each agent
+        # Each agent gets its own independent memory instance so their updates
+        # do not silently overwrite each other.
         self.meta_memory_solver = mas_memory
-        self.meta_memory_validator = mas_memory
+        self.meta_memory_validator = mas_memory.__class__(
+            namespace=mas_memory.namespace + "_validator",
+            global_config=mas_memory.global_config,
+            llm_model=mas_memory.llm_model,
+            embedding_func=mas_memory.embedding_func,
+        )
         
     def add_observer(self, observer):
         self.observers.append(observer)
@@ -117,7 +123,8 @@ class AutoGen(MetaMAS):
         ground_truth: Agent = self.get_agent(self.ground_truth_name)
         env.reset()
         
-        self.meta_memory_solver.init_task_context(task_main, task_description) 
+        self.meta_memory_solver.init_task_context(task_main, task_description)
+        self.meta_memory_validator.init_task_context(task_main, task_description)
         
         # Retrieve successful trajectories and insights from memory
         successful_trajectories: list[MASMessage]
@@ -197,6 +204,7 @@ class AutoGen(MetaMAS):
                         Original instructions: \n
                         """
                         print(f'==== SOLVER INSTRUCTION FOR REVISION ====\n{solver_instruction}\n==== END SOLVER INSTRUCTION FOR REVISION ====\n', file=sys.stderr)
+                        tries += 1
                         continue
                     
                     action = env.process_action(action)
@@ -257,7 +265,8 @@ class AutoGen(MetaMAS):
         # Final feedback and memory update
         final_reward, final_done, final_feedback = self.env.feedback()
         self.notify_observers(final_feedback)
-        self.meta_memory_solver.save_task_context(label=final_done, feedback=final_feedback)  
+        self.meta_memory_solver.save_task_context(label=final_done, feedback=final_feedback)
+        self.meta_memory_validator.save_task_context(label=final_done, feedback=final_feedback)
         self.meta_memory_solver.backward(final_done)    # Does nothing
 
         return final_reward, final_done
