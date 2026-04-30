@@ -20,6 +20,7 @@ class AutoGen(MetaMAS):
     def __post_init__(self):
 
         self.solver_name: str = 'solver'
+        self.validator_name: str = 'validator'
         self.ground_truth_name: str = 'ground_truth'
         self.observers = []   
 
@@ -51,6 +52,14 @@ class AutoGen(MetaMAS):
             memory_module=None
         )
 
+        validator_agent: Agent = Agent(
+            name=self.validator_name, 
+            role='validator', 
+            system_instruction=AUTOGEN_PROMPT.validator_system_prompt,
+            reasoning_module=reasoning,
+            memory_module=None
+        )
+
         ground_truth_agent: Agent = Agent(
             name=self.ground_truth_name,
             role="ground truth agent",
@@ -63,10 +72,15 @@ class AutoGen(MetaMAS):
         
         self.hire([
             solver_agent,
-            ground_truth_agent
+            ground_truth_agent,
+            validator_agent
         ])
+        
         self.set_env(env_executor)
-        self.meta_memory = mas_memory
+        
+        # Set up individual memories for each agent
+        self.meta_memory_solver = mas_memory
+        self.meta_memory_validator = mas_memory
         
     def add_observer(self, observer):
         self.observers.append(observer)
@@ -99,25 +113,30 @@ class AutoGen(MetaMAS):
         # Initialize environment and agents
         env: Env = self.env
         solver: Agent = self.get_agent(self.solver_name)
+        validator: Agent = self.get_agent(self.validator_name)
         ground_truth: Agent = self.get_agent(self.ground_truth_name)
         env.reset()
         
-        self.meta_memory.init_task_context(task_main, task_description) 
+        self.meta_memory_solver.init_task_context(task_main, task_description) 
         
         # Retrieve successful trajectories and insights from memory
         successful_trajectories: list[MASMessage]
         insights: list[dict]
         
-        successful_trajectories, _, insights = self.meta_memory.retrieve_memory(
+        # At the moment, this does nothing. This would just return three empty lists, as it just returns directly [],[],[] in the retrieve_memory function, with no other code.
+        successful_trajectories, _, insights = self.meta_memory_solver.retrieve_memory(
             query_task=task_main,
             successful_topk=self._successful_topk,
             failed_topk=self._failed_topk,
             insight_topk=self._insights_topk,
             threshold=self._threshold
         )
+        # Probably empty at the moment, as successful_trajectories is empty.
         successful_shots: list[str] = [format_task_context(
             traj.task_description, traj.task_trajectory, traj.get_extra_field('key_steps')
         ) for traj in successful_trajectories]
+
+        # Also probably empty
         raw_rules: list[str] = [insight for insight in insights]
         roles_rules: dict[str, list[str]] = self._project_insights(raw_rules)
         
@@ -126,32 +145,63 @@ class AutoGen(MetaMAS):
             few_shots=few_shots, 
             memory_few_shots=successful_shots,
             insights=raw_rules,
-            task_description=self.meta_memory.summarize(solver_message=solver.total_system_instruction)
+            task_description=self.meta_memory_solver.summarize(solver_message=solver.total_system_instruction) # Summarize method returns the task description plus agent's memory, which is updated when summarize is called, plus task trajectory.
         )
         self.notify_observers(user_prompt)
 
         # Main loop for task execution
         action_history: list = [] 
         
-        for i in range(env.max_trials):    
+        for i in range(env.max_trials):    # What is actually max trials? And what is the difference between trials and tries below?
             
             user_prompt: str = format_task_prompt_with_insights(
                 few_shots=few_shots, 
                 memory_few_shots=successful_shots,
                 insights=roles_rules.get(solver.profile, raw_rules),
-                task_description=self.meta_memory.summarize(solver_message=solver.total_system_instruction)
+                task_description=self.meta_memory_solver.summarize(solver_message=solver.total_system_instruction) # total_system_instruction is just the agent's system instruction at definition time.
             )
             tries = 0
-
-            print(f"\n==== SOLVER AGENT PROMPT ====\n{user_prompt}\n==== END SOLVER AGENT PROMPT ====\n", file=sys.stderr)
             
+            #print(f"\n==== FEW SHOTS ====\n{few_shots[:]}\n==== END FEW SHOTS ====\n", file=sys.stderr)
+            print(f"\n==== SOLVER AGENT PROMPT ====\n{user_prompt}\n==== END SOLVER AGENT PROMPT ====\n", file=sys.stderr)
+
+            solver_instruction = ""
             while tries < 3:
                 try:  
-                    action: str = solver.response(user_prompt, self.reasoning_config)
+                    action: str = solver.response(f"{solver_instruction}{user_prompt}", self.reasoning_config)
                     if action == '':
                         continue
+                    # Pass action to solver for evaluation
+                    ## Build validator prompt
+                    validator_prompt: str = f"""some string that includes the task, the solver's latest response, and the few shots to show how to respond \n
+                    Solver's latest response: \n
+                    {action} \n 
+                    Task description: \n
+                    {task_config.get('task_description')} \n
+                    Format that responses must follow: \n
+                    {"\n".join(few_shots)}
+                    """
+                    ## Evaluate
+                    evaluation: str = validator.response(validator_prompt, self.reasoning_config)
+                    # Update validator memory
+                    self.meta_memory_validator.summarize(solver_message=f"## Your latest evaluation: \n {evaluation}")
+                    print(f'==== VALIDATOR EVALUATION ====\n{evaluation}\n==== END VALIDATOR EVALUATION ====\n', file=sys.stderr)
+                    print(f'==== VALIDATOR PROMPT ====\n{validator_prompt}\n==== END VALIDATOR PROMPT ====\n', file=sys.stderr)
+                    if "INVALID" in evaluation:
+                        solver_instruction = f"""Your response does not follow the expected format. \n 
+                        Modify your response according to the Validator's feedback. \n 
+                        Your original response: \n
+                        {action} \n
+                        Validator's feedback: \n 
+                        {evaluation} \n 
+                        Original instructions: \n
+                        """
+                        print(f'==== SOLVER INSTRUCTION FOR REVISION ====\n{solver_instruction}\n==== END SOLVER INSTRUCTION FOR REVISION ====\n', file=sys.stderr)
+                        continue
+                    
                     action = env.process_action(action)
                     break
+
                 except Exception as e:
                     print(f'Error during execution of solver agent: {e}')
                 tries += 1
@@ -164,7 +214,7 @@ class AutoGen(MetaMAS):
                     few_shots=few_shots, 
                     memory_few_shots=successful_shots,
                     insights=roles_rules.get(ground_truth.profile, raw_rules),
-                    task_description=self.meta_memory.summarize(solver_message=solver.total_system_instruction)
+                    task_description=self.meta_memory_solver.summarize(solver_message=solver.total_system_instruction)
                 )
 
                 print(f'==== GROUND TRUTH AGENT PROMPT ==== \n{user_prompt}\n====END GROUNDTRUTH AGENT PROMPT ====\n', file=sys.stderr)
@@ -183,13 +233,14 @@ class AutoGen(MetaMAS):
                 name: str = ground_truth.name
                 system_instruction = ground_truth.system_instruction
             
+            # Add agent response to the conversation as a node
             agent_message: AgentMessage = AgentMessage(
                 agent_name=name,
                 system_instruction=system_instruction,
                 user_instruction=user_prompt,
                 message=action,
             )
-            self.meta_memory.add_agent_node(agent_message, upstream_agent_ids=[])
+            self.meta_memory_solver.add_agent_node(agent_message, upstream_agent_ids=[])
 
             observation, reward, done = env.step(action)
             action_history.append(action)
@@ -197,7 +248,8 @@ class AutoGen(MetaMAS):
             step_message: str = f'Act {i + 1}: {action}\nObs {i + 1}: {observation}'
             self.notify_observers(step_message)
 
-            self.meta_memory.move_memory_state(action, observation, reward=reward)   
+            # Add latest action and observation to task_trajectory
+            self.meta_memory_solver.move_memory_state(action, observation, reward=reward)   # I think I should only move the memory state for the solver
 
             if done:  
                 break
@@ -205,8 +257,8 @@ class AutoGen(MetaMAS):
         # Final feedback and memory update
         final_reward, final_done, final_feedback = self.env.feedback()
         self.notify_observers(final_feedback)
-        self.meta_memory.save_task_context(label=final_done, feedback=final_feedback)  
-        self.meta_memory.backward(final_done)    
+        self.meta_memory_solver.save_task_context(label=final_done, feedback=final_feedback)  
+        self.meta_memory_solver.backward(final_done)    # Does nothing
 
         return final_reward, final_done
     

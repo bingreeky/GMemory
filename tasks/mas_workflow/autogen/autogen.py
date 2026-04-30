@@ -26,7 +26,9 @@ class AutoGen(MetaMAS):
         self.reasoning_config = ReasoningConfig(temperature=0, stop_strs=['\n'])
 
     def build_system(self, reasoning: ReasoningBase, mas_memory: MASMemoryBase, env: Env, config: dict):  
-
+        """
+        build_system is called once per benchmark in run.py to set up the multi-agent system. Then the schedule method is called once per task
+        """
         self._successful_topk: int = config.get('successful_topk', 1)
         self._failed_topk: int = config.get('failed_topk', 1)
         self._insights_topk: int = config.get('insights_topk', 3)

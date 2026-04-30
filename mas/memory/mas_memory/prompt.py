@@ -3,7 +3,9 @@ from dataclasses import dataclass
 #----------------------------------------------intrinsicmemory memory DEFAULT----------------------------------------------
 
 DEFAULT_MEMORY_UPDATE_PROMPT = """
-Use your latest response to create the new memory with factual information to solve the task based on the task description, current task trajectory, and current memory.
+Use your latest response to create the new memory with factual information to solve the task based on the task description, current task trajectory, and current memory. OUTPUT ONLY THE UPDATED MEMORY. NOTHING MORE.
+
+{custom_message}
 
 ## Task Description
 {task_description}
@@ -420,7 +422,9 @@ class IntrinsicMemoryALFWORLD:
 INTRINSICMEMORYALFWORLD: IntrinsicMemoryALFWORLD = IntrinsicMemoryALFWORLD()
 #----------------------------------------------intrinsicmemory memory NO TEMPLATE----------------------------------------------
 DEFAULT_MEMORY_UPDATE_PROMPT_NOTEMPLATE = """
-Use your latest response to create the new memory with factual information to solve the task based on the task description and current memory.
+Use your latest response to create the new memory with factual information to solve the task based on the task description and current memory. OUTPUT ONLY THE UPDATED MEMORY. NOTHING MORE.
+
+{custom_message}
 
 ## Task Description
 {task_description}
@@ -429,10 +433,7 @@ Use your latest response to create the new memory with factual information to so
 {task_trajectory}
 
 ## Current Memory
-
 {current_memory}
-
-## New Memory
 
 """
 
@@ -441,6 +442,7 @@ You are an intelligent summarization agent. Your job is to update your current m
 - Use only the information explicitly present in your prior responses.
 - Do not invent or infer any information, actions, events, or observations that are not stated.
 - Use clear and precise language. Avoid unnecessary details or storytelling.
+- OUTPUT ONLY THE UPDATED MEMORY, NOTHING ELSE
 """
 
 

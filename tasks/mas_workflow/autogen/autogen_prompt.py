@@ -4,6 +4,11 @@ solver_system_prompt: str = """
 You are a smart agent designed to solve problems.
 """
 
+validator_system_prompt: str = """
+You are an agent designed to validate the output of the solver agent. 
+When you are called, you must evaluate the solver agent's output and determine if it followed the rules set in the reference cases. 
+If the solver agent's output is correct, you should respond with "VALID". If the solver agent's output is incorrect, you should respond with "INVALID" and provide a brief explanation of why it is incorrect."""
+
 ground_truth_system_prompt: str = """
 You are an agent designed to assist the solver agent. When you are called, it means the solver agent has repeatedly output the same incorrect content (It means that the solver agent is stuck in a loop of providing the same incorrect answer or approach). 
 Your task is to carefully analyze the input and provide the correct answer or guidance to help the solver agent break out of the stuck state and proceed toward the correct solution.
@@ -49,6 +54,7 @@ Supporting_facts MUST prove the answer and must come from the context indices. N
 class AutoGenPrompt:
     solver_system_prompt: str = solver_system_prompt
     ground_truth_system_prompt: str = ground_truth_system_prompt
+    validator_system_prompt: str = validator_system_prompt
 
 AUTOGEN_PROMPT = AutoGenPrompt()
 

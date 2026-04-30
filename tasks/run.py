@@ -107,7 +107,7 @@ def run_task(task_manager: TaskManager, seed: int) -> None:
             task_manager.recorder.log(f'------------ MAS Agent: {agent.name} ------------')
             task_manager.recorder.log(agent.add_task_instruction(task_instruction))
 
-        reward, done = task_manager.mas.schedule(task_config) 
+        reward, done = task_manager.mas.schedule(task_config) # Schedule method from the mas_workflow (e.g. autogen)
         task_manager.recorder.task_end(reward, done)             
 
         completion_tokens, prompt_tokens, _ = get_price()

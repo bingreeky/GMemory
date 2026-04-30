@@ -38,8 +38,8 @@ class IntrinsicMASMemory(MASMemoryBase):
 
         # Construct the user prompt for memory update with memory update prompt, task description, and latest agent output
         memory_update_prompt = self.memory_update_prompt.format(
-                solver_system_message=solver_message,
-                template_instructions=template_instructions,
+                custom_message=solver_message, # I have modified this so that we can pass custom instructions and information to each agent. It now appears in the intrinsicmemory prompt for baseline and notemplate (not implemented for the other intrinsicmemory prompt variants)
+                template_instructions=template_instructions, # We never pass this to summarize, so it's also empty??
                 task_description=mas_message.task_description,
                 task_trajectory=mas_message.task_trajectory,
                 current_memory=self.agent_intrinsic_memory,
@@ -55,7 +55,9 @@ class IntrinsicMASMemory(MASMemoryBase):
 
         injection = "You can only perform one action. Output in a single line your next action"
 
-        summary_message = mas_message.task_description + "\n\n### Agent Memory\n" + self.agent_intrinsic_memory + "\n\n" + mas_message.task_trajectory + "\n\n" + injection
+        # Funny that summary_message becomes the new task description, which itself contains the task description. What is the differnce between the two??
+        summary_message = f"""{mas_message.task_description} \n\n### Agent Memory\n 
+        {self.agent_intrinsic_memory} \n\n {mas_message.task_trajectory} \n\n {injection}"""
 
         return summary_message
 
