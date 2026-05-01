@@ -24,6 +24,7 @@ from mas.reasoning import ReasoningBase, ReasoningConfig
 
 from tasks.mas_workflow.autogen.autogen_pddl import AutoGen
 from tasks.mas_workflow.autogen.autogen_prompt import AUTOGEN_PROMPT
+from tasks.mas_workflow.format import format_task_prompt_with_insights as _orig_fmt
 
 
 # ── stubs & helpers ───────────────────────────────────────────────────────────
@@ -324,6 +325,54 @@ class TestValidatorAgent:
         mock_summarize.assert_called_once()
         call_kwargs = mock_summarize.call_args[1]
         assert "VALID" in call_kwargs.get("solver_message", "")
+
+    def test_invalid_explanation_propagated_to_solver_retry(self, tmp_path):
+        """When the validator returns 'INVALID: <explanation>', the explanation text
+        must appear in the solver_instruction prepended to the solver's retry prompt.
+
+        This verifies the full chain:
+          validator response → solver_instruction built → solver retry receives it.
+        """
+        explanation = "action verb is not in the allowed action set"
+        # Call order: solver attempt 1 → validator (INVALID + explanation) →
+        #             solver attempt 2 → validator (VALID)
+        reasoning = StubReasoning([
+            "do something invalid",
+            f"INVALID: {explanation}",
+            "pickup block_a",
+            "VALID",
+        ])
+        memory, _ = make_memory(tmp_path)
+        env = make_env(max_trials=1, step_returns=[("obs", 1.0, True)])
+        ag = make_autogen(reasoning, memory, env)
+
+        captured = []
+
+        class CapturingReasoning(ReasoningBase):
+            def __init__(self):
+                super().__init__(llm_model=MagicMock())
+                self._inner = reasoning
+            def __call__(self, prompts, config):
+                user = next((m.content for m in prompts if m.role == "user"), "")
+                captured.append(user)
+                return self._inner(prompts, config)
+
+        # Rewire agents to use the capturing wrapper
+        cap = CapturingReasoning()
+        for agent in ag.agents_team.values():
+            agent.reasoning = cap
+
+        with patch(PATCH_GPTCHAT):
+            ag.schedule({"task_main": "t", "task_description": "d"})
+
+        # The second solver call (captured[2] — after solver1, validator1, solver2)
+        # must contain the explanation from the INVALID response.
+        solver_retry_prompt = captured[2]
+        assert explanation in solver_retry_prompt, (
+            f"Validator explanation not found in solver retry prompt.\n"
+            f"Expected to find: {explanation!r}\n"
+            f"Got prompt: {solver_retry_prompt[:300]!r}"
+        )
 
 
 # ── D. Solver instruction — prepended on INVALID ──────────────────────────────
@@ -699,3 +748,195 @@ class TestAdditionalGaps:
 
         assert reasoning.call_count == 6
         env.step.assert_called_once_with("action")
+
+
+# ── I. Pipeline ordering ───────────────────────────────────────────────────────
+
+_FMT_PATCH = "tasks.mas_workflow.autogen.autogen_pddl.format_task_prompt_with_insights"
+
+
+class TestPipelineOrdering:
+    """Verifies the exact sequence of events inside schedule()'s inner while loop.
+
+    A shared `call_log` list is populated by lightweight wrappers around each key
+    operation.  The tests then assert both the ORDER of entries and the CONTENT
+    passed between stages (e.g. that the validator prompt actually contains the
+    solver's action).
+
+    Tracked events
+    --------------
+    "user_prompt_built"       — format_task_prompt_with_insights returned
+    "solver_called"           — solver.response invoked; logs the full user prompt
+    "validator_called"        — validator.response invoked; logs the validator prompt
+    "validator_memory_updated"— meta_memory_validator.summarize invoked; logs evaluation
+    "process_action_called"   — env.process_action invoked; logs the action
+    """
+
+    def _make_tracking_reasoning(self, call_log: list, responses: list) -> ReasoningBase:
+        """Reasoning stub that classifies calls as solver or validator by system prompt."""
+
+        class TrackingReasoning(ReasoningBase):
+            def __init__(self):
+                super().__init__(llm_model=MagicMock())
+                self._responses = responses
+                self._idx = 0
+
+            def __call__(self, prompts, config):
+                resp = self._responses[min(self._idx, len(self._responses) - 1)]
+                self._idx += 1
+
+                system = next((m.content for m in prompts if m.role == "system"), "")
+                user = next((m.content for m in prompts if m.role == "user"), "")
+
+                if system.strip() == AUTOGEN_PROMPT.solver_system_prompt.strip():
+                    call_log.append({"event": "solver_called", "user_prompt": user, "response": resp})
+                elif system.strip() == AUTOGEN_PROMPT.validator_system_prompt.strip():
+                    call_log.append({"event": "validator_called", "user_prompt": user, "response": resp})
+
+                return resp
+
+        return TrackingReasoning()
+
+    def _instrument(self, call_log: list, ag: AutoGen, env) -> None:
+        """Attach call-log hooks to validator memory and env.process_action."""
+
+        original_summarize = ag.meta_memory_validator.summarize
+
+        def tracking_summarize(**kwargs):
+            call_log.append({
+                "event": "validator_memory_updated",
+                "solver_message": kwargs.get("solver_message", ""),
+            })
+            return original_summarize(**kwargs)
+
+        ag.meta_memory_validator.summarize = tracking_summarize
+
+        def tracking_process(action):
+            call_log.append({"event": "process_action_called", "action": action})
+            return action.strip()
+
+        env.process_action.side_effect = tracking_process
+
+    def test_valid_path_order(self, tmp_path):
+        """VALID path sequence:
+        user_prompt_built (×2) → solver_called → validator_called (prompt contains
+        solver action) → validator_memory_updated (contains 'VALID') →
+        process_action_called (receives solver action).
+        """
+        call_log = []
+        solver_action = "UNIQUE_SOLVER_ACTION"
+
+        reasoning = self._make_tracking_reasoning(call_log, [solver_action, "VALID"])
+        memory, _ = make_memory(tmp_path)
+        env = make_env(max_trials=1, step_returns=[("obs", 1.0, True)])
+        ag = make_autogen(reasoning, memory, env)
+        self._instrument(call_log, ag, env)
+
+        def tracking_fmt(*args, **kwargs):
+            result = _orig_fmt(*args, **kwargs)
+            call_log.append({"event": "user_prompt_built"})
+            return result
+
+        with patch(_FMT_PATCH, side_effect=tracking_fmt):
+            with patch(PATCH_GPTCHAT):
+                ag.schedule({"task_main": "t", "task_description": "d"})
+
+        events = [e["event"] for e in call_log]
+
+        # ── ordering ──────────────────────────────────────────────────────────
+        # format_task_prompt_with_insights is called twice before the while loop
+        # (once before the for loop, once inside it).
+        assert events[0] == "user_prompt_built"         # (1) before for loop
+        assert events[1] == "user_prompt_built"         # (2) inside for loop
+        assert events[2] == "solver_called"             # (3) solver responds
+        assert events[3] == "validator_called"          # (4) validator evaluates
+        assert events[4] == "validator_memory_updated"  # (5) validator memory updated
+        assert events[5] == "process_action_called"     # (6) VALID → action executed
+
+        # ── content ───────────────────────────────────────────────────────────
+        # (3) validator prompt must contain the solver's exact action
+        validator_entry = next(e for e in call_log if e["event"] == "validator_called")
+        assert solver_action in validator_entry["user_prompt"]
+
+        # (5) validator memory must be updated with the evaluation text
+        mem_entry = next(e for e in call_log if e["event"] == "validator_memory_updated")
+        assert "VALID" in mem_entry["solver_message"]
+
+        # (6) process_action must receive the solver's action
+        proc_entry = next(e for e in call_log if e["event"] == "process_action_called")
+        assert proc_entry["action"] == solver_action
+
+    def test_invalid_then_valid_path_order(self, tmp_path):
+        """INVALID → VALID path sequence:
+        user_prompt_built (×2) →
+        [attempt 1] solver_called → validator_called (INVALID) →
+                    validator_memory_updated →
+        [attempt 2] solver_called (user_prompt prefixed with solver_instruction
+                    containing original action + evaluation) →
+                    validator_called (VALID) → validator_memory_updated →
+        process_action_called.
+        """
+        call_log = []
+        solver_action = "UNIQUE_SOLVER_ACTION"
+        invalid_reason = "SPECIFIC_REASON_XYZ"
+
+        reasoning = self._make_tracking_reasoning(
+            call_log,
+            [solver_action, f"INVALID: {invalid_reason}", solver_action, "VALID"],
+        )
+        memory, _ = make_memory(tmp_path)
+        env = make_env(max_trials=1, step_returns=[("obs", 1.0, True)])
+        ag = make_autogen(reasoning, memory, env)
+        self._instrument(call_log, ag, env)
+
+        def tracking_fmt(*args, **kwargs):
+            result = _orig_fmt(*args, **kwargs)
+            call_log.append({"event": "user_prompt_built"})
+            return result
+
+        with patch(_FMT_PATCH, side_effect=tracking_fmt):
+            with patch(PATCH_GPTCHAT):
+                ag.schedule({"task_main": "t", "task_description": "d"})
+
+        events = [e["event"] for e in call_log]
+
+        # ── ordering ──────────────────────────────────────────────────────────
+        assert events[0] == "user_prompt_built"         # (1) before for loop
+        assert events[1] == "user_prompt_built"         # (2) inside for loop
+        assert events[2] == "solver_called"             # (3) attempt 1
+        assert events[3] == "validator_called"          # (4) → INVALID
+        assert events[4] == "validator_memory_updated"  # (5) memory updated
+        # solver_instruction built internally (no logged event)
+        assert events[5] == "solver_called"             # (6) attempt 2 (retry)
+        assert events[6] == "validator_called"          # (7) → VALID
+        assert events[7] == "validator_memory_updated"  # (8) memory updated
+        assert events[8] == "process_action_called"     # (9) VALID → action executed
+
+        solver_calls = [e for e in call_log if e["event"] == "solver_called"]
+        validator_calls = [e for e in call_log if e["event"] == "validator_called"]
+        mem_updates = [e for e in call_log if e["event"] == "validator_memory_updated"]
+
+        # ── attempt 1 content ─────────────────────────────────────────────────
+        # Validator prompt must contain solver's action
+        assert solver_action in validator_calls[0]["user_prompt"]
+
+        # Validator memory updated with INVALID evaluation
+        assert "INVALID" in mem_updates[0]["solver_message"]
+        assert invalid_reason in mem_updates[0]["solver_message"]
+
+        # ── attempt 2 content ─────────────────────────────────────────────────
+        # Solver's retry prompt must be prefixed with the solver_instruction
+        retry_prompt = solver_calls[1]["user_prompt"]
+        assert "does not follow the expected format" in retry_prompt  # instruction header
+        assert solver_action in retry_prompt                          # original action echoed back
+        assert invalid_reason in retry_prompt                         # evaluation echoed back
+
+        # Validator prompt on retry still contains solver's action
+        assert solver_action in validator_calls[1]["user_prompt"]
+
+        # Validator memory updated with VALID evaluation
+        assert "VALID" in mem_updates[1]["solver_message"]
+
+        # process_action receives the solver's action
+        proc_entry = next(e for e in call_log if e["event"] == "process_action_called")
+        assert proc_entry["action"] == solver_action

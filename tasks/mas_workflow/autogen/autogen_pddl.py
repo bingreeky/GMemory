@@ -12,7 +12,7 @@ from .autogen_prompt import AUTOGEN_PROMPT
 from ..format import format_task_prompt_with_insights, format_task_context
 
 import sys
-
+import time
 
 @dataclass
 class AutoGen(MetaMAS):   
@@ -171,6 +171,7 @@ class AutoGen(MetaMAS):
             
             #print(f"\n==== FEW SHOTS ====\n{few_shots[:]}\n==== END FEW SHOTS ====\n", file=sys.stderr)
             print(f"\n==== SOLVER AGENT PROMPT ====\n{user_prompt}\n==== END SOLVER AGENT PROMPT ====\n", file=sys.stderr)
+            time.sleep(5)
 
             solver_instruction = ""
             while tries < 3:
@@ -185,15 +186,19 @@ class AutoGen(MetaMAS):
                     {action} \n 
                     Task description: \n
                     {task_config.get('task_description')} \n
-                    Format that responses must follow: \n
+                    Format that solver agent's actions must follow: \n
                     {"\n".join(few_shots)}
                     """
                     ## Evaluate
+                    print(f'==== VALIDATOR PROMPT ====\n{validator_prompt}\n==== END VALIDATOR PROMPT ====\n', file=sys.stderr)
+
                     evaluation: str = validator.response(validator_prompt, self.reasoning_config)
+
+                    print(f'==== VALIDATOR EVALUATION ====\n{evaluation}\n==== END VALIDATOR EVALUATION ====\n', file=sys.stderr)
+
                     # Update validator memory
                     self.meta_memory_validator.summarize(solver_message=f"## Your latest evaluation: \n {evaluation}")
-                    print(f'==== VALIDATOR EVALUATION ====\n{evaluation}\n==== END VALIDATOR EVALUATION ====\n', file=sys.stderr)
-                    print(f'==== VALIDATOR PROMPT ====\n{validator_prompt}\n==== END VALIDATOR PROMPT ====\n', file=sys.stderr)
+                    
                     if "INVALID" in evaluation:
                         solver_instruction = f"""Your response does not follow the expected format. \n 
                         Modify your response according to the Validator's feedback. \n 
@@ -204,6 +209,7 @@ class AutoGen(MetaMAS):
                         Original instructions: \n
                         """
                         print(f'==== SOLVER INSTRUCTION FOR REVISION ====\n{solver_instruction}\n==== END SOLVER INSTRUCTION FOR REVISION ====\n', file=sys.stderr)
+                        time.sleep(5)
                         tries += 1
                         continue
                     
@@ -257,7 +263,7 @@ class AutoGen(MetaMAS):
             self.notify_observers(step_message)
 
             # Add latest action and observation to task_trajectory
-            self.meta_memory_solver.move_memory_state(action, observation, reward=reward)   # I think I should only move the memory state for the solver
+            self.meta_memory_solver.move_memory_state(action, observation, reward=reward)   # I think we should only move the memory state for the solver
 
             if done:  
                 break
