@@ -1,5 +1,5 @@
 """
-Integration tests for autogen_pddl.py that require a live LLM endpoint.
+Integration tests for autogen_mas.py that require a live LLM endpoint.
 
 What is tested
 --------------
@@ -94,7 +94,7 @@ def _build_validator_prompt(
     task_description: str,
     few_shots: list[str],
 ) -> str:
-    """Replicates the validator_prompt built inside autogen_pddl.schedule()."""
+    """Replicates the validator_prompt built inside autogen_mas.schedule()."""
     return (
         f"You are evaluating whether a solver agent's response follows the expected format.\n\n"
         f"Solver's latest response:\n{solver_action}\n\n"

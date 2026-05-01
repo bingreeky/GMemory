@@ -1,5 +1,5 @@
 """
-Test suite for tasks/mas_workflow/autogen/autogen_pddl.py and
+Test suite for tasks/mas_workflow/autogen/autogen_mas.py and
 mas/memory/mas_memory/intrinsicmemory_notemplate.py.
 
 Run from GMemory root:
@@ -22,7 +22,7 @@ from mas.memory.common import AgentMessage
 from mas.memory.mas_memory.intrinsicmemory_notemplate import IntrinsicMASMemoryNoTemplate
 from mas.reasoning import ReasoningBase, ReasoningConfig
 
-from tasks.mas_workflow.autogen.autogen_pddl import AutoGen
+from tasks.mas_workflow.autogen.autogen_mas import AutoGen
 from tasks.mas_workflow.autogen.autogen_prompt import AUTOGEN_PROMPT
 from tasks.mas_workflow.format import format_task_prompt_with_insights as _orig_fmt
 
@@ -729,7 +729,7 @@ class TestAdditionalGaps:
         assert "You picked up the block." in mem.current_task_context.task_trajectory
 
     def test_tries_incremented_on_invalid_limits_to_three(self, tmp_path):
-        """tries IS incremented on each INVALID response (line 207 in autogen_pddl.py).
+        """tries IS incremented on each INVALID response (line 207 in autogen_mas.py).
         After 3 INVALID evaluations the while loop exits and env.step is called with
         the last solver action regardless — total reasoning calls = 3 solver + 3 validator.
         """
@@ -752,7 +752,7 @@ class TestAdditionalGaps:
 
 # ── I. Pipeline ordering ───────────────────────────────────────────────────────
 
-_FMT_PATCH = "tasks.mas_workflow.autogen.autogen_pddl.format_task_prompt_with_insights"
+_FMT_PATCH = "tasks.mas_workflow.autogen.autogen_mas.format_task_prompt_with_insights"
 
 
 class TestPipelineOrdering:

@@ -1,7 +1,7 @@
 from .autogen import AutoGen
-from .autogen_pddl import AutoGen as AutoGenPDDL
+from .autogen_mas import AutoGen as AutoGenMAS
 
 __all__ = [
     "AutoGen",
-    "AutoGenPDDL"
+    "AutoGenMAS"
 ]

@@ -1,5 +1,5 @@
 """
-Compatibility tests for autogen_pddl across all --task and --mas_memory
+Compatibility tests for autogen_mas across all --task and --mas_memory
 combinations supported by run.py.
 
 Two parametrized test suites:
@@ -34,7 +34,7 @@ if ROOT not in sys.path:
 
 from mas.module_map import module_map
 from mas.reasoning import ReasoningBase, ReasoningConfig
-from tasks.mas_workflow.autogen.autogen_pddl import AutoGen
+from tasks.mas_workflow.autogen.autogen_mas import AutoGen
 
 # ── constants ─────────────────────────────────────────────────────────────────
 
