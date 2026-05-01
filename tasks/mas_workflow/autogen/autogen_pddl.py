@@ -180,7 +180,7 @@ class AutoGen(MetaMAS):
                         continue
                     # Pass action to solver for evaluation
                     ## Build validator prompt
-                    validator_prompt: str = f"""some string that includes the task, the solver's latest response, and the few shots to show how to respond \n
+                    validator_prompt: str = f"""
                     Solver's latest response: \n
                     {action} \n 
                     Task description: \n
