@@ -24,8 +24,8 @@ NUM_COMPS = LLM_CONFIG.get("num_comps", 1)
 
 URL = os.environ["OPENAI_API_BASE"]
 KEY = os.environ["OPENAI_API_KEY"]
-print('# api url: ', URL)
-print('# api key: ', KEY)
+#print('# api url: ', URL)
+#print('# api key: ', KEY)
 
 
 completion_tokens, prompt_tokens = 0, 0
